@@ -8,11 +8,9 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h1 class="card-title">Comentarios</h1>
+                    <h1 class="card-title">Contactos</h1>
                 	<br>
-                	<div>        	
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></button>
-                	</div>
+                
 
                 	<br>
                 	@if(session('msg'))
@@ -74,23 +72,27 @@
         </div>
         <div class="row">
         <!-- Modal crear -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+             <!-- Modal -->
+             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Agregar </h4>
-                        </div>
-                        {!! Form::open(['route' => ['comentarios.store']]) !!}
-                        {{csrf_field()}}
-                        <div class="modal-body">
-                            @include('Comentarios.form')
-                        </div>
-                       
-                        {!! Form::close() !!}
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Agregar </h4>
                     </div>
+                    {!! Form::open(['route' => ['actualizar']]) !!}
+                      {{csrf_field()}}
+                        <div class="modal-body">
+                          @include('Comentarios.form')
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                          <button type="submit" class="btn btn-primary">Agregar</button>
+                        </div>
+                    {!! Form::close() !!}
+                  </div>
                 </div>
-            </div>
+              </div>
 
             
         </div>

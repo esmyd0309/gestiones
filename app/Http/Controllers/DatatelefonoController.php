@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Input;
 class DatatelefonoController extends Controller
 {
 
-    
+    public function __construct()
+	{
+		$this->middleware('auth');
+	} 
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +27,7 @@ class DatatelefonoController extends Controller
     {   
       
         $data = Data::orderBy('id', 'desc')->paginate(10);
-
+        //dd($data );
         return view('comentarios.index', ['data' => $data]);
     }
 
@@ -33,9 +36,9 @@ class DatatelefonoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function actualizar(Request $request)
     {   
-       
+       dd($request);
     }
 
 

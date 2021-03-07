@@ -184,3 +184,4 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@SendsPasswordResetEm
 
 Route::resource('comentarios', 'DatatelefonoController');
 Route::get('reportes', 'DatatelefonoController@reportes')->name('reportes');
+Route::put('actualizar', 'DatatelefonoController@actualizar')->name('actualizar');
