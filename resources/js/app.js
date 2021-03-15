@@ -46,7 +46,7 @@ Vue.use(VueCurrencyInput)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 
-
+Vue.component('listacontactos-component', require('./components/contactos/Lista.vue').default);
 
 
 

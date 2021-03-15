@@ -39,7 +39,7 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Gestión de comentarios</h6>
-        <a class="collapse-item" href="{{ route('comentarios.index') }}">Listado</a>
+        <a class="collapse-item" href="{{ route('contactos.index') }}">Listado</a>
        
       </div>
     </div>

@@ -182,6 +182,21 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@SendsPasswordResetEm
 
 
 
-Route::resource('comentarios', 'DatatelefonoController');
+Route::resource('contactos', 'DatatelefonoController');
 Route::get('reportes', 'DatatelefonoController@reportes')->name('reportes');
 Route::put('actualizar', 'DatatelefonoController@actualizar')->name('actualizar');
+
+
+/***
+ * lista de contactos
+ */
+Route::get('listacontactos', 'DatatelefonoController@listacontactos')->name('listacontactos');
+
+Route::get('consultarcontacto/{id}', 'DatatelefonoController@consultarcontacto')->name('consultarcontacto');
+
+Route::post('guardarcontacto', 'DatatelefonoController@guardarcontacto')->name('guardarcontacto');
+Route::get('contactos/getcanton/{provincia}', 'DatatelefonoController@getcanton');
+Route::get('contactos/getSector/{canton}', 'DatatelefonoController@getSector');
+
+Route::get('getprovincia', 'DatatelefonoController@getprovincia');
+

@@ -28,20 +28,64 @@ class DatatelefonoController extends Controller
       
         $data = Data::orderBy('id', 'desc')->paginate(10);
         //dd($data );
-        return view('comentarios.index', ['data' => $data]);
+        return view('contactos.index', ['data' => $data]);
     }
 
+    public function listacontactos(Request $request)
+    {   
+
+       
+        if ($request) 
+        {
+            $data = Data::orderBy('id')->paginate(10);
+        
+
+            return response()->json($data, 200);
+        }
+
+        return response()->json([], 200);
+    }
+
+    
+    public function consultarcontacto($id)
+    {   
+        
+       
+        if ($id) 
+        {
+            $data = Data::where('id',$id)->get();
+
+            return response()->json($data, 200);
+        }
+
+        return response()->json([], 200);
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request)
+    public function guardarcontacto(Request $request)
     {   
        dd($request);
     }
 
+    public function getcanton($provincia){
+        $canton = DB::connection('mysql')->select("SELECT * FROM canton where provincia_id='$provincia'");
+        return response()->json($canton);
+    }
 
+    public function getprovincia(){
+        
+        $provincia = DB::connection('mysql')->select("SELECT * FROM provincia");
+        
+        return response()->json($provincia);
+    }
+
+    public function getSector($canton){
+        $sector = DB::connection('mysql')->select("SELECT * FROM sector where canton_id='$canton'");
+        return response()->json($sector);
+    }
 
 
 
@@ -78,9 +122,7 @@ class DatatelefonoController extends Controller
      */
     public function show($id)
     {
-        $comentario = Data::where('id',$id)->first();
-                    
-        return view('Comentarios.show', ['comentario' => $comentario]);
+        
     }
 
 
