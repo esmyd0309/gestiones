@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Models\Admin\Role;
 use App\Models\Data;
+use App\Models\Clientes\Clientes;
 use DateTime;
 use DB;
 use Auth;
@@ -26,7 +26,7 @@ class DatatelefonoController extends Controller
     public function index(Request $request)
     {   
       
-        $data = Data::orderBy('id', 'desc')->paginate(10);
+        $data = Data::whereNull('actualizado')->orderBy('datos', 'desc')->paginate(10);
         //dd($data );
         return view('contactos.index', ['data' => $data]);
     }
@@ -37,7 +37,7 @@ class DatatelefonoController extends Controller
        
         if ($request) 
         {
-            $data = Data::orderBy('id')->paginate(10);
+            $data = Data::whereNull('actualizado')->orderBy('id')->paginate(10);
         
 
             return response()->json($data, 200);
@@ -66,8 +66,30 @@ class DatatelefonoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function guardarcontacto(Request $request)
-    {   
-       dd($request);
+    {   $id = $request->idContacto;
+        
+        $cliente = new Clientes;
+        $cliente->nombres               =   $request->nombres; 
+        $cliente->apellidos             =   $request->apellidos; 
+        $cliente->cedula                =   $request->cedula; 
+        $cliente->telefonoWhatsapp      =   $request->telefonoWhatsapp; 
+        $cliente->telefonoCelular       =   $request->telefonoCelular; 
+        $cliente->telefonoCasa          =   $request->telefonoConvencional; 
+        $cliente->direccion             =   $request->direccion; 
+        $cliente->provincia             =   $request->provincia; 
+        $cliente->canton                =   $request->canton; 
+        $cliente->sector                =   $request->sector; 
+        $cliente->villa                 =   $request->villa; 
+        $cliente->mz                    =   $request->mz; 
+        $cliente->referencia            =   $request->referencia;
+        $cliente->idActualizado            =   $id;
+        $cliente->save();
+
+        
+
+         Data::where('id',$id )->update(['actualizado'         =>  1 ]);
+         $data = Data::where('actualizado','!=','1')->get();
+         return response()->json($data);
     }
 
     public function getcanton($provincia){
@@ -78,6 +100,14 @@ class DatatelefonoController extends Controller
     public function getprovincia(){
         
         $provincia = DB::connection('mysql')->select("SELECT * FROM provincia");
+        
+        return response()->json($provincia);
+    }
+
+    
+    public function getprovinciaid($id){
+        
+        $provincia = DB::connection('mysql')->select("SELECT * FROM provincia where codigo='$id'");
         
         return response()->json($provincia);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Clientes\Clientes;
 use App\Models\Data;
 use App\User;
 use Auth;
@@ -17,12 +18,12 @@ class HomeController extends Controller
     public function index()
     {
         $usuario = Auth::user()->usuario;
-        $comentario = Data::orderBy('id', 'desc')->paginate(3);
+        $cliente = Clientes::orderBy('id', 'desc')->paginate(15);
 
         
 
     	
-        return view('home', ['comentarios' => $comentario]);
+        return view('home', ['clientes' => $cliente]);
     }
 
     public function inicio()

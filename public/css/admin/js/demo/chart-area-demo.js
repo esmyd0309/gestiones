@@ -29,7 +29,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 
 $.ajax({
-  url: "http://23.236.49.200/getPagoschart",
+  url: "http://#/getPagoschart",
   method: "GET",
   success: function(data){
       

@@ -9,7 +9,7 @@ class Data extends Model
 {
     protected $table = "data";
     protected $primaryKey = 'id';
-    //public $timestamps = false;
+    public $timestamps = false;
 
    
 }	
