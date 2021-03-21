@@ -60,6 +60,30 @@ class ClientesController extends Controller
          return response()->json($cliente);
     }
 
+    public function actualizarcliente(Request $request)
+    {   
+        //dd($request->id);
+        $cliente = Clientes::findOrFail($request->id);
+        
+        $cliente->nombres               =   $request->nombres; 
+        $cliente->apellidos             =   $request->apellidos; 
+        $cliente->cedula                =   $request->cedula; 
+        $cliente->telefonoWhatsapp      =   $request->telefonoWhatsapp; 
+        $cliente->telefonoCelular       =   $request->telefonoCelular; 
+        $cliente->telefonoCasa          =   $request->telefonoConvencional; 
+        $cliente->direccion             =   $request->direccion; 
+        $cliente->provincia             =   $request->provincia; 
+        $cliente->canton                =   $request->canton; 
+        $cliente->sector                =   $request->sector; 
+         $cliente->email                =   $request->email; 
+        $cliente->villa                 =   $request->villa; 
+        $cliente->mz                    =   $request->mz; 
+        $cliente->referencia            =   $request->referencia;
+        
+        $cliente->update();
+        return response()->json($cliente);
+    }
+
     public function deletecliente(Clientes $id)
     {   
 

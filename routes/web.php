@@ -211,5 +211,5 @@ Route::get('getprovincia', 'DatatelefonoController@getprovincia');
 			 Route::get('listaclientes', 'Clientes\ClientesController@listaclientes')->name('listaclientes');
 			 Route::post('guardarcliente', 'Clientes\ClientesController@guardarcliente')->name('guardarcliente');
 			 Route::delete('deletecliente/{id}', 'Clientes\ClientesController@deletecliente')->name('deletecliente');
-
+			 Route::put('actualizarcliente', 'Clientes\ClientesController@actualizarcliente')->name('actualizarcliente');
 

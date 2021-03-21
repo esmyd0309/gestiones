@@ -6,13 +6,13 @@
       </div>
       <div class="row">
         <div class="col-sm">
-          <b-button v-b-modal.modal1 @click.prevent="modal1=true" variant="info"> <i class="fas fa-user-plus"></i> Registrar</b-button>
+          <b-button v-b-modal.modal1 @click.prevent="modal1=true" variant="primary" @click="getRegistrar()"> <i class="fas fa-user-plus"></i> Registrar</b-button>
         </div>
         <div class="col-sm">
           <input type="text" v-model="buscardato" class="form-control" placeholder="Buscar por cedula del cliente" /> 
         </div> 
           <div class="col-sm">
-            <button type="submit" class="btn btn-info" @click="search"> <i class="fas fa-search"></i> Buscar</button>
+            <button type="submit" class="btn btn-secondary" @click="search"> <i class="fas fa-search"></i> Buscar</button>
           </div>  
       </div>
       <hr>
@@ -45,9 +45,10 @@
                     <td v-text="item.villa"></td>
                     <td v-text="item.referencia"></td>
                     
-                    <td><button type="submit" class="btn btn-warding" @click="edit(item)" > <i class="fas fa-user-edit"></i></button></td>
-                    <td><button type="submit" class="btn btn-info" @click="deleete(item.id)" > <i class="fas fa-trash-alt"></i></button></td>
+                    <td><button type="submit" v-b-modal.modal1 @click.prevent="modal1=true"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button></td>
                     <td><button type="submit" class="btn btn-info" > <i class="fas fa-eye"></i></button></td>
+                    <td><button type="submit" class="btn btn-danger" @click="deleete(item.id)" > <i class="fas fa-trash-alt"></i></button></td>
+
                   </tr>
             </tbody>         
           </table>
@@ -64,7 +65,7 @@
       </div>
     </div>
     <!-- MODAL ---->
-    <b-modal id="modal1" :v-bind="modal1" v-if="modal1" size="xl" ><div class="alert alert-dark" role="alert"> <center>Registrar Cliente</center> </div>
+    <b-modal id="modal1" hide-footer :v-bind="modal1" v-if="modal1" size="xl" ><div class="alert alert-dark" role="alert"> <center>{{Registrar}} Cliente</center> </div>
       <div class="row">
         <loading :active.sync="isLoading" />
         <div class="card-body" id="validar">
@@ -199,13 +200,31 @@
 
                 </div>
 
-            <br>
-            <div class="row">
-                <div class="col">
-                    <input  class="btn btn-primary btn-sm" type="submit" value="Actualizar">
+            
+            <template modal-footer>
+              <div class="row">
+                <div class="col" v-if="this.Registrar=='Registrar'">
+                  
+                    <input  class="btn btn-success btn-sm float-center" type="submit" value="Registrar">
+                  
                 </div>
-            </div>
-        
+                <div class="col" v-else>
+                    <input  class="btn btn-success btn-sm float-center" type="submit" value="Actualizar">
+                </div>
+                <div class="col">
+                  <b-button
+                    variant="primary"
+                    size="sm"
+                    class="float-right"
+                    @click="this.modal1=false"
+                  >
+                    Cerrar
+                  </b-button>
+                </div>
+
+              </div>
+           
+            </template>
                 
             </form>
         </div>
@@ -222,7 +241,7 @@ import Vue from "vue";
 // Import component
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
-import swal from 'sweetalert2'
+import swal from "sweetalert2";
 Vue.use(Loading);
 export default {
   name: "lista",
@@ -247,6 +266,7 @@ export default {
         provincia: 9,
         canton: 901,
         referencia: null,
+        email: null,
       },
       clientes: [],
       contacto: null,
@@ -259,7 +279,9 @@ export default {
       cantones: null,
       sectores: null,
       buscardato: null,
-      modal1: false
+      modal1: false,
+      Registrar: null,
+      id:0
     };
   },
 
@@ -273,7 +295,6 @@ export default {
     this.getClientes();
   },
   methods: {
-    
     getClientes() {
       this.isLoading = true;
       this.isSuccess = false;
@@ -296,13 +317,13 @@ export default {
 
     search() {
       let me = this;
-   
+
       axios
         .get(`${me.url}?cedula=${me.buscardato}`)
         .then((res) => {
           me.clientes = res.data.data;
           me.page = res.data.current_page;
-           console.log(res.data.current_page);
+          console.log(res.data.current_page);
         })
         .catch((err) => {
           console.error(err.message);
@@ -392,7 +413,9 @@ export default {
     agregar() {
       this.isLoading = true;
       this.isSuccess = false;
+
       const parametros = {
+        id: this.id,
         telefonoWhatsapp: this.form.telefonowhatsapp,
         telefonoCelular: this.form.telefonoCelular,
         telefonoConvencional: this.form.telefonoConvencional,
@@ -407,6 +430,7 @@ export default {
         sector: this.form.sector,
         referencia: this.form.referencia,
         idContacto: this.idContacto,
+        email: this.form.email,
       };
 
       this.form.telefonowhatsapp = "";
@@ -419,63 +443,128 @@ export default {
       this.form.vl = "";
       this.form.sector = "";
       this.idContacto = "";
-      // console.log(parametros);
-      axios.post("guardarcliente", parametros).then((res) => {
-        this.clientes.push(res.data);
-        this.$swal("Creado  con Exito");
-        this.getClientes();
-        this.modal1=false
-      }).finally(() => (this.isLoading = false));
-    },
-
-    
-
-    deleete(id)
-    {
-          swal({
-              title: '¿Seguro que quieres eliminar el Cliente?',
-              text: "No podrás revertir esta acción luego",
-              type: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              cancelButtonText: 'Cancelar',
-              confirmButtonText: 'Si, borrarlo!'
-          }).then((result) => {
-              if (result.value) 
-              {
-                  axios.delete("deletecliente/"+id)
-                  .then( res => {
-                      this.getClientes();
-
-                      swal(
-                      'Borrarlo!',
-                      'Pago eliminado.',
-                      'success'
-                      )
-                  })
-                  .catch( err => {
-                      console.log(err)
-                      let error = err.response.data
-                      if (err.response.data == 'Unauthorized.') 
-                      {
-                          error = 'Usuario con rol no autorizado'
-                      }
-
-                      swal(
-                          'Error',
-                          error,
-                          'error'
-                      )
-                  })
-              }
+      this.form.email = "";
+      console.log(this.Registrar);
+      console.log(parametros);
+      console.log(this.id);
+       if (this.Registrar=='Registrar') {
+          axios
+          .post("guardarcliente", parametros)
+          .then((res) => {
+            this.clientes.push(res.data);
+            this.$swal("Creado  con Exito");
+            this.getClientes();
+            this.modal1 = false;
           })
+          .finally(() => (this.isLoading = false));
+       }else{
+          if (this.id>0) {
+           axios
+            .put("actualizarcliente", parametros)
+            .then((res) => {
+              this.clientes.push(res.data);
+              swal("Actualizado con Exito");
+              this.getClientes();
+              this.modal1 = false;
+            })
+            .finally(() => (this.isLoading = false));
+          }else{
+            console.log("error id no encontrado");
+          }
+         }
+        
+     
     },
 
-    edit(obj){
-        this.form.cedula=obj.cedula;
-        console.log(this.form.cedula);
-    }
+    deleete(id) {
+      swal({
+        title: "¿Seguro que quieres eliminar el Cliente?",
+        text: "No podrás revertir esta acción luego",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, borrarlo!",
+      }).then((result) => {
+        if (result.value) {
+          axios
+            .delete("deletecliente/" + id)
+            .then((res) => {
+              this.getClientes();
+
+              swal("Borrarlo!", "Pago eliminado.", "success");
+            })
+            .catch((err) => {
+              console.log(err);
+              let error = err.response.data;
+              if (err.response.data == "Unauthorized.") {
+                error = "Usuario con rol no autorizado";
+              }
+
+              swal("Error", error, "error");
+            });
+        }
+      });
+    },
+
+    getRegistrar() {
+
+      this.Registrar="Registrar";
+      this.form.telefonowhatsapp = "";
+      this.form.telefonoCelular = "";
+      this.form.cedula = "";
+      this.form.nombre = "";
+      this.form.apellidos = "";
+      this.form.direccion = "";
+      this.form.mz = "";
+      this.form.vl = "";
+      this.form.sector = "";
+      this.idContacto = "";
+      this.form.email = "";
+      this.id =0;
+      this.getCanton(this.form.provincia);
+      this.getSector(this.form.canton);
+    },
+
+    edit(obj) {
+      this.Registrar="Actualizar";
+      this.form.telefonowhatsapp = "";
+      this.form.telefonoCelular = "";
+      this.form.telefonoConvencional = "";
+      this.form.cedula = "";
+      this.form.nombre = "";
+      this.form.apellidos = "";
+      this.form.direccion = "";
+      this.form.mz = "";
+      this.form.vl = "";
+      this.form.sector = "";
+      this.idContacto = "";
+      this.form.email = "";
+      this.form.referencia = "";
+      this.id =0;
+
+      this.modal1 = true;
+      this.form.cedula = obj.cedula;
+      this.form.telefonowhatsapp = obj.telefonoWhatsapp;
+      this.form.telefonoCelular = obj.telefonoCelular;
+      this.form.telefonoConvencional = obj.telefonoCasa;
+      this.form.cedula = obj.cedula;
+      this.form.nombre = obj.nombres;
+      this.form.nombre = obj.nombres;
+      this.form.apellidos = obj.apellidos;
+      this.form.direccion = obj.direccion;
+      this.form.mz = obj.mz;
+      this.form.vl = obj.villa;
+      this.form.provincia = obj.provincia;
+      this.form.canton = obj.canton;
+      this.form.sector = obj.sector;
+      this.form.referencia = obj.referencia;
+      this.form.email = obj.email;
+      this.id = obj.id;
+      this.getCanton(obj.provincia);
+      this.getSector(obj.canton);
+    },
   },
 };
 </script>
