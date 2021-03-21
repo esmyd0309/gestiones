@@ -11,6 +11,18 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Volcando estructura de base de datos para gestion
+CREATE DATABASE IF NOT EXISTS `gestion` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `gestion`;
+
+-- Volcando estructura para tabla gestion.canton
+CREATE TABLE IF NOT EXISTS `canton` (
+  `codigo` int(11) DEFAULT NULL,
+  `canton` varchar(255) DEFAULT NULL,
+  `provincia_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- Volcando datos para la tabla gestion.canton: ~224 rows (aproximadamente)
 /*!40000 ALTER TABLE `canton` DISABLE KEYS */;
 INSERT INTO `canton` (`codigo`, `canton`, `provincia_id`) VALUES
@@ -240,7 +252,29 @@ INSERT INTO `canton` (`codigo`, `canton`, `provincia_id`) VALUES
 	(9004, 'EL PIEDRERO', 90);
 /*!40000 ALTER TABLE `canton` ENABLE KEYS */;
 
--- Volcando datos para la tabla gestion.clientes: ~4 rows (aproximadamente)
+-- Volcando estructura para tabla gestion.clientes
+CREATE TABLE IF NOT EXISTS `clientes` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idActualizado` int(11) DEFAULT NULL,
+  `nombres` varchar(50) DEFAULT NULL,
+  `apellidos` varchar(50) DEFAULT NULL,
+  `cedula` varchar(15) DEFAULT NULL,
+  `telefonoWhatsapp` varchar(15) DEFAULT NULL,
+  `telefonoCelular` varchar(15) DEFAULT NULL,
+  `telefonoCasa` varchar(15) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `provincia` varchar(50) DEFAULT NULL,
+  `canton` varchar(150) DEFAULT NULL,
+  `sector` varchar(150) DEFAULT NULL,
+  `villa` varchar(150) DEFAULT NULL,
+  `mz` varchar(150) DEFAULT NULL,
+  `referencia` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla gestion.clientes: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
 INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`, `telefonoWhatsapp`, `telefonoCelular`, `telefonoCasa`, `direccion`, `provincia`, `canton`, `sector`, `villa`, `mz`, `referencia`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'Cliente 52', 'Cliente 52', '1344456', '13472163199', '13472163199', NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', '901', '2', NULL, NULL, 'dfgfg', '2021-03-17 22:53:40', '2021-03-17 22:53:40'),
@@ -252,11 +286,28 @@ INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`,
 	(10, NULL, 'ghgfhgfh', 'ghgfhgfhgfh', '456456', '6578978687', '4566456456', '456456456', 'ghgfhgfhgfh gfhgfh', '9', '901', '2', '76675', '3445', 'dffsdfd', '2021-03-20 20:10:11', '2021-03-20 20:10:11');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 
+-- Volcando estructura para tabla gestion.comentarios
+CREATE TABLE IF NOT EXISTS `comentarios` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- Volcando datos para la tabla gestion.comentarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
 
--- Volcando datos para la tabla gestion.data: ~5.682 rows (aproximadamente)
+-- Volcando estructura para tabla gestion.data
+CREATE TABLE IF NOT EXISTS `data` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `datos` varchar(600) DEFAULT '0',
+  `telefono1` varchar(50) DEFAULT '0',
+  `telefono2` varchar(50) DEFAULT '0',
+  `organizacion` varchar(255) DEFAULT '0',
+  `actualizado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5728 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla gestion.data: ~5.726 rows (aproximadamente)
 /*!40000 ALTER TABLE `data` DISABLE KEYS */;
 INSERT INTO `data` (`id`, `datos`, `telefono1`, `telefono2`, `organizacion`, `actualizado`) VALUES
 	(1, 'Cliente 52  / Cliente  52   TELEFONOS:       1347-216-3199', '13472163199', '', '', 1),
@@ -5987,6 +6038,14 @@ INSERT INTO `data` (`id`, `datos`, `telefono1`, `telefono2`, `organizacion`, `ac
 	(5727, '  /      TELEFONOS:    8999667014', '8999667014', '', '', NULL);
 /*!40000 ALTER TABLE `data` ENABLE KEYS */;
 
+-- Volcando estructura para tabla gestion.parroquia
+CREATE TABLE IF NOT EXISTS `parroquia` (
+  `codigo` int(11) DEFAULT NULL,
+  `parroquia` varchar(250) DEFAULT NULL,
+  `provincia_id` int(11) DEFAULT NULL,
+  `canton_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- Volcando datos para la tabla gestion.parroquia: ~1.399 rows (aproximadamente)
 /*!40000 ALTER TABLE `parroquia` DISABLE KEYS */;
 INSERT INTO `parroquia` (`codigo`, `parroquia`, `provincia_id`, `canton_id`) VALUES
@@ -7391,23 +7450,82 @@ INSERT INTO `parroquia` (`codigo`, `parroquia`, `provincia_id`, `canton_id`) VAL
 	(900451, 'EL PIEDRERO', 90, 9004);
 /*!40000 ALTER TABLE `parroquia` ENABLE KEYS */;
 
+-- Volcando estructura para tabla gestion.permissions
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `permissions_slug_unique` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Volcando datos para la tabla gestion.permissions: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
+
+-- Volcando estructura para tabla gestion.permission_role
+CREATE TABLE IF NOT EXISTS `permission_role` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `permission_id` int(10) unsigned NOT NULL,
+  `role_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `permission_role_permission_id_index` (`permission_id`),
+  KEY `permission_role_role_id_index` (`role_id`),
+  CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla gestion.permission_role: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `permission_role` DISABLE KEYS */;
 /*!40000 ALTER TABLE `permission_role` ENABLE KEYS */;
 
+-- Volcando estructura para tabla gestion.permission_user
+CREATE TABLE IF NOT EXISTS `permission_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `permission_id` int(10) unsigned NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `permission_user_permission_id_index` (`permission_id`),
+  KEY `permission_user_user_id_index` (`user_id`),
+  CONSTRAINT `permission_user_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `permission_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Volcando datos para la tabla gestion.permission_user: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `permission_user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `permission_user` ENABLE KEYS */;
 
--- Volcando datos para la tabla gestion.persona: ~0 rows (aproximadamente)
+-- Volcando estructura para tabla gestion.persona
+CREATE TABLE IF NOT EXISTS `persona` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `specialist` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla gestion.persona: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`id`, `name`, `email`, `phone`, `specialist`, `created_at`, `updated_at`) VALUES
 	(1, 'gregorio osorio', 'gregorioenrique14@gmail', '0999218183', 'Desarrollador', '2021-02-27 10:07:19', '2021-02-27 10:07:19');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
+
+-- Volcando estructura para tabla gestion.provincia
+CREATE TABLE IF NOT EXISTS `provincia` (
+  `codigo` int(11) DEFAULT NULL,
+  `Provincia` varchar(250) DEFAULT NULL,
+  UNIQUE KEY `codigo` (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla gestion.provincia: ~25 rows (aproximadamente)
 /*!40000 ALTER TABLE `provincia` DISABLE KEYS */;
@@ -7439,17 +7557,52 @@ INSERT INTO `provincia` (`codigo`, `Provincia`) VALUES
 	(90, 'ZONAS NO DELIMITADAS');
 /*!40000 ALTER TABLE `provincia` ENABLE KEYS */;
 
--- Volcando datos para la tabla gestion.roles: ~0 rows (aproximadamente)
+-- Volcando estructura para tabla gestion.roles
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `special` enum('all-access','no-access') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `roles_name_unique` (`name`),
+  UNIQUE KEY `roles_slug_unique` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Volcando datos para la tabla gestion.roles: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` (`id`, `name`, `slug`, `description`, `created_at`, `updated_at`, `special`) VALUES
 	(1, 'Admin', 'admin.admin', 'Usuario administrador', NULL, '2021-02-27 10:07:19', 'all-access');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
--- Volcando datos para la tabla gestion.role_user: ~0 rows (aproximadamente)
+-- Volcando estructura para tabla gestion.role_user
+CREATE TABLE IF NOT EXISTS `role_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `role_id` int(10) unsigned NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `role_user_role_id_index` (`role_id`),
+  KEY `role_user_user_id_index` (`user_id`),
+  CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Volcando datos para la tabla gestion.role_user: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `role_user` DISABLE KEYS */;
 INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, '2021-02-27 10:07:19', '2021-02-27 10:07:19');
 /*!40000 ALTER TABLE `role_user` ENABLE KEYS */;
+
+-- Volcando estructura para tabla gestion.sector
+CREATE TABLE IF NOT EXISTS `sector` (
+  `codigo` int(11) DEFAULT NULL,
+  `sector` varchar(150) DEFAULT NULL,
+  `canton_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla gestion.sector: ~165 rows (aproximadamente)
 /*!40000 ALTER TABLE `sector` DISABLE KEYS */;
@@ -7620,6 +7773,34 @@ INSERT INTO `sector` (`codigo`, `sector`, `canton_id`) VALUES
 	(164, 'Villa España 2', 901),
 	(165, 'Ximena', 901);
 /*!40000 ALTER TABLE `sector` ENABLE KEYS */;
+
+-- Volcando estructura para tabla gestion.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre1` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre2` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `apellido_paterno` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `apellido_materno` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `direccion` text COLLATE utf8mb4_unicode_ci,
+  `celular` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado_civil` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `foto` text COLLATE utf8mb4_unicode_ci,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `discapacidad` tinyint(1) DEFAULT '0',
+  `comentario` text COLLATE utf8mb4_unicode_ci,
+  `enabled` tinyint(1) DEFAULT NULL,
+  `perfil_actualizado` tinyint(1) DEFAULT NULL,
+  `usuario` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `genero_id` int(10) unsigned DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3332 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla gestion.users: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
