@@ -23,4 +23,10 @@ class Clientes extends Model
                             'mz        ',     
                             'referencia',    
                             'idActualizado', ];
+
+    public function scopeCedula($query, $cedula)
+     {
+         if($cedula)
+         return $query->where('cedula', 'LIKE', "%$cedula%"); 
+     }
 }	

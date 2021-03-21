@@ -21,9 +21,9 @@ class HomeController extends Controller
         $cliente = Clientes::orderBy('id', 'desc')->paginate(15);
 
         
-
+        return view('Clientes.index');
     	
-        return view('home', ['clientes' => $cliente]);
+        //return view('home', ['clientes' => $cliente]);
     }
 
     public function inicio()
