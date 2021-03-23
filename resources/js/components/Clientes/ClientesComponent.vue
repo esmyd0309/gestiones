@@ -46,7 +46,7 @@
                     <td v-text="item.referencia"></td>
                     
                     <td><button type="submit" v-b-modal.modal1 @click.prevent="modal1=true"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button></td>
-                    <td><button type="submit" class="btn btn-info" > <i class="fas fa-eye"></i></button></td>
+                    <td><button  class="btn btn-info" type="button"  data-toggle="modal" data-target=".bd-example-modal-lg" @click="View(item)"> <i class="fas fa-eye"></i></button></td>
                     <td><button type="submit" class="btn btn-danger" @click="deleete(item.id)" > <i class="fas fa-trash-alt"></i></button></td>
 
                   </tr>
@@ -197,6 +197,12 @@
                             <input type="text" class="form-control"  v-model="form.referencia">
                         </div>
                     </div>
+                     <div class="col">
+                        <label for="">Ubicación  *</label>
+                        <div>
+                            <input type="text" class="form-control"  v-model="form.ubicacion">
+                        </div>
+                    </div>
 
                 </div>
 
@@ -232,6 +238,117 @@
     </b-modal>
 
       <!-- / MODAL ---->
+
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"></button>
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Cliente  <strong>{{ form.apellidos }} {{ form.nombre }}  <small># {{ id }}</small></strong> </h3>
+            <br>
+        </div>
+        <div class="card-body">
+          <div class="row">  
+                <div class="col">
+                    <div class="form-group">
+                        <label for="saldo_deuda">Cedula: </label>
+                         <strong>{{ form.cedula }} </strong>        
+                    </div>                          
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                       <label for="abono">WhatsApp: </label>
+                        <strong>{{ form.telefonowhatsapp }}  </strong>    
+                    </div>                          
+                </div>  
+                <div class="col">
+                    <div class="form-group">
+                       <label for="abono">Telf. 2: </label>
+                        <strong>{{ form.telefono2 }}  </strong>    
+                    </div>                          
+                </div>
+              </div>
+              <div class="row">   
+                <div class="col">
+                    <div class="form-group">
+                       <label for="abono">Telf. Casa: </label>
+                        <strong>{{ form.telefonoCasa }}  </strong>    
+                    </div>                          
+                </div>  
+
+                <div class="col">
+                    <div class="form-group">
+                       <label for="abono">Correo:  </label>
+                        <strong>{{ form.email }}  </strong>    
+                    </div>                          
+                </div>  
+              </div>
+              <div class="row">  
+                <div class="col">
+                    <div class="form-group">
+                       <label for="abono">Dirección: </label>
+                        <strong>{{ form.direccion }}  </strong>    
+                    </div>                          
+                </div>  
+              </div>
+              <div class="row">  
+                <div class="col">
+                    <div class="form-group">
+                       <label for="abono">Provincia: </label>
+                        <strong>{{ form.provincia }}  </strong>    
+                    </div>                          
+                </div>  
+                <div class="col">
+                    <div class="form-group">
+                       <label for="abono">Canton: </label>
+                        <strong>{{ form.canton }}  </strong>    
+                    </div>                          
+                </div>  
+                <div class="col">
+                    <div class="form-group">
+                       <label for="abono">Sector: </label>
+                        <strong>{{ form.sector }}  </strong>    
+                    </div>                          
+                </div>  
+                <div class="col">
+                  <div class="form-group">
+                      <label for="abono">Referencia: </label>
+                      <strong>{{ form.referencia }}  </strong>    
+                  </div>                          
+                </div>   
+               
+                
+   
+            
+            </div>  
+           
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped ">
+                    <thead>
+                        <tr>
+                            <th># Periodos</th>
+                            <th>Saldo inicial</th>
+                            <th>Cuota fija</th>
+                            <th>Interes</th>
+                            <th>Abono al capital</th>     
+                            <th>Saldo final</th>                                        
+                        </tr>
+                    </thead>
+                  <tbody>
+                      	
+                  </tbody>         
+                </table>
+            </div>      
+        </div>     
+    </div>
+                
+             
+          </div>
+        </div>
+      </div>
   </div>
 
 </template>
@@ -265,8 +382,11 @@ export default {
         sector: null,
         provincia: 9,
         canton: 901,
+        cantonname:null,
+        sectorname: null,
         referencia: null,
         email: null,
+        ubicacion:null
       },
       clientes: [],
       contacto: null,
@@ -281,7 +401,8 @@ export default {
       buscardato: null,
       modal1: false,
       Registrar: null,
-      id:0
+      id:0,
+      datos: null
     };
   },
 
@@ -371,6 +492,7 @@ export default {
     getCanton(event) {
       axios.get("contactos/getcanton/" + event).then((res) => {
         this.cantones = res.data;
+        this.form.cantonname = res.data;
       });
     },
 
@@ -384,6 +506,7 @@ export default {
       // console.log(event);
       axios.get("contactos/getSector/" + event).then((res) => {
         this.sectores = res.data;
+        this.form.sectorname = res.data;
       });
     },
 
@@ -431,6 +554,7 @@ export default {
         referencia: this.form.referencia,
         idContacto: this.idContacto,
         email: this.form.email,
+        ubicacion: this.form.ubicacion,
       };
 
       this.form.telefonowhatsapp = "";
@@ -444,6 +568,7 @@ export default {
       this.form.sector = "";
       this.idContacto = "";
       this.form.email = "";
+      this.form.ubicacion = "";
       console.log(this.Registrar);
       console.log(parametros);
       console.log(this.id);
@@ -529,19 +654,7 @@ export default {
 
     edit(obj) {
       this.Registrar="Actualizar";
-      this.form.telefonowhatsapp = "";
-      this.form.telefonoCelular = "";
-      this.form.telefonoConvencional = "";
-      this.form.cedula = "";
-      this.form.nombre = "";
-      this.form.apellidos = "";
-      this.form.direccion = "";
-      this.form.mz = "";
-      this.form.vl = "";
-      this.form.sector = "";
-      this.idContacto = "";
-      this.form.email = "";
-      this.form.referencia = "";
+      this.limpear();
       this.id =0;
 
       this.modal1 = true;
@@ -561,10 +674,55 @@ export default {
       this.form.sector = obj.sector;
       this.form.referencia = obj.referencia;
       this.form.email = obj.email;
+      this.form.ubicacion = obj.ubicacion;
       this.id = obj.id;
       this.getCanton(obj.provincia);
       this.getSector(obj.canton);
     },
+
+     View(obj) {
+     
+       this.limpear();
+      
+      this.form.cedula = obj.cedula;
+      this.form.telefonowhatsapp = obj.telefonoWhatsapp;
+      this.form.telefonoCelular = obj.telefonoCelular;
+      this.form.telefonoConvencional = obj.telefonoCasa;
+      this.form.cedula = obj.cedula;
+      this.form.nombre = obj.nombres.toUpperCase();
+      this.form.apellidos = obj.apellidos.toUpperCase();
+      this.form.direccion = obj.direccion.toLowerCase();
+      this.form.mz = obj.mz;
+      this.form.vl = obj.villa;
+      this.form.provincia = obj.provincia;
+      this.form.canton = obj.canton;
+      this.form.sector = obj.sector;
+      this.form.referencia = obj.referencia.toLowerCase();
+      this.form.email = obj.email;
+      this.form.ubicacion = obj.ubicacion;
+      this.id = obj.id;
+
+
+     
+    },
+    limpear(){
+      this.form.telefonowhatsapp = "";
+      this.form.telefonoCelular = "";
+      this.form.telefonoConvencional = "";
+      this.form.cedula = "";
+      this.form.nombre = "";
+      this.form.apellidos = "";
+      this.form.direccion = "";
+      this.form.mz = "";
+      this.form.vl = "";
+      this.form.sector = "";
+      this.idContacto = "";
+      this.form.email = "";
+      this.form.referencia = "";
+      this.form.ubicacion = "";
+    },
+    
+    
   },
 };
 </script>

@@ -35,7 +35,7 @@ class ClientesController extends Controller
 
     public function guardarcliente(Request $request)
     {   
-       
+       //hay que guardar el nombre de los cantones , sectores y provincia
         
         $cliente = new Clientes;
         $cliente->nombres               =   $request->nombres; 
@@ -49,6 +49,8 @@ class ClientesController extends Controller
         $cliente->canton                =   $request->canton; 
         $cliente->sector                =   $request->sector; 
         $cliente->villa                 =   $request->villa; 
+        $cliente->email                 =   $request->email; 
+        $cliente->ubicacion             =   $request->ubicacion; 
         $cliente->mz                    =   $request->mz; 
         $cliente->referencia            =   $request->referencia;
        
@@ -75,7 +77,8 @@ class ClientesController extends Controller
         $cliente->provincia             =   $request->provincia; 
         $cliente->canton                =   $request->canton; 
         $cliente->sector                =   $request->sector; 
-         $cliente->email                =   $request->email; 
+        $cliente->email                 =   $request->email; 
+        $cliente->ubicacion             =   $request->ubicacion; 
         $cliente->villa                 =   $request->villa; 
         $cliente->mz                    =   $request->mz; 
         $cliente->referencia            =   $request->referencia;

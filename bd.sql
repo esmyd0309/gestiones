@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Host:                         localhost
+-- Host:                         127.0.0.1
 -- Versión del servidor:         5.7.24 - MySQL Community Server (GPL)
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             10.2.0.5599
+-- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -10,6 +10,7 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- Volcando estructura de base de datos para gestion
@@ -262,6 +263,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `telefonoWhatsapp` varchar(15) DEFAULT NULL,
   `telefonoCelular` varchar(15) DEFAULT NULL,
   `telefonoCasa` varchar(15) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `direccion` varchar(255) DEFAULT NULL,
   `provincia` varchar(50) DEFAULT NULL,
   `canton` varchar(150) DEFAULT NULL,
@@ -269,21 +271,21 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `villa` varchar(150) DEFAULT NULL,
   `mz` varchar(150) DEFAULT NULL,
   `referencia` varchar(255) DEFAULT NULL,
+  `ubicacion` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.clientes: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.clientes: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`, `telefonoWhatsapp`, `telefonoCelular`, `telefonoCasa`, `direccion`, `provincia`, `canton`, `sector`, `villa`, `mz`, `referencia`, `created_at`, `updated_at`) VALUES
-	(1, 1, 'Cliente 52', 'Cliente 52', '1344456', '13472163199', '13472163199', NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', '901', '2', NULL, NULL, 'dfgfg', '2021-03-17 22:53:40', '2021-03-17 22:53:40'),
-	(2, 1, 'Cliente 52', 'Cliente 52', '764534343', '13472163199', '13472163199', NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', '901', '3', NULL, NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '2021-03-17 22:55:29', '2021-03-17 22:55:29'),
-	(3, 2, 'Soporte Ecuador T', 'Soporte Ecuador T', '12344567', '59324018941', '59324018941', NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', '9', '901', '1', NULL, NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', '2021-03-17 23:00:06', '2021-03-17 23:00:06'),
-	(4, 3, 'Oriana Cajera', 'Oriana Cajera', '2232434', '584140279931', '584140279931', NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', '9', '901', '15', NULL, NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', '2021-03-18 21:43:51', '2021-03-18 21:43:51'),
-	(5, NULL, 'carlos', 'osorio', '0454564564', '0922554544', '2546412564', '0847445748', 'grellolodkf h hhdjf  ujhdfuhdjf hudghfjhdf', '9', '901', '14', 'gferterer', 'gdfgfrgefg', 'fwdgfwrg rgtertwer', '2021-03-20 18:17:52', '2021-03-20 18:17:52'),
-	(6, NULL, 'GREGORIO ENRIQUE', 'OSORIO ANDRADES', '0962398350', '0999218183', '0953546862', '0405653298', 'Mucho Lote 1', '9', '901', '10', '10', '245', 'FRENTE AL UPC', '2021-03-20 19:36:45', '2021-03-20 19:36:45'),
-	(10, NULL, 'ghgfhgfh', 'ghgfhgfhgfh', '456456', '6578978687', '4566456456', '456456456', 'ghgfhgfhgfh gfhgfh', '9', '901', '2', '76675', '3445', 'dffsdfd', '2021-03-20 20:10:11', '2021-03-20 20:10:11');
+INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`, `telefonoWhatsapp`, `telefonoCelular`, `telefonoCasa`, `email`, `direccion`, `provincia`, `canton`, `sector`, `villa`, `mz`, `referencia`, `ubicacion`, `created_at`, `updated_at`) VALUES
+	(1, 1, 'Cliente 52', 'Cliente 52', '1344456', '13472163199', '13472163199', NULL, NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', '901', '2', NULL, NULL, 'dfgfg', NULL, '2021-03-17 22:53:40', '2021-03-17 22:53:40'),
+	(2, 1, 'Cliente 52', 'Cliente 52', '764534343', '13472163199', '13472163199', NULL, NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', '901', '3', NULL, NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', NULL, '2021-03-17 22:55:29', '2021-03-17 22:55:29'),
+	(3, 2, 'Soporte Ecuador T', 'Soporte Ecuador T', '12344567', '59324018941', '59324018941', NULL, NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', '9', '901', '1', NULL, NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', NULL, '2021-03-17 23:00:06', '2021-03-17 23:00:06'),
+	(6, NULL, 'GREGORIO ENRIQUE', 'OSORIO ANDRADES', '0962398350', '0999218183', '0953546862', '0405653298', 'gregorioenrique@gmail.com', 'Mucho Lote 1', '9', '901', '10', '10', '245', 'FRENTE AL UPC', NULL, '2021-03-20 19:36:45', '2021-03-20 19:36:45'),
+	(10, NULL, 'gregorio enrique', 'osorio andrades', '25019796', '0999218183', '0421223243', '0456456456', 'gregorioenrique12@gmail.com', 'mucho lote 3', '9', '901', '8', '23', '232', 'frente al tia', NULL, '2021-03-20 20:10:11', '2021-03-21 01:36:54'),
+	(11, NULL, 'kumj nhbg vfcd', 'kujyhtgf', '7854434546', '0987654356', '0987654367', '0456789987', NULL, 'jhbgvfc lkmjnhbgvf l,kmjnhb', '9', '901', '14', '8765', '8765r', 'l,kmjnhbgv', NULL, '2021-03-21 01:40:53', '2021-03-21 01:41:21');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestion.comentarios
@@ -307,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `data` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5728 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.data: ~5.726 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.data: ~5.682 rows (aproximadamente)
 /*!40000 ALTER TABLE `data` DISABLE KEYS */;
 INSERT INTO `data` (`id`, `datos`, `telefono1`, `telefono2`, `organizacion`, `actualizado`) VALUES
 	(1, 'Cliente 52  / Cliente  52   TELEFONOS:       1347-216-3199', '13472163199', '', '', 1),
@@ -7514,7 +7516,7 @@ CREATE TABLE IF NOT EXISTS `persona` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.persona: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.persona: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`id`, `name`, `email`, `phone`, `specialist`, `created_at`, `updated_at`) VALUES
 	(1, 'gregorio osorio', 'gregorioenrique14@gmail', '0999218183', 'Desarrollador', '2021-02-27 10:07:19', '2021-02-27 10:07:19');
@@ -7571,7 +7573,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   UNIQUE KEY `roles_slug_unique` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla gestion.roles: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.roles: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` (`id`, `name`, `slug`, `description`, `created_at`, `updated_at`, `special`) VALUES
 	(1, 'Admin', 'admin.admin', 'Usuario administrador', NULL, '2021-02-27 10:07:19', 'all-access');
@@ -7591,7 +7593,7 @@ CREATE TABLE IF NOT EXISTS `role_user` (
   CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla gestion.role_user: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.role_user: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `role_user` DISABLE KEYS */;
 INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, '2021-02-27 10:07:19', '2021-02-27 10:07:19');
@@ -7811,5 +7813,6 @@ INSERT INTO `users` (`id`, `cedula`, `nombre1`, `nombre2`, `apellido_paterno`, `
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
