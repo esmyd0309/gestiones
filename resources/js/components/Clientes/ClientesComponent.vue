@@ -18,7 +18,7 @@
       <hr>
       <div class="row">
         <div class="col">
-          <table class="table table-bordered table-hover table-striped ">
+          <table class="table table-bordered table-hover table-striped table-responsive">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -250,7 +250,7 @@
           <div class="modal-content">
               <div class="card text-center">
                 <div class="card-header">
-                  
+                    Detalles de un cliente
                 </div>
               <div class="card-body" id="datos">
                 <h5 class="card-title">{{ form.apellidos }} {{ form.nombre }}</h5>
@@ -268,7 +268,7 @@
                       </div>
                       <div class="card-body box-profile">
                         
-                        <h3 class="profile-username text-center"></h3>
+                          <h3 class="profile-username text-center"></h3>
                           <p class="text-muted  text-center"><strong>Cedula:</strong>         {{ form.cedula }}               </p>
                           <p class="text-muted  text-center"><strong>WhatsApp:</strong>       {{ form.telefonowhatsapp }}     </p>
                           <p class="text-muted  text-center"><strong>Telefono2:</strong>      {{ form.telefonoCelular }}      </p>
@@ -278,30 +278,22 @@
                           <p class="text-muted text-center "><strong>Canton:</strong>          {{ form.canton }}            </p>
                           <p class="text-muted text-center "><strong>Sector:</strong>          {{ form.sector }}               </p>
                           <p class="text-muted text-center "><strong>Referencia:</strong>      {{ form.referencia }}           </p>
+                          <p class="text-muted text-center "><strong>Mz:</strong>      {{ form.mz }}           </p>
+                          <p class="text-muted text-center "><strong>Villa:</strong>      {{ form.villa }}           </p>
                           <div v-if="form.ubicacion">
                               <a :href="form.ubicacion" class="btn btn-primary" target="_blank" ><i class="fas fa-map-marked"></i> <small>{{form.ubicacion}}</small> </a>
                           </div>
                           <hr>
-                          <p class="text-muted text-center "><strong>RUC:</strong>  <strong>Estado:</strong>   </p>
-                          <p class="text-muted text-center "><strong>Razon:</strong>  </p>
+                          <p class="text-muted text-center "><strong>Email:</strong>  {{ form.email }}   </p>
 
                           
-                          <ul class="list-group list-group-unbordered mb-3">
-                            <li class="list-group-item">
-                              <b>Empresa</b> <a class="float-right"></a>
-                            </li>
-                            <li class="list-group-item">
-                              <b>Deuda</b> <a class="float-right"></a>
-                            </li>
-                            <li class="list-group-item">
-                              <b>Saldo</b> <a class="float-right"></a>
-                            </li>
-                            <li class="list-group-item">
-                              <b>Couta Promedio</b> <a class="float-right">0</a>
-                            </li>
-                          </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-">
+                    <div class="row">
+                      <div class="col">
 
-                          
                       </div>
                     </div>
                   </div>

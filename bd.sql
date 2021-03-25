@@ -2,7 +2,7 @@
 -- Host:                         127.0.0.1
 -- Versión del servidor:         5.7.24 - MySQL Community Server (GPL)
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             10.2.0.5599
+-- HeidiSQL Versión:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -10,6 +10,7 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- Volcando estructura de base de datos para gestion
@@ -252,6 +253,25 @@ INSERT INTO `canton` (`codigo`, `canton`, `provincia_id`) VALUES
 	(9004, 'EL PIEDRERO', 90);
 /*!40000 ALTER TABLE `canton` ENABLE KEYS */;
 
+-- Volcando estructura para tabla gestion.categorias
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT '',
+  `descripcion` varchar(255) DEFAULT '',
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla gestion.categorias: ~4 rows (aproximadamente)
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` (`id`, `nombre`, `descripcion`, `created_at`) VALUES
+	(1, 'Asados', '', NULL),
+	(2, 'Alitas', '', NULL),
+	(3, 'Parilladas', '', NULL),
+	(4, 'Bebidas', '', NULL),
+	(5, 'Promociones', '', NULL);
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
+
 -- Volcando estructura para tabla gestion.clientes
 CREATE TABLE IF NOT EXISTS `clientes` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -287,8 +307,8 @@ INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`,
 	(3, 2, 'Soporte Ecuador T', 'Soporte Ecuador T', '12344567', '59324018941', '59324018941', NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', '9', NULL, '901', NULL, '1', NULL, NULL, NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', NULL, NULL, '2021-03-17 23:00:06', '2021-03-17 23:00:06'),
 	(4, 3, 'Oriana Cajera', 'Oriana Cajera', '2232434', '584140279931', '584140279931', NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', '9', NULL, '901', NULL, '15', NULL, NULL, NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', NULL, NULL, '2021-03-18 21:43:51', '2021-03-18 21:43:51'),
 	(5, NULL, 'carlos', 'osorio', '0454564564', '0922554544', '2546412564', '0847445748', 'grellolodkf h hhdjf  ujhdfuhdjf hudghfjhdf', '9', NULL, '901', NULL, '14', NULL, 'gferterer', 'gdfgfrgefg', 'fwdgfwrg rgtertwer', NULL, NULL, '2021-03-20 18:17:52', '2021-03-20 18:17:52'),
-	(6, NULL, 'GREGORIO ENRIQUE', 'OSORIO ANDRADES', '0962398350', '0999218183', '0953546862', '0405653298', 'Mucho Lote 1', '9', NULL, '901', NULL, '10', NULL, '10', '245', 'FRENTE AL UPC', NULL, 'https://goo.gl/maps/pHBsnjQ9YRLvCJ2G7', '2021-03-20 19:36:45', '2021-03-20 19:36:45'),
-	(10, NULL, 'ghgfhgfh', 'ghgfhgfhgfh', '456456', '6578978687', '4566456456', '456456456', 'ghgfhgfhgfh gfhgfh', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Barrio Garay', '12', '76675', '3445', 'dffsdfd', NULL, 'https://goo.gl/maps/5scz8GYiULHL1K2t9', '2021-03-20 20:10:11', '2021-03-24 16:41:26'),
+	(6, NULL, 'GREGORIO ENRIQUE', 'OSORIO ANDRADES', '0962398350', '0999218183', '0953546862', '0405653298', 'Mucho Lote 1', 'GUAYAS', '9', 'GUAYAQUIL', '901', '25 de Julio', '2', '10', '245', 'FRENTE AL UPC', NULL, 'https://goo.gl/maps/pHBsnjQ9YRLvCJ2G7', '2021-03-20 19:36:45', '2021-03-24 22:27:56'),
+	(10, NULL, 'ghgfhgfh', 'ghgfhgfhgfh', '456456', '6578978687', '4566456456', '456456456', 'ghgfhgfhgfh gfhgfh', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Barrio Garay', '12', '76675', '3445', 'dffsdfd', 'greg@gmail.com', 'https://goo.gl/maps/5scz8GYiULHL1K2t9', '2021-03-20 20:10:11', '2021-03-24 22:25:05'),
 	(11, NULL, 'jdfdhbfh bfdbdjhfbj b', 'fjkbkjwebfrwkeb', '0900000000', '0999999999', NULL, NULL, 'jdfjkdf jqrjwejr jkbrjqbrq', 'GUAYAS', '9', 'GUAYAQUIL', '901', '25 de Julio', '2', NULL, NULL, 'fwrt yr ttr', NULL, NULL, '2021-03-24 16:33:08', '2021-03-24 16:39:07');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 
@@ -313,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `data` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5728 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.data: ~5.680 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.data: ~5.682 rows (aproximadamente)
 /*!40000 ALTER TABLE `data` DISABLE KEYS */;
 INSERT INTO `data` (`id`, `datos`, `telefono1`, `telefono2`, `organizacion`, `actualizado`) VALUES
 	(1, 'Cliente 52  / Cliente  52   TELEFONOS:       1347-216-3199', '13472163199', '', '', 1),
@@ -7526,6 +7546,27 @@ INSERT INTO `persona` (`id`, `name`, `email`, `phone`, `specialist`, `created_at
 	(1, 'gregorio osorio', 'gregorioenrique14@gmail', '0999218183', 'Desarrollador', '2021-02-27 10:07:19', '2021-02-27 10:07:19');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
+-- Volcando estructura para tabla gestion.prductos
+CREATE TABLE IF NOT EXISTS `prductos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `categoria_id` int(11) unsigned NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `descripcion` varchar(250) DEFAULT NULL,
+  `precio` varchar(10) DEFAULT NULL,
+  `cantidad` varchar(10) DEFAULT NULL,
+  `etiqueta` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK1_categorias` (`categoria_id`),
+  CONSTRAINT `FK1_categorias` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla gestion.prductos: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `prductos` DISABLE KEYS */;
+INSERT INTO `prductos` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio`, `cantidad`, `etiqueta`) VALUES
+	(1, 2, 'Alitas a la BBQ', '6 ALITAS', '14.00', '1', 'ALITAS'),
+	(2, 1, 'Chuleta', NULL, '3.40', '8', 'extras');
+/*!40000 ALTER TABLE `prductos` ENABLE KEYS */;
+
 -- Volcando estructura para tabla gestion.provincia
 CREATE TABLE IF NOT EXISTS `provincia` (
   `codigo` int(11) DEFAULT NULL,
@@ -7816,6 +7857,33 @@ INSERT INTO `users` (`id`, `cedula`, `nombre1`, `nombre2`, `apellido_paterno`, `
 	(3331, '0924293985', 'usuario', 'nuevo', 'nuevo', 'usuario', NULL, NULL, NULL, 'Soltero', 'user.png', NULL, 'usuarionuevo@gmail.com', 0, NULL, 1, 0, 'unuevou', '$2y$10$N0u8q.ADv6Ff9O9oFV7rfOKToULHWAAA/03Y813rRg5LYHcKjUaF.', 1, NULL, '2021-02-27 11:13:56', '2021-02-27 11:32:19');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
+-- Volcando estructura para tabla gestion.ventas
+CREATE TABLE IF NOT EXISTS `ventas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `producto_id` int(10) unsigned NOT NULL,
+  `categoria_id` int(10) unsigned NOT NULL,
+  `cliente_id` int(10) unsigned NOT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `users_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK1_producto` (`producto_id`),
+  KEY `FK2_categoria` (`categoria_id`),
+  KEY `FK3_cliente` (`cliente_id`),
+  KEY `FK4_usuario` (`users_id`),
+  CONSTRAINT `FK1_producto` FOREIGN KEY (`producto_id`) REFERENCES `prductos` (`id`),
+  CONSTRAINT `FK2_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
+  CONSTRAINT `FK3_cliente` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`),
+  CONSTRAINT `FK4_usuario` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla gestion.ventas: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

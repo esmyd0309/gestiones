@@ -57,6 +57,9 @@ class ClientesController extends Controller
         $cliente->provincia             =   $provincia->Provincia ; 
         $cliente->canton                =   $canton->canton; 
         $cliente->sector                =   $sector->sector; 
+        $cliente->codigo_provincia             =   $request->provincia ; 
+        $cliente->codigo_canton                =   $request->canton; 
+        $cliente->codigo_sector                =   $request->sector; 
         $cliente->villa                 =   $request->villa; 
         $cliente->email                 =   $request->email; 
         $cliente->ubicacion             =   $request->ubicacion; 
@@ -73,7 +76,7 @@ class ClientesController extends Controller
 
     public function actualizarcliente(Request $request)
     {   
-        //dd($request->id);
+        
         $provincia = Provincia::where('codigo',$request->provincia)->first();
         $canton = Canton::where('codigo',$request->canton)->first(); 
         $sector = Sector::where('codigo',$request->sector)->first();  
@@ -88,11 +91,11 @@ class ClientesController extends Controller
         $cliente->telefonoCasa          =   $request->telefonoConvencional; 
         $cliente->direccion             =   $request->direccion; 
 
-        $cliente->provincia             =   $provincia->Provincia ; 
+        $cliente->provincia             =   $provincia->Provincia; 
         $cliente->canton                =   $canton->canton; 
         $cliente->sector                =   $sector->sector;  
 
-        $cliente->codigo_provincia             =   $request->provincia ; 
+        $cliente->codigo_provincia             =   $request->provincia; 
         $cliente->codigo_canton                =   $request->canton; 
         $cliente->codigo_sector                =   $request->sector; 
 

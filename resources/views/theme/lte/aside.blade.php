@@ -8,7 +8,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">GESTION DE COMENTARIOS <sup></sup></div>
+    <div class="sidebar-brand-text mx-3">Aplicaciones Internas <sup></sup></div>
   </a>
 
   <!-- Divider -->
@@ -34,13 +34,13 @@
     
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-list-ul"></i>
-          <span>Gestión</span>
+          <span>Clientes</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Gestión de comentarios</h6>
-        <a class="collapse-item" href="{{ route('contactos.index') }}">Listado</a>
-       
+        <h6 class="collapse-header"></h6>
+        <a class="collapse-item" href="{{ route('inicio') }}">Lista</a>
+        <a class="collapse-item" href="{{ route('contactos.index') }}">Acttualizar Clientes</a>
       </div>
     </div>
   </li>
