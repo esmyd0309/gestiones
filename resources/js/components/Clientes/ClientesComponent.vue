@@ -46,7 +46,9 @@
                     <td v-text="item.referencia"></td>
                     
                     <td><button type="submit" v-b-modal.modal1 @click.prevent="modal1=true"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button></td>
+
                     <td><button type="submit" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg" @click="view(item)" > <i class="fas fa-eye"></i></button></td>
+
                     <td><button type="submit" class="btn btn-danger" @click="deleete(item.id)" > <i class="fas fa-trash-alt"></i></button></td>
 
                   </tr>
@@ -197,8 +199,10 @@
                             <input type="text" class="form-control"  v-model="form.referencia">
                         </div>
                     </div>
+
                     <div class="col">
                         <label for="">Ubicación  </label>
+
                         <div>
                             <input type="text" class="form-control"  v-model="form.ubicacion">
                         </div>
@@ -238,6 +242,7 @@
     </b-modal>
 
       <!-- / MODAL ---->
+
 
     
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -305,6 +310,7 @@
               </div>
             
             </div>
+
           </div>
         </div>
       </div>
@@ -341,9 +347,13 @@ export default {
         sector: null,
         provincia: 9,
         canton: 901,
+        cantonname:null,
+        sectorname: null,
         referencia: null,
         email: null,
+
         ubicacion: null,
+
       },
       clientes: [],
       contacto: null,
@@ -358,7 +368,8 @@ export default {
       buscardato: null,
       modal1: false,
       Registrar: null,
-      id:0
+      id:0,
+      datos: null
     };
   },
 
@@ -448,7 +459,9 @@ export default {
     getCanton(event) {
       axios.get("contactos/getcanton/" + event).then((res) => {
         this.cantones = res.data;
+
           console.log(res.data.canton);
+
       });
     },
 
@@ -462,7 +475,9 @@ export default {
       // console.log(event);
       axios.get("contactos/getSector/" + event).then((res) => {
         this.sectores = res.data;
+
         console.log(res.data);
+
       });
     },
 
@@ -640,6 +655,7 @@ export default {
       this.form.email = "";
       this.form.ubicacion = "";
       this.form.referencia = "";
+
       this.id =0;
     },
     view(obj){
@@ -662,7 +678,9 @@ export default {
       this.form.email = obj.email;
       this.form.ubicacion = obj.ubicacion;
       this.id = obj.id;
+
     }
+
   },
 };
 </script>

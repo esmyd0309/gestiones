@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Host:                         localhost
+-- Host:                         127.0.0.1
 -- Versión del servidor:         5.7.24 - MySQL Community Server (GPL)
 -- SO del servidor:              Win64
 -- HeidiSQL Versión:             10.2.0.5599
@@ -264,26 +264,32 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `telefonoCasa` varchar(15) DEFAULT NULL,
   `direccion` varchar(255) DEFAULT NULL,
   `provincia` varchar(50) DEFAULT NULL,
+  `codigo_provincia` varchar(50) DEFAULT NULL,
   `canton` varchar(150) DEFAULT NULL,
+  `codigo_canton` varchar(150) DEFAULT NULL,
   `sector` varchar(150) DEFAULT NULL,
+  `codigo_sector` varchar(150) DEFAULT NULL,
   `villa` varchar(150) DEFAULT NULL,
   `mz` varchar(150) DEFAULT NULL,
   `referencia` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `ubicacion` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.clientes: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.clientes: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`, `telefonoWhatsapp`, `telefonoCelular`, `telefonoCasa`, `direccion`, `provincia`, `canton`, `sector`, `villa`, `mz`, `referencia`, `created_at`, `updated_at`) VALUES
-	(1, 1, 'Cliente 52', 'Cliente 52', '1344456', '13472163199', '13472163199', NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', '901', '2', NULL, NULL, 'dfgfg', '2021-03-17 22:53:40', '2021-03-17 22:53:40'),
-	(2, 1, 'Cliente 52', 'Cliente 52', '764534343', '13472163199', '13472163199', NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', '901', '3', NULL, NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '2021-03-17 22:55:29', '2021-03-17 22:55:29'),
-	(3, 2, 'Soporte Ecuador T', 'Soporte Ecuador T', '12344567', '59324018941', '59324018941', NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', '9', '901', '1', NULL, NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', '2021-03-17 23:00:06', '2021-03-17 23:00:06'),
-	(4, 3, 'Oriana Cajera', 'Oriana Cajera', '2232434', '584140279931', '584140279931', NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', '9', '901', '15', NULL, NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', '2021-03-18 21:43:51', '2021-03-18 21:43:51'),
-	(5, NULL, 'carlos', 'osorio', '0454564564', '0922554544', '2546412564', '0847445748', 'grellolodkf h hhdjf  ujhdfuhdjf hudghfjhdf', '9', '901', '14', 'gferterer', 'gdfgfrgefg', 'fwdgfwrg rgtertwer', '2021-03-20 18:17:52', '2021-03-20 18:17:52'),
-	(6, NULL, 'GREGORIO ENRIQUE', 'OSORIO ANDRADES', '0962398350', '0999218183', '0953546862', '0405653298', 'Mucho Lote 1', '9', '901', '10', '10', '245', 'FRENTE AL UPC', '2021-03-20 19:36:45', '2021-03-20 19:36:45'),
-	(10, NULL, 'ghgfhgfh', 'ghgfhgfhgfh', '456456', '6578978687', '4566456456', '456456456', 'ghgfhgfhgfh gfhgfh', '9', '901', '2', '76675', '3445', 'dffsdfd', '2021-03-20 20:10:11', '2021-03-20 20:10:11');
+INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`, `telefonoWhatsapp`, `telefonoCelular`, `telefonoCasa`, `direccion`, `provincia`, `codigo_provincia`, `canton`, `codigo_canton`, `sector`, `codigo_sector`, `villa`, `mz`, `referencia`, `email`, `ubicacion`, `created_at`, `updated_at`) VALUES
+	(1, 1, 'Cliente 52', 'Cliente 52', '1344456', '13472163199', '13472163199', NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', NULL, '901', NULL, '2', NULL, NULL, NULL, 'dfgfg', NULL, NULL, '2021-03-17 22:53:40', '2021-03-17 22:53:40'),
+	(2, 1, 'Cliente 52', 'Cliente 52', '764534343', '13472163199', '13472163199', NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', NULL, '901', NULL, '3', NULL, NULL, NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', NULL, NULL, '2021-03-17 22:55:29', '2021-03-17 22:55:29'),
+	(3, 2, 'Soporte Ecuador T', 'Soporte Ecuador T', '12344567', '59324018941', '59324018941', NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', '9', NULL, '901', NULL, '1', NULL, NULL, NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', NULL, NULL, '2021-03-17 23:00:06', '2021-03-17 23:00:06'),
+	(4, 3, 'Oriana Cajera', 'Oriana Cajera', '2232434', '584140279931', '584140279931', NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', '9', NULL, '901', NULL, '15', NULL, NULL, NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', NULL, NULL, '2021-03-18 21:43:51', '2021-03-18 21:43:51'),
+	(5, NULL, 'carlos', 'osorio', '0454564564', '0922554544', '2546412564', '0847445748', 'grellolodkf h hhdjf  ujhdfuhdjf hudghfjhdf', '9', NULL, '901', NULL, '14', NULL, 'gferterer', 'gdfgfrgefg', 'fwdgfwrg rgtertwer', NULL, NULL, '2021-03-20 18:17:52', '2021-03-20 18:17:52'),
+	(6, NULL, 'GREGORIO ENRIQUE', 'OSORIO ANDRADES', '0962398350', '0999218183', '0953546862', '0405653298', 'Mucho Lote 1', '9', NULL, '901', NULL, '10', NULL, '10', '245', 'FRENTE AL UPC', NULL, 'https://goo.gl/maps/pHBsnjQ9YRLvCJ2G7', '2021-03-20 19:36:45', '2021-03-20 19:36:45'),
+	(10, NULL, 'ghgfhgfh', 'ghgfhgfhgfh', '456456', '6578978687', '4566456456', '456456456', 'ghgfhgfhgfh gfhgfh', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Barrio Garay', '12', '76675', '3445', 'dffsdfd', NULL, 'https://goo.gl/maps/5scz8GYiULHL1K2t9', '2021-03-20 20:10:11', '2021-03-24 16:41:26'),
+	(11, NULL, 'jdfdhbfh bfdbdjhfbj b', 'fjkbkjwebfrwkeb', '0900000000', '0999999999', NULL, NULL, 'jdfjkdf jqrjwejr jkbrjqbrq', 'GUAYAS', '9', 'GUAYAQUIL', '901', '25 de Julio', '2', NULL, NULL, 'fwrt yr ttr', NULL, NULL, '2021-03-24 16:33:08', '2021-03-24 16:39:07');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestion.comentarios
@@ -307,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `data` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5728 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.data: ~5.726 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.data: ~5.680 rows (aproximadamente)
 /*!40000 ALTER TABLE `data` DISABLE KEYS */;
 INSERT INTO `data` (`id`, `datos`, `telefono1`, `telefono2`, `organizacion`, `actualizado`) VALUES
 	(1, 'Cliente 52  / Cliente  52   TELEFONOS:       1347-216-3199', '13472163199', '', '', 1),
@@ -7514,7 +7520,7 @@ CREATE TABLE IF NOT EXISTS `persona` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.persona: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.persona: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`id`, `name`, `email`, `phone`, `specialist`, `created_at`, `updated_at`) VALUES
 	(1, 'gregorio osorio', 'gregorioenrique14@gmail', '0999218183', 'Desarrollador', '2021-02-27 10:07:19', '2021-02-27 10:07:19');
@@ -7571,7 +7577,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   UNIQUE KEY `roles_slug_unique` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla gestion.roles: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.roles: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` (`id`, `name`, `slug`, `description`, `created_at`, `updated_at`, `special`) VALUES
 	(1, 'Admin', 'admin.admin', 'Usuario administrador', NULL, '2021-02-27 10:07:19', 'all-access');
@@ -7591,7 +7597,7 @@ CREATE TABLE IF NOT EXISTS `role_user` (
   CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla gestion.role_user: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.role_user: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `role_user` DISABLE KEYS */;
 INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, '2021-02-27 10:07:19', '2021-02-27 10:07:19');

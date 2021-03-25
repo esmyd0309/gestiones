@@ -38,11 +38,13 @@ class ClientesController extends Controller
 
     public function guardarcliente(Request $request)
     {   
+
        
         $provincia = Provincia::where('codigo',$request->provincia)->first();
         $canton = Canton::where('codigo',$request->canton)->first(); 
         $sector = Sector::where('codigo',$request->sector)->first();  
        
+
         
         $cliente = new Clientes;
         $cliente->nombres               =   $request->nombres; 
@@ -56,6 +58,8 @@ class ClientesController extends Controller
         $cliente->canton                =   $canton->canton; 
         $cliente->sector                =   $sector->sector; 
         $cliente->villa                 =   $request->villa; 
+        $cliente->email                 =   $request->email; 
+        $cliente->ubicacion             =   $request->ubicacion; 
         $cliente->mz                    =   $request->mz; 
         $cliente->referencia            =   $request->referencia;
        
@@ -83,6 +87,7 @@ class ClientesController extends Controller
         $cliente->telefonoCelular       =   $request->telefonoCelular; 
         $cliente->telefonoCasa          =   $request->telefonoConvencional; 
         $cliente->direccion             =   $request->direccion; 
+
         $cliente->provincia             =   $provincia->Provincia ; 
         $cliente->canton                =   $canton->canton; 
         $cliente->sector                =   $sector->sector;  
@@ -90,6 +95,7 @@ class ClientesController extends Controller
         $cliente->codigo_provincia             =   $request->provincia ; 
         $cliente->codigo_canton                =   $request->canton; 
         $cliente->codigo_sector                =   $request->sector; 
+
         $cliente->email                 =   $request->email; 
         $cliente->ubicacion             =   $request->ubicacion; 
         $cliente->villa                 =   $request->villa; 
