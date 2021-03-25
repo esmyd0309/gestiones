@@ -46,7 +46,7 @@
                     <td v-text="item.referencia"></td>
                     
                     <td><button type="submit" v-b-modal.modal1 @click.prevent="modal1=true"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button></td>
-                    <td><button type="submit" class="btn btn-info" > <i class="fas fa-eye"></i></button></td>
+                    <td><button type="submit" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg" @click="view(item)" > <i class="fas fa-eye"></i></button></td>
                     <td><button type="submit" class="btn btn-danger" @click="deleete(item.id)" > <i class="fas fa-trash-alt"></i></button></td>
 
                   </tr>
@@ -197,6 +197,12 @@
                             <input type="text" class="form-control"  v-model="form.referencia">
                         </div>
                     </div>
+                    <div class="col">
+                        <label for="">Ubicación  </label>
+                        <div>
+                            <input type="text" class="form-control"  v-model="form.ubicacion">
+                        </div>
+                    </div>
 
                 </div>
 
@@ -232,6 +238,76 @@
     </b-modal>
 
       <!-- / MODAL ---->
+
+    
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="card text-center">
+                <div class="card-header">
+                  
+                </div>
+              <div class="card-body" id="datos">
+                <h5 class="card-title">{{ form.apellidos }} {{ form.nombre }}</h5>
+                <p class="card-text"></p>
+                
+                <div class="row">
+                  <div class="col-6">
+                    <div class="card card-primary card-outline">
+                      <div class="card-header">
+                        <h3 class="card-title">Datos Personales</h3>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fas fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body box-profile">
+                        
+                        <h3 class="profile-username text-center"></h3>
+                          <p class="text-muted  text-center"><strong>Cedula:</strong>         {{ form.cedula }}               </p>
+                          <p class="text-muted  text-center"><strong>WhatsApp:</strong>       {{ form.telefonowhatsapp }}     </p>
+                          <p class="text-muted  text-center"><strong>Telefono2:</strong>      {{ form.telefonoCelular }}      </p>
+                          <p class="text-muted  text-center"><strong>Convencional:</strong>   {{ form.telefonoConvencional }} </p>
+                          <p class="text-muted text-center "><strong>Direccion:</strong>       {{ form.direccion }}            </p>
+                          <p class="text-muted text-center "><strong>Provincia:</strong>       {{ form.provincia }}            </p>
+                          <p class="text-muted text-center "><strong>Canton:</strong>          {{ form.canton }}            </p>
+                          <p class="text-muted text-center "><strong>Sector:</strong>          {{ form.sector }}               </p>
+                          <p class="text-muted text-center "><strong>Referencia:</strong>      {{ form.referencia }}           </p>
+                          <div v-if="form.ubicacion">
+                              <a :href="form.ubicacion" class="btn btn-primary" target="_blank" ><i class="fas fa-map-marked"></i> <small>{{form.ubicacion}}</small> </a>
+                          </div>
+                          <hr>
+                          <p class="text-muted text-center "><strong>RUC:</strong>  <strong>Estado:</strong>   </p>
+                          <p class="text-muted text-center "><strong>Razon:</strong>  </p>
+
+                          
+                          <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                              <b>Empresa</b> <a class="float-right"></a>
+                            </li>
+                            <li class="list-group-item">
+                              <b>Deuda</b> <a class="float-right"></a>
+                            </li>
+                            <li class="list-group-item">
+                              <b>Saldo</b> <a class="float-right"></a>
+                            </li>
+                            <li class="list-group-item">
+                              <b>Couta Promedio</b> <a class="float-right">0</a>
+                            </li>
+                          </ul>
+
+                          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 
 </template>
@@ -267,6 +343,7 @@ export default {
         canton: 901,
         referencia: null,
         email: null,
+        ubicacion: null,
       },
       clientes: [],
       contacto: null,
@@ -371,6 +448,7 @@ export default {
     getCanton(event) {
       axios.get("contactos/getcanton/" + event).then((res) => {
         this.cantones = res.data;
+          console.log(res.data.canton);
       });
     },
 
@@ -384,6 +462,7 @@ export default {
       // console.log(event);
       axios.get("contactos/getSector/" + event).then((res) => {
         this.sectores = res.data;
+        console.log(res.data);
       });
     },
 
@@ -431,6 +510,7 @@ export default {
         referencia: this.form.referencia,
         idContacto: this.idContacto,
         email: this.form.email,
+        ubicacion: this.form.ubicacion,
       };
 
       this.form.telefonowhatsapp = "";
@@ -444,6 +524,7 @@ export default {
       this.form.sector = "";
       this.idContacto = "";
       this.form.email = "";
+      this.form.ubicacion = "";
       console.log(this.Registrar);
       console.log(parametros);
       console.log(this.id);
@@ -511,38 +592,15 @@ export default {
     getRegistrar() {
 
       this.Registrar="Registrar";
-      this.form.telefonowhatsapp = "";
-      this.form.telefonoCelular = "";
-      this.form.cedula = "";
-      this.form.nombre = "";
-      this.form.apellidos = "";
-      this.form.direccion = "";
-      this.form.mz = "";
-      this.form.vl = "";
-      this.form.sector = "";
-      this.idContacto = "";
-      this.form.email = "";
-      this.id =0;
+      this.limpiar();
+     
       this.getCanton(this.form.provincia);
       this.getSector(this.form.canton);
     },
 
     edit(obj) {
       this.Registrar="Actualizar";
-      this.form.telefonowhatsapp = "";
-      this.form.telefonoCelular = "";
-      this.form.telefonoConvencional = "";
-      this.form.cedula = "";
-      this.form.nombre = "";
-      this.form.apellidos = "";
-      this.form.direccion = "";
-      this.form.mz = "";
-      this.form.vl = "";
-      this.form.sector = "";
-      this.idContacto = "";
-      this.form.email = "";
-      this.form.referencia = "";
-      this.id =0;
+      this.limpiar();
 
       this.modal1 = true;
       this.form.cedula = obj.cedula;
@@ -556,15 +614,55 @@ export default {
       this.form.direccion = obj.direccion;
       this.form.mz = obj.mz;
       this.form.vl = obj.villa;
+      this.form.provincia = obj.codigo_provincia;
+      this.form.canton = obj.codigo_canton;
+      this.form.sector = obj.codigo_sector;
+      this.form.referencia = obj.referencia;
+      this.form.email = obj.email;
+      this.form.ubicacion = obj.ubicacion;
+      this.id = obj.id;
+      this.getCanton(obj.codigo_provincia);
+      this.getSector(obj.codigo_canton);
+      console.log(obj);
+    },
+    limpiar(){
+      this.form.telefonowhatsapp = "";
+      this.form.telefonoCelular = "";
+      this.form.telefonoConvencional = "";
+      this.form.cedula = "";
+      this.form.nombre = "";
+      this.form.apellidos = "";
+      this.form.direccion = "";
+      this.form.mz = "";
+      this.form.vl = "";
+      this.form.sector = "";
+      this.idContacto = "";
+      this.form.email = "";
+      this.form.ubicacion = "";
+      this.form.referencia = "";
+      this.id =0;
+    },
+    view(obj){
+      this.limpiar();
+      
+      this.form.cedula = obj.cedula;
+      this.form.telefonowhatsapp = obj.telefonoWhatsapp;
+      this.form.telefonoCelular = obj.telefonoCelular;
+      this.form.telefonoConvencional = obj.telefonoCasa;
+      this.form.cedula = obj.cedula;
+      this.form.nombre = obj.nombres.toUpperCase();
+      this.form.apellidos = obj.apellidos.toUpperCase();
+      this.form.direccion = obj.direccion;
+      this.form.mz = obj.mz;
+      this.form.vl = obj.villa;
       this.form.provincia = obj.provincia;
       this.form.canton = obj.canton;
       this.form.sector = obj.sector;
       this.form.referencia = obj.referencia;
       this.form.email = obj.email;
+      this.form.ubicacion = obj.ubicacion;
       this.id = obj.id;
-      this.getCanton(obj.provincia);
-      this.getSector(obj.canton);
-    },
+    }
   },
 };
 </script>

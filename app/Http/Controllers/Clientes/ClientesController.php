@@ -5,6 +5,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\Data;
+use App\Models\Provincia;
+use App\Models\Canton;
+use App\Models\Sector;
 use App\Models\Clientes\Clientes;
 use DateTime;
 use DB;
@@ -36,6 +39,10 @@ class ClientesController extends Controller
     public function guardarcliente(Request $request)
     {   
        
+        $provincia = Provincia::where('codigo',$request->provincia)->first();
+        $canton = Canton::where('codigo',$request->canton)->first(); 
+        $sector = Sector::where('codigo',$request->sector)->first();  
+       
         
         $cliente = new Clientes;
         $cliente->nombres               =   $request->nombres; 
@@ -45,9 +52,9 @@ class ClientesController extends Controller
         $cliente->telefonoCelular       =   $request->telefonoCelular; 
         $cliente->telefonoCasa          =   $request->telefonoConvencional; 
         $cliente->direccion             =   $request->direccion; 
-        $cliente->provincia             =   $request->provincia; 
-        $cliente->canton                =   $request->canton; 
-        $cliente->sector                =   $request->sector; 
+        $cliente->provincia             =   $provincia->Provincia ; 
+        $cliente->canton                =   $canton->canton; 
+        $cliente->sector                =   $sector->sector; 
         $cliente->villa                 =   $request->villa; 
         $cliente->mz                    =   $request->mz; 
         $cliente->referencia            =   $request->referencia;
@@ -63,6 +70,10 @@ class ClientesController extends Controller
     public function actualizarcliente(Request $request)
     {   
         //dd($request->id);
+        $provincia = Provincia::where('codigo',$request->provincia)->first();
+        $canton = Canton::where('codigo',$request->canton)->first(); 
+        $sector = Sector::where('codigo',$request->sector)->first();  
+       
         $cliente = Clientes::findOrFail($request->id);
         
         $cliente->nombres               =   $request->nombres; 
@@ -72,10 +83,15 @@ class ClientesController extends Controller
         $cliente->telefonoCelular       =   $request->telefonoCelular; 
         $cliente->telefonoCasa          =   $request->telefonoConvencional; 
         $cliente->direccion             =   $request->direccion; 
-        $cliente->provincia             =   $request->provincia; 
-        $cliente->canton                =   $request->canton; 
-        $cliente->sector                =   $request->sector; 
-         $cliente->email                =   $request->email; 
+        $cliente->provincia             =   $provincia->Provincia ; 
+        $cliente->canton                =   $canton->canton; 
+        $cliente->sector                =   $sector->sector;  
+
+        $cliente->codigo_provincia             =   $request->provincia ; 
+        $cliente->codigo_canton                =   $request->canton; 
+        $cliente->codigo_sector                =   $request->sector; 
+        $cliente->email                 =   $request->email; 
+        $cliente->ubicacion             =   $request->ubicacion; 
         $cliente->villa                 =   $request->villa; 
         $cliente->mz                    =   $request->mz; 
         $cliente->referencia            =   $request->referencia;
