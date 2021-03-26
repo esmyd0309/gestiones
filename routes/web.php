@@ -190,15 +190,15 @@ Route::put('actualizar', 'DatatelefonoController@actualizar')->name('actualizar'
 /***
  * lista de contactos
  */
-Route::get('listacontactos', 'DatatelefonoController@listacontactos')->name('listacontactos');
+Route::get('listacontactos', 'ApiController@listacontactos')->name('listacontactos');
 
-Route::get('consultarcontacto/{id}', 'DatatelefonoController@consultarcontacto')->name('consultarcontacto');
+Route::get('consultarcontacto/{id}', 'ApiController@consultarcontacto')->name('consultarcontacto');
 
 Route::post('guardarcontacto', 'DatatelefonoController@guardarcontacto')->name('guardarcontacto');
-Route::get('contactos/getcanton/{provincia}', 'DatatelefonoController@getcanton');
-Route::get('contactos/getSector/{canton}', 'DatatelefonoController@getSector');
+Route::get('contactos/getcanton/{provincia}', 'ApiController@getcanton');
+Route::get('contactos/getSector/{canton}', 'ApiController@getSector');
 
-Route::get('getprovincia', 'DatatelefonoController@getprovincia');
+Route::get('getprovincia', 'ApiController@getprovincia');
 
 		/***
 		 * 
@@ -212,4 +212,12 @@ Route::get('getprovincia', 'DatatelefonoController@getprovincia');
 			 Route::post('guardarcliente', 'Clientes\ClientesController@guardarcliente')->name('guardarcliente');
 			 Route::delete('deletecliente/{id}', 'Clientes\ClientesController@deletecliente')->name('deletecliente');
 			 Route::put('actualizarcliente', 'Clientes\ClientesController@actualizarcliente')->name('actualizarcliente');
+
+		/****
+		 * 
+		 * CATEGORIAS
+		 * 
+		 */
+		Route::get('categorias', 'Categorias\ApiCategoriaController@all');
+		Route::get('categorias/getproductos/{id}', 'Productos\ApiProductoController@getproductos');
 

@@ -21,7 +21,7 @@ class HomeController extends Controller
         $cliente = Clientes::orderBy('id', 'desc')->paginate(15);
 
         
-        return view('Clientes.index');
+        return view('Carrito.carrito');
     	
         //return view('home', ['clientes' => $cliente]);
     }

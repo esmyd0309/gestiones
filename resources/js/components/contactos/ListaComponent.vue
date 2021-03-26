@@ -1,7 +1,7 @@
 <template>
      <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Contactos</h3>
+            <h3 class="card-title">Actualizar Contactos  de WhatsApp</h3>
              <br>
           	<!--Buscar-->          
             <div class="form-group">
@@ -43,13 +43,9 @@
     	                <td v-text="item.telefono1"></td>
     	                <td v-text="item.telefono2"></td>
     	                <td v-text="item.organizacion"></td>
-                        <td>
-                            <button  class="btn btn-outline-secondary btn-sm" 
-                                                @click="ejecutar(item, index)" 
-                                            > 
-                                                <i class="fas fa-cogs" data-toggle="modal" data-target="#exampleModalCenter"></i>
-                            </button>
-                        </td>
+                      <td>
+                          <button type="submit" data-toggle="modal" data-target="#exampleModalCenter"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button>
+                      </td>
                   	</tr>
               </tbody>         
             </table>
@@ -434,6 +430,15 @@ export default {
       });
 
     },
+    edit(obj){
+      this.form.telefonowhatsapp = "";
+      this.form.telefonowhatsapp = obj.telefono1;
+      this.form.telefonoCelular = obj.telefono2;
+      this.form.direccion = obj.datos;
+
+      this.getCanton(this.form.canton);
+
+    }
   },
 };
 </script>
