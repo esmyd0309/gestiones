@@ -7,7 +7,7 @@ use App\Models\Admin\DetalleCampania;
 
 class Producto extends Model
 {
-    protected $table = "prductos";
+    protected $table = "productos";
     protected $primaryKey = 'id';
     public $timestamps = false;
 
