@@ -221,3 +221,5 @@ Route::get('getprovincia', 'ApiController@getprovincia');
 		Route::get('categorias', 'Categorias\ApiCategoriaController@all');
 		Route::get('categorias/getproductos/{id}', 'Productos\ApiProductoController@getproductos');
 
+		
+
