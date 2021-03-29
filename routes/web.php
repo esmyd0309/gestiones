@@ -207,12 +207,15 @@ Route::get('getprovincia', 'ApiController@getprovincia');
 		 */
 
 		 	/*** APIS */
-			 
+			 Route::get('clientes', 'Clientes\ClientesController@clientes')->name('clientes');
 			 Route::get('listaclientes', 'Clientes\ClientesController@listaclientes')->name('listaclientes');
 			 Route::post('guardarcliente', 'Clientes\ClientesController@guardarcliente')->name('guardarcliente');
 			 Route::delete('deletecliente/{id}', 'Clientes\ClientesController@deletecliente')->name('deletecliente');
 			 Route::put('actualizarcliente', 'Clientes\ClientesController@actualizarcliente')->name('actualizarcliente');
+			 Route::get('dataclientes/{dato}', 'Clientes\ClientesController@dataclientes')->name('dataclientes');
+			 Route::get('getclientesall', 'Clientes\ClientesController@getclientesall')->name('getclientesall');
 
+			 
 		/****
 		 * 
 		 * CATEGORIAS
@@ -221,5 +224,10 @@ Route::get('getprovincia', 'ApiController@getprovincia');
 		Route::get('categorias', 'Categorias\ApiCategoriaController@all');
 		Route::get('categorias/getproductos/{id}', 'Productos\ApiProductoController@getproductos');
 
-		
-
+		/***
+		 * 
+		 * 
+		 */
+		Route::post('guardarcarrito', 'Carrito\CarritoController@guardarcarrito')->name('guardarcarrito');
+		Route::get('clientecarrito/{id}', 'Carrito\CarritoController@clientecarrito')->name('clientecarrito');
+		Route::get('clientecarritodetalle/{id}', 'Carrito\CarritoController@clientecarritodetalle')->name('clientecarritodetalle');

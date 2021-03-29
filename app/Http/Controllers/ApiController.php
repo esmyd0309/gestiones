@@ -68,4 +68,6 @@ class ApiController extends Controller
         $sector = DB::connection('mysql')->select("SELECT * FROM sector where canton_id='$canton'");
         return response()->json($sector);
     }
+
+   
 }

@@ -253,6 +253,114 @@ INSERT INTO `canton` (`codigo`, `canton`, `provincia_id`) VALUES
 	(9004, 'EL PIEDRERO', 90);
 /*!40000 ALTER TABLE `canton` ENABLE KEYS */;
 
+-- Volcando estructura para tabla gestion.carrito
+CREATE TABLE IF NOT EXISTS `carrito` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `producto` varchar(250) NOT NULL DEFAULT '',
+  `producto_id` int(11) unsigned NOT NULL,
+  `categoria_id` int(11) unsigned NOT NULL,
+  `cliente_id` int(10) unsigned NOT NULL,
+  `precio` float(18,2) unsigned NOT NULL DEFAULT '0.00',
+  `carritodetalle_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla gestion.carrito: ~15 rows (aproximadamente)
+/*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
+INSERT INTO `carrito` (`id`, `producto`, `producto_id`, `categoria_id`, `cliente_id`, `precio`, `carritodetalle_id`, `created_at`, `updated_at`) VALUES
+	(1, 'Carne', 3, 1, 3, 3.40, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(2, 'Chuleta', 2, 1, 3, 3.40, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(3, 'Costilla', 4, 1, 3, 4.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(4, 'Parrillada Mixta', 8, 3, 3, 15.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(5, 'Jugo de Naranja', 6, 4, 3, 1.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(6, 'Jugo de Naranja', 6, 4, 3, 1.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(7, 'Jugo de Naranja', 6, 4, 3, 1.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(8, 'Chuleta', 2, 1, 2, 3.40, 2, '2021-03-28 20:06:01', '2021-03-28 20:06:01'),
+	(9, 'Costilla', 4, 1, 2, 4.00, 2, '2021-03-28 20:06:01', '2021-03-28 20:06:01'),
+	(10, 'Filetet de pollo', 5, 1, 2, 3.00, 2, '2021-03-28 20:06:01', '2021-03-28 20:06:01'),
+	(11, 'Jugo de Naranja', 6, 4, 2, 1.00, 2, '2021-03-28 20:06:02', '2021-03-28 20:06:02'),
+	(12, 'Carne', 3, 1, 3, 3.40, 3, '2021-03-28 20:08:52', '2021-03-28 20:08:52'),
+	(13, 'Chuleta', 2, 1, 3, 3.40, 3, '2021-03-28 20:08:52', '2021-03-28 20:08:52'),
+	(14, 'Costilla', 4, 1, 3, 4.00, 3, '2021-03-28 20:08:52', '2021-03-28 20:08:52'),
+	(15, 'Filetet de pollo', 5, 1, 3, 3.00, 3, '2021-03-28 20:08:52', '2021-03-28 20:08:52'),
+	(16, 'Carne', 3, 1, 3, 3.40, 4, '2021-03-28 21:20:40', '2021-03-28 21:20:40'),
+	(17, 'Costilla', 4, 1, 3, 4.00, 4, '2021-03-28 21:20:40', '2021-03-28 21:20:40'),
+	(18, 'Carne', 3, 1, 3, 3.40, 5, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(19, 'Chuleta', 2, 1, 3, 3.40, 5, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(20, 'Costilla', 4, 1, 3, 4.00, 5, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(21, 'Filetet de pollo', 5, 1, 3, 3.00, 5, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(22, 'Costilla', 4, 1, 3, 4.00, 5, '2021-03-28 21:20:58', '2021-03-28 21:20:58'),
+	(23, 'Carne', 3, 1, 3, 3.40, 5, '2021-03-28 21:20:58', '2021-03-28 21:20:58'),
+	(24, 'Chuleta', 2, 1, 3, 3.40, 5, '2021-03-28 21:20:58', '2021-03-28 21:20:58'),
+	(25, 'Parrillada Mixta', 8, 3, 3, 15.00, 6, '2021-03-28 21:21:07', '2021-03-28 21:21:07'),
+	(26, 'Parrillada Mixta', 8, 3, 3, 15.00, 6, '2021-03-28 21:21:07', '2021-03-28 21:21:07'),
+	(27, 'Parrillada Mixta', 8, 3, 3, 15.00, 6, '2021-03-28 21:21:07', '2021-03-28 21:21:07'),
+	(28, 'Parrillada Mixta', 8, 3, 3, 15.00, 6, '2021-03-28 21:21:08', '2021-03-28 21:21:08'),
+	(29, 'Jugo de Naranja', 6, 4, 3, 1.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(30, 'Jugo de Naranja', 6, 4, 3, 1.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(31, 'Jugo de Naranja', 6, 4, 3, 1.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(32, 'Alitas a la BBQ', 1, 2, 3, 14.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(33, 'Alitas a la Naranja', 7, 2, 3, 12.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(34, 'Chuleta', 2, 1, 3, 3.40, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(35, 'Carne', 3, 1, 3, 3.40, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(36, 'Costilla', 4, 1, 3, 4.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(37, 'Alitas a la BBQ', 1, 2, 3, 14.00, 8, '2021-03-28 21:21:44', '2021-03-28 21:21:44'),
+	(38, 'Alitas a la Naranja', 7, 2, 3, 12.00, 8, '2021-03-28 21:21:44', '2021-03-28 21:21:44'),
+	(39, 'Carne', 3, 1, 3, 3.40, 9, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(40, 'Chuleta', 2, 1, 3, 3.40, 9, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(41, 'Costilla', 4, 1, 3, 4.00, 9, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(42, 'Filetet de pollo', 5, 1, 3, 3.00, 9, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(43, 'Carne', 3, 1, 3, 3.40, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(44, 'Chuleta', 2, 1, 3, 3.40, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(45, 'Chuleta', 2, 1, 3, 3.40, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(46, 'Chuleta', 2, 1, 3, 3.40, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(47, 'Chuleta', 2, 1, 3, 3.40, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(48, 'Costilla', 4, 1, 3, 4.00, 11, '2021-03-28 21:34:51', '2021-03-28 21:34:51'),
+	(49, 'Filetet de pollo', 5, 1, 3, 3.00, 11, '2021-03-28 21:34:51', '2021-03-28 21:34:51'),
+	(50, 'Costilla', 4, 1, 3, 4.00, 11, '2021-03-28 21:34:51', '2021-03-28 21:34:51'),
+	(51, 'Costilla', 4, 1, 3, 4.00, 12, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(52, 'Filetet de pollo', 5, 1, 3, 3.00, 12, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(53, 'Jugo de Naranja', 6, 4, 3, 1.00, 12, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(54, 'Parrillada Mixta', 8, 3, 3, 15.00, 12, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(55, 'Alitas a la BBQ', 1, 2, 19, 14.00, 13, '2021-03-28 21:55:21', '2021-03-28 21:55:21'),
+	(56, 'Alitas a la Naranja', 7, 2, 19, 12.00, 13, '2021-03-28 21:55:21', '2021-03-28 21:55:21'),
+	(57, 'Carne', 3, 1, 19, 3.40, 14, '2021-03-28 21:55:57', '2021-03-28 21:55:57'),
+	(58, 'Costilla', 4, 1, 19, 4.00, 14, '2021-03-28 21:55:57', '2021-03-28 21:55:57'),
+	(59, 'Chuleta', 2, 1, 19, 3.40, 14, '2021-03-28 21:55:57', '2021-03-28 21:55:57');
+/*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
+
+-- Volcando estructura para tabla gestion.carritodetalle
+CREATE TABLE IF NOT EXISTS `carritodetalle` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cliente_id` int(11) NOT NULL,
+  `productos` varchar(600) DEFAULT NULL,
+  `total` float(18,2) NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla gestion.carritodetalle: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `carritodetalle` DISABLE KEYS */;
+INSERT INTO `carritodetalle` (`id`, `cliente_id`, `productos`, `total`, `created_at`, `updated_at`) VALUES
+	(1, 3, ',Carne,Chuleta,Costilla,Parrillada Mixta,Jugo de Naranja,Jugo de Naranja,Jugo de Naranja', 28.80, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(2, 2, ',Chuleta,Costilla,Filetet de pollo,Jugo de Naranja', 11.40, '2021-03-28 20:06:01', '2021-03-28 20:06:01'),
+	(3, 3, ',Carne,Chuleta,Costilla,Filetet de pollo', 13.80, '2021-03-28 20:08:51', '2021-03-28 20:08:51'),
+	(4, 3, ',Carne,Costilla', 7.40, '2021-03-28 21:20:40', '2021-03-28 21:20:40'),
+	(5, 3, ',Carne,Chuleta,Costilla,Filetet de pollo,Costilla,Carne,Chuleta', 24.60, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(6, 3, ',Parrillada Mixta,Parrillada Mixta,Parrillada Mixta,Parrillada Mixta', 60.00, '2021-03-28 21:21:07', '2021-03-28 21:21:07'),
+	(7, 3, ',Jugo de Naranja,Jugo de Naranja,Jugo de Naranja,Alitas a la BBQ,Alitas a la Naranja,Chuleta,Carne,Costilla', 39.80, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(8, 3, ',Alitas a la BBQ,Alitas a la Naranja', 26.00, '2021-03-28 21:21:44', '2021-03-28 21:21:44'),
+	(9, 3, ',Carne,Chuleta,Costilla,Filetet de pollo', 13.80, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(10, 3, ',Carne,Chuleta,Chuleta,Chuleta,Chuleta', 17.00, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(11, 3, ',Costilla,Filetet de pollo,Costilla', 11.00, '2021-03-28 21:34:51', '2021-03-28 21:34:51'),
+	(12, 3, ',Costilla,Filetet de pollo,Jugo de Naranja,Parrillada Mixta', 23.00, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(13, 19, ',Alitas a la BBQ,Alitas a la Naranja', 26.00, '2021-03-28 21:55:21', '2021-03-28 21:55:21'),
+	(14, 19, ',Carne,Costilla,Chuleta', 10.80, '2021-03-28 21:55:57', '2021-03-28 21:55:57');
+/*!40000 ALTER TABLE `carritodetalle` ENABLE KEYS */;
+
 -- Volcando estructura para tabla gestion.categorias
 CREATE TABLE IF NOT EXISTS `categorias` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -265,11 +373,11 @@ CREATE TABLE IF NOT EXISTS `categorias` (
 -- Volcando datos para la tabla gestion.categorias: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
 INSERT INTO `categorias` (`id`, `nombre`, `descripcion`, `created_at`) VALUES
-	(1, 'Asados', '', NULL),
-	(2, 'Alitas', '', NULL),
-	(3, 'Parilladas', '', NULL),
-	(4, 'Bebidas', '', NULL),
-	(5, 'Promociones', '', NULL);
+	(1, 'ASADOS', '', NULL),
+	(2, 'ALITAS', '', NULL),
+	(3, 'PARRILLADAS', '', NULL),
+	(4, 'BEBIDAS', '', NULL),
+	(5, 'PROMOCIONES', '', NULL);
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestion.clientes
@@ -297,19 +405,13 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.clientes: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.clientes: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
 INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`, `telefonoWhatsapp`, `telefonoCelular`, `telefonoCasa`, `direccion`, `provincia`, `codigo_provincia`, `canton`, `codigo_canton`, `sector`, `codigo_sector`, `villa`, `mz`, `referencia`, `email`, `ubicacion`, `created_at`, `updated_at`) VALUES
-	(1, 1, 'Cliente 52', 'Cliente 52', '1344456', '13472163199', '13472163199', NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', NULL, '901', NULL, '2', NULL, NULL, NULL, 'dfgfg', NULL, NULL, '2021-03-17 22:53:40', '2021-03-17 22:53:40'),
-	(2, 1, 'Cliente 52', 'Cliente 52', '764534343', '13472163199', '13472163199', NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', '9', NULL, '901', NULL, '3', NULL, NULL, NULL, 'Cliente 52 / Cliente 52 TELEFONOS: 1347-216-3199', NULL, NULL, '2021-03-17 22:55:29', '2021-03-17 22:55:29'),
-	(3, 2, 'Soporte Ecuador T', 'Soporte Ecuador T', '12344567', '59324018941', '59324018941', NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', '9', NULL, '901', NULL, '1', NULL, NULL, NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', NULL, NULL, '2021-03-17 23:00:06', '2021-03-17 23:00:06'),
-	(4, 3, 'Oriana Cajera', 'Oriana Cajera', '2232434', '584140279931', '584140279931', NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', '9', NULL, '901', NULL, '15', NULL, NULL, NULL, 'Carbonylena Oriana Cajera / Oriana TELEFONOS: 58414-0279931', NULL, NULL, '2021-03-18 21:43:51', '2021-03-18 21:43:51'),
-	(5, NULL, 'carlos', 'osorio', '0454564564', '0922554544', '2546412564', '0847445748', 'grellolodkf h hhdjf  ujhdfuhdjf hudghfjhdf', '9', NULL, '901', NULL, '14', NULL, 'gferterer', 'gdfgfrgefg', 'fwdgfwrg rgtertwer', NULL, NULL, '2021-03-20 18:17:52', '2021-03-20 18:17:52'),
-	(6, NULL, 'GREGORIO ENRIQUE', 'OSORIO ANDRADES', '0962398350', '0999218183', '0953546862', '0405653298', 'Mucho Lote 1', 'GUAYAS', '9', 'GUAYAQUIL', '901', '25 de Julio', '2', '10', '245', 'FRENTE AL UPC', NULL, 'https://goo.gl/maps/pHBsnjQ9YRLvCJ2G7', '2021-03-20 19:36:45', '2021-03-24 22:27:56'),
-	(10, NULL, 'ghgfhgfh', 'ghgfhgfhgfh', '456456', '6578978687', '4566456456', '456456456', 'ghgfhgfhgfh gfhgfh', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Barrio Garay', '12', '76675', '3445', 'dffsdfd', 'greg@gmail.com', 'https://goo.gl/maps/5scz8GYiULHL1K2t9', '2021-03-20 20:10:11', '2021-03-24 22:25:05'),
-	(11, NULL, 'jdfdhbfh bfdbdjhfbj b', 'fjkbkjwebfrwkeb', '0900000000', '0999999999', NULL, NULL, 'jdfjkdf jqrjwejr jkbrjqbrq', 'GUAYAS', '9', 'GUAYAQUIL', '901', '25 de Julio', '2', NULL, NULL, 'fwrt yr ttr', NULL, NULL, '2021-03-24 16:33:08', '2021-03-24 16:39:07');
+	(3, 2, 'Soporte Ecuador T', 'Soporte Ecuador T', '12344567', '59324018941', '59324018941', NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Barrio Lindo', '13', '4567', '5678', 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', NULL, NULL, '2021-03-17 23:00:06', '2021-03-28 21:24:00'),
+	(19, NULL, 'CARLOS ENRIQUE', 'OSORIO ANDRADES', '0987654567', '0987654567', '0987654456', '0409876545', 'PRUEBAS DE DIRECCIONES', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Jardines del Salado', '75', '5678', '5678', 'EL TIA', 'G@GMAIL.COM', NULL, '2021-03-28 21:54:22', '2021-03-28 21:54:36');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestion.comentarios
@@ -329,17 +431,17 @@ CREATE TABLE IF NOT EXISTS `data` (
   `telefono1` varchar(50) DEFAULT '0',
   `telefono2` varchar(50) DEFAULT '0',
   `organizacion` varchar(255) DEFAULT '0',
-  `actualizado` int(11) DEFAULT NULL,
+  `actualizado` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5728 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.data: ~5.682 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.data: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `data` DISABLE KEYS */;
 INSERT INTO `data` (`id`, `datos`, `telefono1`, `telefono2`, `organizacion`, `actualizado`) VALUES
-	(1, 'Cliente 52  / Cliente  52   TELEFONOS:       1347-216-3199', '13472163199', '', '', 1),
-	(2, 'Soporte Ecuador  / Soporte Ecuador      TELEFONOS:       5932-401-8941', '59324018941', '', '', 1),
-	(3, 'Carbonylena Oriana Cajera  / Oriana     TELEFONOS:       58414-0279931', '584140279931', '', '', 1),
-	(4, 'Cli60  / Cli60     TELEFONOS:       58424-9487761', '584249487761', '', '', NULL),
+	(1, 'Cliente 52  / Cliente  52   TELEFONOS:       1347-216-3199', '13472163199', '', '', 'NULL'),
+	(2, 'Soporte Ecuador  / Soporte Ecuador      TELEFONOS:       5932-401-8941', '59324018941', '', '', 'NULL'),
+	(3, 'Carbonylena Oriana Cajera  / Oriana     TELEFONOS:       58414-0279931', '584140279931', '', '', 'NULL'),
+	(4, 'Cli60  / Cli60     TELEFONOS:       58424-9487761', '584249487761', '', '', 'NULL'),
 	(5, 'Cli463  / Cli463     TELEFONOS:       1(862)2493300', '1(862)2493300', '', '', NULL),
 	(6, 'Mart  / Mart     TELEFONOS:    13218308208', '13218308208', '', '', NULL),
 	(7, 'Mart  / Mart     TELEFONOS:    13218308208', '13218308208', '', '', NULL),
@@ -7546,26 +7648,33 @@ INSERT INTO `persona` (`id`, `name`, `email`, `phone`, `specialist`, `created_at
 	(1, 'gregorio osorio', 'gregorioenrique14@gmail', '0999218183', 'Desarrollador', '2021-02-27 10:07:19', '2021-02-27 10:07:19');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
--- Volcando estructura para tabla gestion.prductos
-CREATE TABLE IF NOT EXISTS `prductos` (
+-- Volcando estructura para tabla gestion.productos
+CREATE TABLE IF NOT EXISTS `productos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `categoria_id` int(11) unsigned NOT NULL,
   `nombre` varchar(50) DEFAULT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
-  `precio` varchar(10) DEFAULT NULL,
+  `precio` float(18,2) DEFAULT NULL,
   `cantidad` varchar(10) DEFAULT NULL,
   `etiqueta` varchar(150) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK1_categorias` (`categoria_id`),
   CONSTRAINT `FK1_categorias` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.prductos: ~2 rows (aproximadamente)
-/*!40000 ALTER TABLE `prductos` DISABLE KEYS */;
-INSERT INTO `prductos` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio`, `cantidad`, `etiqueta`) VALUES
-	(1, 2, 'Alitas a la BBQ', '6 ALITAS', '14.00', '1', 'ALITAS'),
-	(2, 1, 'Chuleta', NULL, '3.40', '8', 'extras');
-/*!40000 ALTER TABLE `prductos` ENABLE KEYS */;
+-- Volcando datos para la tabla gestion.productos: ~8 rows (aproximadamente)
+/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
+INSERT INTO `productos` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio`, `cantidad`, `etiqueta`, `imagen`) VALUES
+	(1, 2, 'Alitas a la BBQ', '6 ALITAS', 14.00, '1', 'ALITAS', NULL),
+	(2, 1, 'Chuleta', NULL, 3.40, '8', 'extras', 'https://carbonylena.com/wp-content/uploads/2021/01/Chuleta-asada.jpeg'),
+	(3, 1, 'Carne', NULL, 3.40, '56', 'ASADOS', 'https://carbonylena.com/wp-content/uploads/2021/01/Carne-asada.jpeg'),
+	(4, 1, 'Costilla', NULL, 4.00, NULL, NULL, 'https://carbonylena.com/wp-content/uploads/2021/01/Chuleta-asada.jpeg'),
+	(5, 1, 'Filetet de pollo', NULL, 3.00, NULL, NULL, 'https://carbonylena.com/wp-content/uploads/2021/01/Filete-de-pollo.jpeg'),
+	(6, 4, 'Jugo de Naranja', NULL, 1.00, NULL, NULL, NULL),
+	(7, 2, 'Alitas a la Naranja', NULL, 12.00, NULL, NULL, NULL),
+	(8, 3, 'Parrillada Mixta', NULL, 15.00, NULL, NULL, NULL);
+/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestion.provincia
 CREATE TABLE IF NOT EXISTS `provincia` (
@@ -7873,7 +7982,7 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   KEY `FK2_categoria` (`categoria_id`),
   KEY `FK3_cliente` (`cliente_id`),
   KEY `FK4_usuario` (`users_id`),
-  CONSTRAINT `FK1_producto` FOREIGN KEY (`producto_id`) REFERENCES `prductos` (`id`),
+  CONSTRAINT `FK1_producto` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`),
   CONSTRAINT `FK2_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
   CONSTRAINT `FK3_cliente` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`),
   CONSTRAINT `FK4_usuario` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)

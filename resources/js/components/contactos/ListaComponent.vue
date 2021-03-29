@@ -44,7 +44,7 @@
     	                <td v-text="item.telefono2"></td>
     	                <td v-text="item.organizacion"></td>
                       <td>
-                          <button type="submit" data-toggle="modal" data-target="#exampleModalCenter"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button>
+                          <button type="submit"  v-b-modal.modal1 @click.prevent="modal1=true"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button>
                       </td>
                   	</tr>
               </tbody>         
@@ -55,181 +55,178 @@
 
 
           <!-- Modal -->
-                <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary" >
-                                <h5 class="modal-title" id="exampleModalLongTitle">Contacto</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <table  class="table">
-                                    <thead>
-                                        <th>Datos</th>
-                                        <th>Telf 1</th>
-                                        <th>Telf 2</th>
-                                        <th>Organizacion</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(item, index) in contacto" :key="index">
-                                            <td> <small>{{ item.datos }}</small> </td>
-                                            <td> {{ item.telefono1 }}</td>
-                                            <td> {{ item.telefono2 }}</td>
-                                            <td> {{ item.organizacion }}</td>
-                                            </tr>
-                                    </tbody>
-                                </table>
-                                <div class="card-body" id="validar">
-                                    <p v-if="errors.length">
-                                        <ul>
-                                            <li v-for="(error, index) in errors" :key="index">
-                                                {{ error }}
-                                            </li>
-                                        </ul>
-                                    </p>
-                                    <form  v-on:submit.prevent="checkForm">
+          <b-modal  :v-bind="modal1" v-if="modal1" id="modal1" size="xl" >
+           
+              <div class="modal-content">
+                <div class="modal-header bg-primary" >
+                    <h5 class="modal-title" id="exampleModalLongTitle">Contacto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table  class="table">
+                        <thead>
+                            <th>Datos</th>
+                            <th>Telf 1</th>
+                            <th>Telf 2</th>
+                            <th>Organizacion</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, index) in contacto" :key="index">
+                                <td> <small>{{ item.datos }}</small> </td>
+                                <td> {{ item.telefono1 }}</td>
+                                <td> {{ item.telefono2 }}</td>
+                                <td> {{ item.organizacion }}</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                    <div class="card-body" id="validar">
+                        <p v-if="errors.length">
+                            <ul>
+                                <li v-for="(error, index) in errors" :key="index">
+                                    {{ error }}
+                                </li>
+                            </ul>
+                        </p>
+                        <form  v-on:submit.prevent="checkForm">
 
-                                        <div class="row">
+                            <div class="row">
 
-                                            <div class="col">
-                                                <label for="">Telefono WhatsApp *</label>
-                                                <div>
-                                                    <input type="number" class="form-control" id="jack"  v-model="form.telefonowhatsapp">
-                                                </div>
-                                            </div>
-                                        
-
-                                            <div class="col">
-                                                <label for="">Telefono 2 </label>
-                                                <div>
-                                                    <input type="number" class="form-control"  v-model="form.telefonoCelular">
-                                                </div>
-                                            </div>
-
-                                            <div class="col">
-                                                <label for="">Convencional</label>
-                                                <div>
-                                                    <input type="number" class="form-control"  v-model="form.telefonoConvencional">
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="">Correo  </label>
-                                                <div>
-                                                    <input type="email" class="form-control"  v-model="form.email">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="">Cedula  </label>
-                                                <div>
-                                                    <input type="text" class="form-control"  v-model="form.cedula">
-                                                </div>
-                                            </div>
-
-                                            <div class="col">
-                                                <label for="">Nombres  *</label>
-                                                <div>
-                                                    <input type="text" class="form-control"  v-model="form.nombre">
-                                                </div>
-                                            </div>
-
-                                            <div class="col">
-                                                <label for="">Apellidos  *</label>
-                                                <div>
-                                                    <input type="text" class="form-control"  v-model="form.apellidos">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br> <br>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="">Dirección  *</label>
-                                                <div>
-                                                    <input type="text" class="form-control"  v-model="form.direccion">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="">Manzana  </label>
-                                                <div>
-                                                    <input type="text" class="form-control"  v-model="form.mz">
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="">Villa  </label>
-                                                <div>
-                                                    <input type="text" class="form-control"  v-model="form.vl">
-                                                </div>
-                                            </div>
-                                          </div>
-                                          <div class="row">
-                                            <div class="col">
-                                                <label for="">Provincia  </label>
-                                                <div>
-                                                    <select v-model="form.provincia" class="form-control mb-2" @input="getCanton"  @click="getCanton(form.provincia)">
-                                                        <option value="" >Seleccionar la Provincia  </option>
-                                                        <option v-for="(item, index) in provincias" :key="index" v-bind:value="item.codigo" >
-                                                        {{ item.codigo }} | <strong>{{ item.Provincia }} </strong> 
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col">
-                                                <label for="">Canton  </label>
-                                                <div>
-                                                    <select v-model="form.canton" class="form-control mb-2" @input="getSector"  @click="getSector(form.canton)">
-                                                        <option value="" >Seleccione el Canton  </option>
-                                                        <option v-for="(item, index) in cantones" :key="index" v-bind:value="item.codigo" >
-                                                        {{ item.codigo }} | <strong>{{ item.canton }} </strong> 
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col">
-                                                <label for="">Sector  </label>
-                                                <div>
-                                                    <select v-model="form.sector" class="form-control mb-2" >
-                                                        <option value="" >Seleccione el Canton  </option>
-                                                        <option v-for="(item, index) in sectores" :key="index" v-bind:value="item.codigo" >
-                                                        {{ item.codigo }} | <strong>{{ item.sector }} </strong> 
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col">
-                                                <label for="">Referencia  </label>
-                                                <div>
-                                                    <input type="text" class="form-control"  v-model="form.referencia">
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    <br>
-                                    <div class="row">
-                                        <div class="col">
-                                            <input  class="btn btn-primary btn-sm" type="submit" value="Actualizar">
-                                        </div>
+                                <div class="col">
+                                    <label for="">Telefono WhatsApp *</label>
+                                    <div>
+                                        <input type="number" class="form-control" id="jack"  v-model="form.telefonowhatsapp">
                                     </div>
-                                
-                                        
-                                    </form>
+                                </div>
+                            
+
+                                <div class="col">
+                                    <label for="">Telefono 2 </label>
+                                    <div>
+                                        <input type="number" class="form-control"  v-model="form.telefonoCelular">
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <label for="">Convencional</label>
+                                    <div>
+                                        <input type="number" class="form-control"  v-model="form.telefonoConvencional">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">Correo  </label>
+                                    <div>
+                                        <input type="email" class="form-control"  v-model="form.email">
+                                    </div>
                                 </div>
                             </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Cedula  </label>
+                                    <div>
+                                        <input type="text" class="form-control"  v-model="form.cedula">
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <label for="">Nombres  *</label>
+                                    <div>
+                                        <input type="text" class="form-control"  v-model="form.nombre">
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <label for="">Apellidos  *</label>
+                                    <div>
+                                        <input type="text" class="form-control"  v-model="form.apellidos">
+                                    </div>
+                                </div>
+                            </div>
+                            <br> <br>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Dirección  *</label>
+                                    <div>
+                                        <input type="text" class="form-control"  v-model="form.direccion">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Manzana  </label>
+                                    <div>
+                                        <input type="text" class="form-control"  v-model="form.mz">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="">Villa  </label>
+                                    <div>
+                                        <input type="text" class="form-control"  v-model="form.vl">
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                    <label for="">Provincia  </label>
+                                    <div>
+                                        <select v-model="form.provincia" class="form-control mb-2" @input="getCanton"  @click="getCanton(form.provincia)">
+                                            <option value="" >Seleccionar la Provincia  </option>
+                                            <option v-for="(item, index) in provincias" :key="index" v-bind:value="item.codigo" >
+                                            {{ item.codigo }} | <strong>{{ item.Provincia }} </strong> 
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <label for="">Canton  </label>
+                                    <div>
+                                        <select v-model="form.canton" class="form-control mb-2" @input="getSector"  @click="getSector(form.canton)">
+                                            <option value="" >Seleccione el Canton  </option>
+                                            <option v-for="(item, index) in cantones" :key="index" v-bind:value="item.codigo" >
+                                            {{ item.codigo }} | <strong>{{ item.canton }} </strong> 
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <label for="">Sector  </label>
+                                    <div>
+                                        <select v-model="form.sector" class="form-control mb-2" >
+                                            <option value="" >Seleccione el Canton  </option>
+                                            <option v-for="(item, index) in sectores" :key="index" v-bind:value="item.codigo" >
+                                            {{ item.codigo }} | <strong>{{ item.sector }} </strong> 
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <label for="">Referencia  </label>
+                                    <div>
+                                        <input type="text" class="form-control"  v-model="form.referencia">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <input  class="btn btn-primary btn-sm" type="submit" value="Actualizar">
+                            </div>
+                        </div>
+                    
+                            
+                        </form>
                     </div>
                 </div>
-            </div>
-        </div>  
+                
+              </div>
+           
+          </b-modal >  
 
     </div>
 </template>
@@ -258,7 +255,7 @@ export default {
         sector: null,
         provincia: 9,
         canton: 901,
-        referencia: null
+        referencia: null,
       },
       clientes: [],
       contacto: null,
@@ -270,6 +267,7 @@ export default {
       provincias: null,
       cantones: null,
       sectores: null,
+      modal1: false,
     };
   },
 
@@ -279,7 +277,7 @@ export default {
     });
   },
   mounted() {
-   // console.log("Componente cliente montado.");
+    // console.log("Componente cliente montado.");
     this.getClientes();
   },
   methods: {
@@ -292,7 +290,7 @@ export default {
           me.clientes = res.data.data;
           //me.clientes = res.data
           me.page = res.data.current_page;
-         // console.log(me.page);
+          // console.log(me.page);
         })
         .catch((err) => {
           console.error(err.message);
@@ -307,7 +305,7 @@ export default {
         .then((res) => {
           me.clientes = res.data.data;
           me.page = res.data.current_page;
-         // console.log(me.page);
+          // console.log(me.page);
         })
         .catch((err) => {
           console.error(err.message);
@@ -319,10 +317,10 @@ export default {
       axios
         .get(`${me.url}?page=` + (me.page - 1))
         .then((res) => {
-         // console.log("Pagina:" + me.page);
+          // console.log("Pagina:" + me.page);
           me.clientes = res.data.data;
           me.page = res.data.current_page;
-         // console.log(me.page);
+          // console.log(me.page);
         })
         .catch((err) => {
           console.error(err.message);
@@ -333,10 +331,10 @@ export default {
       axios
         .get(`${me.url}?page=` + (me.page + 1))
         .then((res) => {
-         // console.log("Pagina:" + me.page);
+          // console.log("Pagina:" + me.page);
           me.clientes = res.data.data;
           me.page = res.data.current_page;
-         // console.log(me.page);
+          // console.log(me.page);
         })
         .catch((err) => {
           console.error(err.message);
@@ -346,7 +344,7 @@ export default {
     ejecutar(item) {
       this.idContacto = null;
       this.idContacto = item.id;
-      console.log(this.idContacto );
+      console.log(this.idContacto);
       axios.get("consultarcontacto/" + item.id).then((res) => {
         this.contacto = res.data;
       });
@@ -365,7 +363,7 @@ export default {
     },
 
     getSector(event) {
-     // console.log(event);
+      // console.log(event);
       axios.get("contactos/getSector/" + event).then((res) => {
         this.sectores = res.data;
       });
@@ -396,22 +394,22 @@ export default {
 
     agregar() {
       const parametros = {
-        telefonoWhatsapp:     this.form.telefonowhatsapp,
-        telefonoCelular:      this.form.telefonoCelular,
+        telefonoWhatsapp: this.form.telefonowhatsapp,
+        telefonoCelular: this.form.telefonoCelular,
         telefonoConvencional: this.form.telefonoConvencional,
-        cedula:               this.form.cedula,
-        nombres:              this.form.nombre,
-        apellidos:            this.form.apellidos,
-        direccion:            this.form.direccion,
-        mz:                   this.form.mz,
-        villa:                this.form.vl,
-        provincia:            this.form.provincia,
-        canton:               this.form.canton,
-        sector:               this.form.sector,
-        referencia:           this.form.referencia,
-        idContacto:           this.idContacto,
+        cedula: this.form.cedula,
+        nombres: this.form.nombre,
+        apellidos: this.form.apellidos,
+        direccion: this.form.direccion,
+        mz: this.form.mz,
+        villa: this.form.vl,
+        provincia: this.form.provincia,
+        canton: this.form.canton,
+        sector: this.form.sector,
+        referencia: this.form.referencia,
+        idContacto: this.idContacto,
       };
-
+      console.log(parametros);
       this.form.telefonowhatsapp = "";
       this.form.telefono2 = "";
       this.form.cedula = "";
@@ -422,23 +420,24 @@ export default {
       this.form.vl = "";
       this.form.sector = "";
       this.idContacto = "";
-     // console.log(parametros);
       axios.post("guardarcontacto", parametros).then((res) => {
-        this.contacto.push(res.data);
+        //this.contacto.push(res.data);
         this.$swal("Actualizado con Exito");
+        this.modal1 = false;
         this.getClientes();
       });
-
     },
-    edit(obj){
+    edit(obj) {
+      this.idContacto = null;
       this.form.telefonowhatsapp = "";
       this.form.telefonowhatsapp = obj.telefono1;
       this.form.telefonoCelular = obj.telefono2;
       this.form.direccion = obj.datos;
-
+ 
+      this.idContacto = obj.id;
+      console.log(this.idContacto);
       this.getCanton(this.form.canton);
-
-    }
+    },
   },
 };
 </script>

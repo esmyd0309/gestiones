@@ -36,6 +36,24 @@ class ClientesController extends Controller
         return response()->json([], 200);
     }
 
+    public function dataclientes($dato)
+    {   
+
+        $data = DB::connection('mysql')->select("SELECT * FROM clientes  WHERE cedula like '%$dato%' or nombres like '%$dato%'");
+
+            return response()->json($data, 200);
+       
+    }
+
+    public function getclientesall()
+    {   
+
+        $data = DB::connection('mysql')->select("SELECT * FROM clientes ORDER BY updated_at desc limit 15  ");
+
+            return response()->json($data, 200);
+       
+    }
+
     public function guardarcliente(Request $request)
     {   
 
@@ -114,6 +132,10 @@ class ClientesController extends Controller
 
         $id->delete();
         return response()->json([], 200);
+    }
+
+    public function clientes(){
+        return view('Clientes.index');
     }
 
 }

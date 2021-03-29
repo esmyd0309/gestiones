@@ -246,7 +246,7 @@
 
     
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
               <div class="card text-center">
                 <div class="card-header">
@@ -279,7 +279,7 @@
                           <p class="text-muted text-center "><strong>Sector:</strong>          {{ form.sector }}               </p>
                           <p class="text-muted text-center "><strong>Referencia:</strong>      {{ form.referencia }}           </p>
                           <p class="text-muted text-center "><strong>Mz:</strong>      {{ form.mz }}           </p>
-                          <p class="text-muted text-center "><strong>Villa:</strong>      {{ form.villa }}           </p>
+                          <p class="text-muted text-center "><strong>Villa:</strong>      {{ form.vl }}           </p>
                           <div v-if="form.ubicacion">
                               <a :href="form.ubicacion" class="btn btn-primary" target="_blank" ><i class="fas fa-map-marked"></i> <small>{{form.ubicacion}}</small> </a>
                           </div>
@@ -290,10 +290,34 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-">
-                    <div class="row">
-                      <div class="col">
-
+                  <div class="col-6">
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
+                      <div class="row">
+                        <div class="col">
+                        
+                          <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped table-responsive">
+                              <thead>
+                                  <tr>
+                                      <th>Fecha</th>
+                                      <th>Productos</th>
+                                      <th>Total</th>
+                                     
+                                    <th></th>     
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                    <tr v-for="(item, index) in datacarrito" :key="index">
+                                      <td v-text="item.created_at"></td>
+                                      <td v-text="item.productos"></td>
+                                      <td >${{item.total}}</td>
+                                      <td><button type="submit" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter" @click="viewDetalle(item)" > <i class="fas fa-eye"></i></button></td>
+                                      
+                                    </tr>
+                              </tbody>         
+                            </table>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -303,6 +327,45 @@
             
             </div>
 
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Detalle de Pedido</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped table-responsive">
+                      <thead>
+                          <tr>
+                              <th>Categoria</th>
+                              <th>Producto</th>
+                              <th>Precio</th>
+                            
+                          </tr>
+                      </thead>
+                      <tbody>
+                            <tr v-for="(item, index) in datacarritodetalle" :key="index">
+                              <td v-text="item.categoria"></td>
+                              <td v-text="item.producto"></td>
+                              <td >${{item.precio}}</td>
+                              
+                            </tr>
+                      </tbody>         
+                    </table>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+            </div>
           </div>
         </div>
       </div>
@@ -361,7 +424,12 @@ export default {
       modal1: false,
       Registrar: null,
       id:0,
-      datos: null
+      datos: null,
+
+      // carrito datos
+
+      datacarrito: null,
+      datacarritodetalle: null
     };
   },
 
@@ -532,9 +600,7 @@ export default {
       this.idContacto = "";
       this.form.email = "";
       this.form.ubicacion = "";
-      console.log(this.Registrar);
-      console.log(parametros);
-      console.log(this.id);
+    
        if (this.Registrar=='Registrar') {
           axios
           .post("guardarcliente", parametros)
@@ -670,7 +736,16 @@ export default {
       this.form.email = obj.email;
       this.form.ubicacion = obj.ubicacion;
       this.id = obj.id;
+       axios.get("clientecarrito/"+obj.id).then((res) => {
+            this.datacarrito = res.data;
+          });
 
+    },
+    viewDetalle(obj){
+          axios.get("clientecarritodetalle/"+obj.id).then((res) => {
+            this.datacarritodetalle = res.data;
+          });
+          console.log( this.datacarritodetalle)
     }
 
   },

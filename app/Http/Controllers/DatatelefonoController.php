@@ -38,7 +38,9 @@ class DatatelefonoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function guardarcontacto(Request $request)
-    {   $id = $request->idContacto;
+    {   
+        //dd($request);
+        $id = $request->idContacto;
         
         $cliente = new Clientes;
         $cliente->nombres               =   $request->nombres; 
