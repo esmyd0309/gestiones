@@ -414,7 +414,7 @@ export default {
       contacto: null,
       telefono1: "",
       page: 0,
-      url: "http://localhost/gestiones/public/listaclientes",
+      url: "http://app.datamarketingplus.ec/listaclientes",
       errors: [],
       idContacto: null,
       provincias: null,
@@ -434,7 +434,7 @@ export default {
   },
 
   created() {
-    axios.get("http://localhost/gestiones/public/getprovincia").then((res) => {
+    axios.get("http://app.datamarketingplus.ec/getprovincia").then((res) => {
       this.provincias = res.data;
     });
   },

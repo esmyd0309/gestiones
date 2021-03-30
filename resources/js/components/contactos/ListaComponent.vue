@@ -261,7 +261,7 @@ export default {
       contacto: null,
       telefono1: "",
       page: 0,
-      url: "http://localhost/gestiones/public/listacontactos",
+      url: "http://app.datamarketingplus.ec/listacontactos",
       errors: [],
       idContacto: null,
       provincias: null,
@@ -272,7 +272,7 @@ export default {
   },
 
   created() {
-    axios.get("http://localhost/gestiones/public/getprovincia").then((res) => {
+    axios.get("http://app.datamarketingplus.ec/getprovincia").then((res) => {
       this.provincias = res.data;
     });
   },
@@ -299,7 +299,7 @@ export default {
 
     search() {
       let me = this;
-      let url2 = "http://localhost/gestiones/public/contactos";
+      let url2 = "http://app.datamarketingplus.ec/contactos";
       axios
         .get(`${url2}?telefono1=${me.telefono1}`)
         .then((res) => {
