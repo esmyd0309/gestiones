@@ -28,7 +28,7 @@ class DatatelefonoController extends Controller
       
         $data = Data::whereNull('actualizado')->orderBy('datos', 'desc')->paginate(10);
         //dd($data );
-        return view('contactos.index', ['data' => $data]);
+        return view('Contactos.index', ['data' => $data]);
     }
 
     
