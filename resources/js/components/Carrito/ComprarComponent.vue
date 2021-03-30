@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-     <loading :active.sync="isLoading"/>
+    <loading :active.sync="isLoading"/>
     <div class="row">
-      <div class="col-4">
+      <div class="col">
         <div class="card text-center">
           <div class="card-header alert alert-secondary  ">
            <i class="fas fa-braille"></i> <b>CATEGORIAS</b> 
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div class="col-8" v-if="carrito.length !== 0 || carrito[0] === 0">
+      <div class="col" v-if="carrito.length !== 0 || carrito[0] === 0">
         <div class="card text-center">
           <div class="card-header alert alert-danger ">
             <i class="fas fa-cart-arrow-down"></i> <b>CARRITO</b> |
