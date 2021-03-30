@@ -4,4 +4,5 @@
 @section('content')
 
     <listacontactos-component></listacontactos-component>
+    
 @endsection
