@@ -42,7 +42,7 @@
           <div class="card-body">
             <ol class="list-group list-group-numbered" >
               <div class="row">
-                <div class="col "  v-for="(item, index) in carrito" :key="index" >
+                <div class="col"  v-for="(item, index) in carrito" :key="index" >
                   <li class="list-group-item d-flex justify-content-between align-items-start" >
                     <button class="btn btn-outline-secondary"  >
                       <div class="ms-2 me-auto" >
@@ -78,7 +78,7 @@
             <h5 class="card-title" v-if="categoriaSelect"> <i class="fab fa-product-hunt"></i> PRODUCTOS | <small>{{categoriaSelect}}</small> </h5>
               <div class="row">
                 <div class="col" v-for="(item, index) in dataproductos" :key="index">
-                  <div class="card" style="width: 15rem;"  @click="getCarrito(item)">
+                  <div class="card" style="width: auto;"  @click="getCarrito(item)">
                     <img :src="item.imagen" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h6 class="card-title">{{item.nombre}}</h6>
