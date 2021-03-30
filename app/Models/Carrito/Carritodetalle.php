@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carritodetalle extends Model
 {
-    protected $table = "Carritodetalle";
+    protected $table = "carritodetalle";
     
 }	
