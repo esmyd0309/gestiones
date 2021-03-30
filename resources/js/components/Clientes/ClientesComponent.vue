@@ -1,17 +1,21 @@
 <template>
   <div>
     <div class="container">
-      <div class="alert alert-primary" role="alert">
-       <center>Listado clientes  <span class="badge badge-light">{{ clientes.length}}</span></center> 
+      <div class="row">
+        <div class="col">
+          <div class="alert alert-primary" role="alert">
+            <center>Listado clientes  <span class="badge badge-light">{{ clientes.length}}</span></center> 
+          </div>
+        </div>
       </div>
       <div class="row">
-        <div class="col-sm">
+        <div class="col">
           <b-button v-b-modal.modal1 @click.prevent="modal1=true" variant="primary" @click="getRegistrar()"> <i class="fas fa-user-plus"></i> Registrar</b-button>
         </div>
-        <div class="col-sm">
+        <div class="col">
           <input type="text" v-model="buscardato" class="form-control" placeholder="Buscar por cedula del cliente" /> 
         </div> 
-          <div class="col-sm">
+          <div class="col">
             <button type="submit" class="btn btn-secondary" @click="search"> <i class="fas fa-search"></i> Buscar</button>
           </div>  
       </div>
@@ -257,7 +261,7 @@
                 <p class="card-text"></p>
                 
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col">
                     <div class="card card-primary card-outline">
                       <div class="card-header">
                         <h3 class="card-title">Datos Personales</h3>
@@ -290,7 +294,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col">
                     <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
                       <div class="row">
                         <div class="col">
@@ -416,7 +420,7 @@ export default {
       page: 0,
       url: "http://app.datamarketingplus.ec/listaclientes",
       errors: [],
-      
+
       idContacto: null,
       provincias: null,
       cantones: null,
