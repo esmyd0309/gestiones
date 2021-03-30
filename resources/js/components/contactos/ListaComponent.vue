@@ -273,6 +273,7 @@ export default {
 
   created() {
     axios.get("http://app.datamarketingplus.ec/getprovincia").then((res) => {
+      
       this.provincias = res.data;
     });
   },

@@ -19,6 +19,7 @@
     */components:{
             Loading
         },
+        
     data(){
       return {
         isLoading: false,

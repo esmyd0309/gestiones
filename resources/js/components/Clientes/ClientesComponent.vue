@@ -416,6 +416,7 @@ export default {
       page: 0,
       url: "http://app.datamarketingplus.ec/listaclientes",
       errors: [],
+      
       idContacto: null,
       provincias: null,
       cantones: null,
