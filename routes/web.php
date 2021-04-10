@@ -210,6 +210,7 @@ Route::get('getprovincia', 'ApiController@getprovincia');
 			 Route::get('clientes', 'Clientes\ClientesController@clientes')->name('clientes');
 			 Route::get('listaclientes', 'Clientes\ClientesController@listaclientes')->name('listaclientes');
 			 Route::post('guardarcliente', 'Clientes\ClientesController@guardarcliente')->name('guardarcliente');
+			 Route::post('inicio/guardarcliente', 'Clientes\ClientesController@guardarcliente')->name('guardarcliente');
 			 Route::delete('deletecliente/{id}', 'Clientes\ClientesController@deletecliente')->name('deletecliente');
 			 Route::put('actualizarcliente', 'Clientes\ClientesController@actualizarcliente')->name('actualizarcliente');
 			 Route::get('dataclientes/{dato}', 'Clientes\ClientesController@dataclientes')->name('dataclientes');

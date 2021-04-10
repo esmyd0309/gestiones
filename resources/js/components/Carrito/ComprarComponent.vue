@@ -106,12 +106,12 @@
                   Buscar Cliente
               </div>
               <div class="card-body" id="datos">
-                
                 <input type="text" v-model="buscar" @input="getClientes(buscar)" class="form-control" placeholder="Buscar cliente por cedula o nombres"/>
                  <hr>
-                 <table class="table table-bordered table-hover table-striped table-responsive">
-                  <thead>
-                      <tr>
+                 
+                    <table class="table table-bordered table-hover table-striped table-responsive">
+                      <thead>
+                        <tr>
                           <th>cedula</th>
                           <th>Nombres</th>
                           <th>Telefono Whatsapp</th>
@@ -120,11 +120,10 @@
                           <th>Villa</th>
                           <th>Referencia</th>
                             
-                      </tr>
-                  </thead>
-                  <tbody>
-                        <tr v-for="(item, index) in dataclientes" :key="index" @click="getClienteselecionado(item) " >
-                
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, index) in dataclientes" :key="index" @click="getClienteselecionado(item)">
                           <td v-text="item.cedula"></td>
                           <td v-text="item.nombres" ></td>
                           <td v-text="item.telefonoWhatsapp"></td>
@@ -132,16 +131,195 @@
                           <td v-text="item.mz"></td>
                           <td v-text="item.villa"></td>
                           <td v-text="item.referencia"></td>
-                         
+                      
                         </tr>
-                  </tbody>         
-                </table>
+                      </tbody>         
+                    </table>
+                
+                 
+                    <b-button v-b-modal.modalregistrarcliente @click.prevent="modalregistrarcliente=true" variant="primary" @click="getRegistrar()"> <i class="fas fa-user-plus"></i> Registrar</b-button>
+
+                 
+                </div>
               </div>
-            </div>
           
       </b-modal>
 
- 
+        <!-- MODAL ---->
+    <b-modal id="modalregistrarcliente" hide-footer :v-bind="modalregistrarcliente" v-if="modalregistrarcliente" size="xl" ><div class="alert alert-dark" role="alert"> <center>Registrar Cliente</center> </div>
+      <div class="row">
+        <loading :active.sync="isLoading" />
+        <div class="card-body" id="validar">
+            <p v-if="errors.length">
+                <ul>
+                    <li v-for="(error, index) in errors" :key="index">
+                        {{ error }}
+                    </li>
+                </ul>
+            </p>
+            <form  v-on:submit.prevent="checkForm">
+                <div class="row">
+                    <div class="col">
+                        <label for="">Cedula  </label>
+                        <div>
+                            <input type="text" class="form-control"   maxlength ="10"  v-model="form.cedula">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="">Nombres  *</label>
+                        <div>
+                            <input type="text" class="form-control"  v-model="form.nombre">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="">Apellidos  *</label>
+                        <div>
+                            <input type="text" class="form-control"  v-model="form.apellidos">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col">
+                        <label for="">Telefono WhatsApp *</label>
+                        <div>
+                            <input type="text" class="form-control" id="jack" maxlength ="10"   v-model="form.telefonowhatsapp">
+                        </div>
+                    </div>
+                
+
+                    <div class="col">
+                        <label for="">Telefono 2 </label>
+                        <div>
+                            <input type="text" class="form-control" maxlength ="10"   v-model="form.telefonoCelular">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="">Convencional</label>
+                        <div>
+                            <input type="text" class="form-control" maxlength ="10"   v-model="form.telefonoConvencional">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="">Correo  </label>
+                        <div>
+                            <input type="email" class="form-control"  v-model="form.email">
+                        </div>
+                    </div>
+                </div>
+                
+                <br> <br>
+                <div class="row">
+                    <div class="col">
+                        <label for="">Dirección  *</label>
+                        <div>
+                            <input type="text" class="form-control"  v-model="form.direccion">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="">Manzana  </label>
+                        <div>
+                            <input type="text" class="form-control"  v-model="form.mz">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="">Villa  </label>
+                        <div>
+                            <input type="text" class="form-control"  v-model="form.vl">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col">
+                        <label for="">Provincia  </label>
+                        <div>
+                            <select v-model="form.provincia" class="form-control mb-2" @input="getCanton"  @click="getCanton(form.provincia)">
+                                <option value="" >Seleccionar la Provincia  </option>
+                                <option v-for="(item, index) in provincias" :key="index" v-bind:value="item.codigo" >
+                                {{ item.codigo }} | <strong>{{ item.Provincia }} </strong> 
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="">Canton  </label>
+                        <div>
+                            <select v-model="form.canton" class="form-control mb-2" @input="getSector"  @click="getSector(form.canton)">
+                                <option value="" >Seleccione el Canton  </option>
+                                <option v-for="(item, index) in cantones" :key="index" v-bind:value="item.codigo" >
+                                {{ item.codigo }} | <strong>{{ item.canton }} </strong> 
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="">Sector  </label>
+                        <div>
+                            <select v-model="form.sector" class="form-control mb-2" >
+                                <option value="" >Seleccione el Canton  </option>
+                                <option v-for="(item, index) in sectores" :key="index" v-bind:value="item.codigo" >
+                                {{ item.codigo }} | <strong>{{ item.sector }} </strong> 
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="">Referencia  </label>
+                        <div>
+                            <input type="text" class="form-control"  v-model="form.referencia">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="">Ubicación  </label>
+
+                        <div>
+                            <input type="text" class="form-control"  v-model="form.ubicacion">
+                        </div>
+                    </div>
+
+                </div>
+
+            
+            <template modal-footer>
+              <div class="row">
+                <div class="col" >
+                  
+                    <input  class="btn btn-success btn-sm float-center" type="submit" value="Registrar">
+                  
+                </div>
+               
+                <div class="col">
+                  <b-button
+                    variant="primary"
+                    size="sm"
+                    class="float-right"
+                   
+                    @click.prevent="modalregistrarcliente=false"
+                  >
+                    Cerrar
+                  </b-button>
+                </div>
+
+              </div>
+           
+            </template>
+                
+            </form>
+        </div>
+      </div>
+    </b-modal>
+
+    <!-- / MODAL ---->
     
   </div>
 </template>
@@ -153,7 +331,7 @@
     import Loading from 'vue-loading-overlay';
     import 'whatwg-fetch';
     import 'vue-loading-overlay/dist/vue-loading.css';
-     Vue.use(Loading);
+    Vue.use(Loading);
   export default {
       
    name:'comprar',
@@ -170,8 +348,28 @@
             total: 0.0,
             cantidad: 1,
             cliente: null,
-            cliente_id:null
+            cliente_id:null,
+
+            telefonowhatsapp: null,
+            telefonoCelular: null,
+            telefonoConvencional: null,
+            cedula: null,
+            nombre: null,
+            apellidos: null,
+            direccion: null,
+            mz: null,
+            vl: null,
+            sector: null,
+            provincia: 9,
+            canton: 901,
+            cantonname:null,
+            sectorname: null,
+            referencia: null,
+            email: null,
+
+            ubicacion: null,
         },
+        id: 0,
         isLoading: false,
         isSuccess: false,
         
@@ -183,7 +381,14 @@
         buscar: '',
         dataclientes: null,
         modal1:false,
-        addproducto: null
+
+
+        modalregistrarcliente: false,
+        addproducto: null,
+        cantones: null,
+        sectores: null,
+        provincias:null,
+        errors: []
         
 
       }
@@ -193,36 +398,38 @@
    
     created() {
         
-          axios.get('categorias')
-                .then(res => {
-                    this.datacategorias=res.data;
-                
-            })
+      axios.get('categorias')
+      .then(res => {
+          this.datacategorias=res.data;
+      
+      })
 
-         
-          
-          axios.get('getclientesall')
-                .then(res => {
-                    this.dataclientes=res.data;
-                
-            });
+      axios.get('getclientesall')
+      .then(res => {
+          this.dataclientes=res.data;
+      
+      });
+
+      axios.get("getprovincia").then((res) => {
+        this.provincias = res.data;
+      });
 
     },
 
     methods: {
-       getClientes(dato){
-      
+      getClientes(dato){
+    
         axios.get('dataclientes/'+dato)
-                .then(res => {
-                    this.dataclientes=res.data;
-                
-            });
-    },
-    getClienteselecionado(obj){
-      this.form.cliente=obj.nombres;
-      this.form.cliente_id=obj.id;
-      this.modal1=false;
-    },
+        .then(res => {
+          this.dataclientes=res.data;
+        
+        });
+      },
+      getClienteselecionado(obj){
+        this.form.cliente=obj.nombres;
+        this.form.cliente_id=obj.id;
+        this.modal1=false;
+      },
 
       getProductos(obj){
         this.isLoading = true;
@@ -230,14 +437,13 @@
 
         let id = obj.id;
         this.categoriaSelect = obj.nombre;
-            axios.get('categorias/getproductos/'+id)
-                .then(res => {
-                    this.dataproductos=res.data;
-               
-            }).finally(()=> this.isLoading= false)
+                
+        axios.get('categorias/getproductos/'+id)
+        .then(res => {
+            this.dataproductos=res.data;
+        }).finally(()=> this.isLoading= false)
       },
      
-
       getCarrito(obj){
        
          this.addproducto=obj;
@@ -282,7 +488,7 @@
         
         swal({
             title: '¿Seguro que deseas ya Enviar el pedido?',
-            text: "No podrás revertir esta acción luego, puedes revisar antes! cancelando la acción",
+            text: "No podrás revertir esta acción luego, puedes revisar antes! cancelando la acción ",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -362,8 +568,138 @@
         this.form.cliente=null
         this.form.cliente_id=null
         this.form.total=null
-      }
+      },
+      getRegistrar() {
 
+       
+        this.limpearcliente();
+      
+        this.getCanton(this.form.provincia);
+        this.getSector(this.form.canton);
+      },
+
+      limpearcliente(){
+        this.form.telefonowhatsapp = "";
+        this.form.telefonoCelular = "";
+        this.form.telefonoConvencional = "";
+        this.form.cedula = "";
+        this.form.nombre = "";
+        this.form.apellidos = "";
+        this.form.direccion = "";
+        this.form.mz = "";
+        this.form.vl = "";
+        this.form.sector = "";
+        this.idContacto = "";
+        this.form.email = "";
+        this.form.ubicacion = "";
+        this.form.referencia = "";
+        this.id =0;
+      },
+      getCanton(event) {
+        axios.get("contactos/getcanton/" + event).then((res) => {
+          this.cantones = res.data;
+
+          console.log(res.data.canton);
+
+        });
+      },
+
+      getprovincia() {
+        axios.get("/getprovincia").then((res) => {
+          this.provincias = res.data;
+        });
+      },
+
+      getSector(event) {
+        // console.log(event);
+        axios.get("contactos/getSector/" + event).then((res) => {
+          this.sectores = res.data;
+
+          console.log(res.data);
+
+        });
+      },
+
+      checkForm: function () {
+        this.errors = [];
+        if (!this.form.telefonowhatsapp) {
+          this.errors.push("El telefono de WhatsApp es obligatorio");
+        }
+
+        if (!this.form.nombre) {
+          this.errors.push("El Nombre es obligatorio");
+        }
+
+        if (!this.form.direccion) {
+          this.errors.push("La direccion es obligatoria");
+        }
+
+        if (
+          this.form.telefonowhatsapp &&
+          this.form.nombre &&
+          this.form.direccion
+        ) {
+          this.agregar();
+        }
+      },
+
+      agregar() {
+        this.isLoading = true;
+        this.isSuccess = false;
+
+        const parametros = {
+          id: this.id,
+          telefonoWhatsapp: this.form.telefonowhatsapp,
+          telefonoCelular: this.form.telefonoCelular,
+          telefonoConvencional: this.form.telefonoConvencional,
+          cedula: this.form.cedula,
+          nombres: this.form.nombre,
+          apellidos: this.form.apellidos,
+          direccion: this.form.direccion,
+          mz: this.form.mz,
+          villa: this.form.vl,
+          provincia: this.form.provincia,
+          canton: this.form.canton,
+          sector: this.form.sector,
+          referencia: this.form.referencia,
+          idContacto: this.idContacto,
+          email: this.form.email,
+          ubicacion: this.form.ubicacion,
+        };
+
+        this.form.telefonowhatsapp = "";
+        this.form.telefono2 = "";
+        this.form.cedula = "";
+        this.form.nombre = "";
+        this.form.apellidos = "";
+        this.form.direccion = "";
+        this.form.mz = "";
+        this.form.vl = "";
+        this.form.sector = "";
+        this.idContacto = "";
+        this.form.email = "";
+        this.form.ubicacion = "";
+    
+      
+          axios
+          .post("guardarcliente", parametros)
+          .then((res) => {
+            
+            this.dataclientes.push(res.data);
+            console.log(this.dataclientes);
+            this.$swal("Creado  con Exito");
+            this.modalregistrarcliente = false;
+            
+          })
+          .finally(() => (this.isLoading = false));
+        
+          axios.get('getclientesall')
+          .then(res => {
+              this.dataclientes=res.data;
+              this.modalregistrarcliente = false;
+          });
+     
+      },
 
      
    
