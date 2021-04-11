@@ -1,35 +1,32 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <loading :active.sync="isLoading"/>
+     <!-- Content Row -->
     <div class="row">
-      <div class="col">
-        <div class="card text-center">
-          <div class="card-header alert alert-secondary  ">
+      <!-- Border Left Utilities -->
+      <div class="col-lg-6">
+         <div class="card mb-4 py-3 border-left-primary">
+           <div class="card-header alert alert-secondary  ">
            <i class="fas fa-braille"></i> <b>CATEGORIAS</b> 
           </div>
-          <div class="card-body">
-            <ol class="list-group list-group-numbered" >
+            <div class="card-body">
               <div class="row">
-                <div class="col"  v-for="(item, index) in datacategorias" :key="index" @click="getProductos(item)">
-                  <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <button class="btn btn-outline-secondary">
-                      <div class="ms-2 me-auto" >
-                        <div class="fw-bold"> <strong>{{ item.nombre }}</strong> </div>
-                        {{ item.descripcion }}
-                      </div>
-                      <span class="badge  rounded-pill bg-dark">{{ item.cantidad }}</span>
-                    </button>
-                  
-                    
-                  </li>
+                <div class="col-sm" v-for="(item, index) in datacategorias" :key="index" @click="getProductos(item)">
+                  <div class="my-2"></div>
+                  <a href="#" class="btn btn-light btn-icon-split btn-sm ">
+                      <span class="icon text-white-50 btn-circle badge-light">
+                          {{ item.cantidad }}
+                      </span>
+                      <span class="text">{{ item.nombre }}</span>
+                  </a>
                 </div>
               </div>
-            </ol>
-          </div>
+            </div>
         </div>
+        
       </div>
 
-      <div class="col" v-if="carrito.length !== 0 || carrito[0] === 0">
+      <div class="col-lg-6" v-if="carrito.length !== 0 || carrito[0] === 0">
         <div class="card text-center">
           <div class="card-header alert alert-danger ">
             <i class="fas fa-cart-arrow-down"></i> <b>CARRITO</b> |
