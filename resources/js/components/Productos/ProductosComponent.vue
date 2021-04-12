@@ -250,7 +250,7 @@ export default {
       contacto: null,
       telefono1: "",
       page: 0,
-      url: "http://localhost/gestiones/public/listaproductos",
+      url: "http://app.datamarketingplus.ec/listaproductos",
       errors: [],
 
       idContacto: null,
