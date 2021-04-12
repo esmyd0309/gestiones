@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Reportes;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 class ApireportesController extends Controller
 {
     public function clientes()
