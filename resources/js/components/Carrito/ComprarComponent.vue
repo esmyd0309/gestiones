@@ -11,7 +11,7 @@
           </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-sm" v-for="(item, index) in datacategorias" :key="index" @click="getProductos(item)">
+                <div class="col-lg-6 mb-4" v-for="(item, index) in datacategorias" :key="index" @click="getProductos(item)">
                   <div class="my-2"></div>
                   <a href="#" class="btn btn-light btn-icon-split btn-sm ">
                       <span class="icon text-white-50 btn-circle badge-light">
@@ -73,20 +73,18 @@
           <div class="card-body">
             <h5 class="card-title" v-if="categoriaSelect"> <i class="fab fa-product-hunt"></i> PRODUCTOS | <small>{{categoriaSelect}}</small> </h5>
               <div class="row">
-                <div class="col" v-for="(item, index) in dataproductos" :key="index">
+                <div class="col-lg-6 mb-4" v-for="(item, index) in dataproductos" :key="index">
                   <div class="card" style="width: auto;"  @click="getCarrito(item)">
                     <img :src="item.imagen" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h6 class="card-title">{{item.nombre}}</h6>
                       <p class="card-text"><small>{{item.descripcion}}</small> </p>
-                     <strong>${{item.precio}}</strong>
+                     <strong>${{item.precio}}</strong> / <strong>${{item.puntos}}</strong>
                     </div>
                   </div>
                 </div>
                 <br>
               </div>
-             
-            
           </div>
           <div class="card-footer text-muted">
             {{dataproductos.length}} 
@@ -437,7 +435,9 @@
         axios.get('categorias/getproductos/'+id)
         .then(res => {
             this.dataproductos=res.data;
+             console.log(this.dataproductos);
         }).finally(()=> this.isLoading= false)
+       
       },
      
       getCarrito(obj){
