@@ -29,11 +29,25 @@
     Interface
   </div>
 
+  <li class="nav-item">
+    
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" aria-expanded="true" aria-controls="collapseTwo1">
+      <i class="fas fa-cart-plus"></i>
+          <span>Carrito</span>
+    </a>
+    <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header"></h6>
+        <a class="collapse-item" href="{{ route('inicio') }}">Carrito</a>
+      </div>
+    </div>
+  </li>
+
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
     
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-list-ul"></i>
+      <i class="fas fa-user-friends"></i>
           <span>Clientes</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -41,7 +55,21 @@
         <h6 class="collapse-header"></h6>
         <a class="collapse-item" href="{{ route('clientes') }}">Lista</a>
         <a class="collapse-item" href="{{ route('contactos.index') }}">Acttualizar Clientes</a>
-        <a class="collapse-item" href="{{ route('inicio') }}">Carrito</a>
+        
+      </div>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwox" aria-expanded="true" aria-controls="collapseTwox">
+      <i class="fas fa-cubes"></i>
+          <span>Productos</span>
+    </a>
+    <div id="collapseTwox" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header"></h6>
+        <a class="collapse-item" href="{{ route('productos') }}">Lista</a>
       </div>
     </div>
   </li>
@@ -49,7 +77,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="true" aria-controls="collapseTwo2">
-        <i class="fas fa-clipboard-list"></i>
+        <i class="fas fa-chart-bar"></i>
             <span>Reportes</span>
       </a>
       <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

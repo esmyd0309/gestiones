@@ -107,10 +107,6 @@ class DatatelefonoController extends Controller
     }
 
 
-    public function reportes()
-    {
-       dd('construcción');
-    }
 
 
 

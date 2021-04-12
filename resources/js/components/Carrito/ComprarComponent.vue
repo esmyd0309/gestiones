@@ -63,7 +63,6 @@
         </div>
       </div>
 
-      
     </div>
     <div class="row" v-if="dataproductos">
       <div class="col-12">

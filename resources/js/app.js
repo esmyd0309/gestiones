@@ -49,6 +49,9 @@ Vue.use(VueCurrencyInput)
 Vue.component('listacontactos-component', require('./components/contactos/ListaComponent.vue').default);
 Vue.component('clientes-component', require('./components/Clientes/ClientesComponent.vue').default);
 Vue.component('comprar-component', require('./components/Carrito/ComprarComponent.vue').default);
+Vue.component('productos-component', require('./components/Productos/ProductosComponent.vue').default);
+Vue.component('reportes-component', require('./components/Reportes/ReportesComponent.vue').default);
+
 
 
 /**

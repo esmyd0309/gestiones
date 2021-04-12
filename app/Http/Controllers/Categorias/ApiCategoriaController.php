@@ -22,6 +22,20 @@ class ApiCategoriaController extends Controller
         return response()->json([], 200);
     }
 
+    public function categoria($id)
+    {   
+
+        if ($id) 
+        {
+            
+        
+            $data = DB::connection('mysql')->select("SELECT id,nombre FROM categorias where id='$id'");
+                return response()->json($data, 200);
+        }
+
+        return response()->json([], 200);
+    }
+
     
   
 }

@@ -183,7 +183,6 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@SendsPasswordResetEm
 
 
 Route::resource('contactos', 'DatatelefonoController');
-Route::get('reportes', 'DatatelefonoController@reportes')->name('reportes');
 Route::put('actualizar', 'DatatelefonoController@actualizar')->name('actualizar');
 
 
@@ -232,3 +231,26 @@ Route::get('getprovincia', 'ApiController@getprovincia');
 		Route::post('guardarcarrito', 'Carrito\CarritoController@guardarcarrito')->name('guardarcarrito');
 		Route::get('clientecarrito/{id}', 'Carrito\CarritoController@clientecarrito')->name('clientecarrito');
 		Route::get('clientecarritodetalle/{id}', 'Carrito\CarritoController@clientecarritodetalle')->name('clientecarritodetalle');
+
+		/***
+		 * PRODUCTOS
+		 * 
+		 */
+
+		 /*** APIS */
+		 Route::get('productos', 'Productos\ApiProductoController@index')->name('productos');
+		 Route::get('listaproductos', 'Productos\ApiProductoController@listaproductos')->name('listaproductos');
+		 Route::get('productos/categorias/{id}', 'Categorias\ApiCategoriaController@categoria');
+		 Route::post('productos/guardarproducto', 'Productos\ApiProductoController@guardarproducto')->name('guardarproducto');
+	
+		Route::put('productos/actualizarproducto', 'Productos\ApiProductoController@actualizarproducto')->name('actualizarproducto');
+		Route::get('deleteproducto/{dato}', 'Productos\ApiProductoController@deleteproducto')->name('deleteproducto');
+		
+		/***
+		 * 
+		 * Reportes
+		 * 
+		 */
+
+		Route::get('reportes', 'Reportes\ReportesController@index')->name('reportes');
+		Route::get('reportes/clientes', 'Reportes\ApireportesController@clientes')->name('reportes');
