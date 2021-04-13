@@ -8,6 +8,10 @@ use DB;
 use Illuminate\Support\Facades\Input;
 class ApiProductoController extends Controller
 {
+    public function __construct()
+	{
+		$this->middleware('auth');
+	} 
     public function getproductos(Request $request,$id)
     {   
 

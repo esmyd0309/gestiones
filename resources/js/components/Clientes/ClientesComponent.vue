@@ -262,7 +262,7 @@
                 <p class="card-text"></p>
                 
                 <div class="row">
-                  <div class="col-lg-6 mb-4">
+                  <div class="col-lg-4 mb-4">
                     <div class="card card-primary card-outline">
                       <div class="card-header">
                         <h3 class="card-title">Datos Personales</h3>
@@ -295,7 +295,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-6 mb-4">
+                  <div class="col-lg-8 mb-4">
                     <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
                       <div class="row">
                         <div class="col">
