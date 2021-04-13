@@ -2,26 +2,26 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col-lg-6 mb-4">
           <div class="alert alert-primary" role="alert">
             <center>Listado clientes  <span class="badge badge-light">{{ clientes.length}}</span></center> 
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-lg-4 mb-2">
           <b-button v-b-modal.modal1 @click.prevent="modal1=true" variant="primary" @click="getRegistrar()"> <i class="fas fa-user-plus"></i> Registrar</b-button>
         </div>
-        <div class="col">
+        <div class="col-lg-4 mb-2">
           <input type="text" v-model="buscardato" class="form-control" placeholder="Buscar por cedula del cliente" /> 
         </div> 
-          <div class="col">
+          <div class="col-lg-4 mb-2">
             <button type="submit" class="btn btn-secondary" @click="search"> <i class="fas fa-search"></i> Buscar</button>
           </div>  
       </div>
       <hr>
       <div class="row">
-        <div class="col">
+        <div class="col-lg-12 mb-6">
           <table class="table table-bordered table-hover table-striped table-responsive">
             <thead>
                 <tr>
@@ -34,12 +34,13 @@
                     <th>Mz</th>
                     <th>Villa</th>
                     <th>Referencia</th>
+                    <th>Puntos</th>
                   <th colspan="3"></th>     
                 </tr>
             </thead>
             <tbody>
                   <tr v-for="(item, index) in clientes" :key="index">
-                    <td v-text="item.id"></td>
+                   <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg" @click="view(item)" > <td v-text="item.id"></td></a>
                     <td v-text="item.cedula"></td>
                     <td v-text="item.nombres"></td>
                     <td v-text="item.apellidos"></td>
@@ -48,7 +49,7 @@
                     <td v-text="item.mz"></td>
                     <td v-text="item.villa"></td>
                     <td v-text="item.referencia"></td>
-                    
+                    <td v-text="item.puntos"></td>
                     <td><button type="submit" v-b-modal.modal1 @click.prevent="modal1=true"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button></td>
 
                     <td><button type="submit" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg" @click="view(item)" > <i class="fas fa-eye"></i></button></td>
@@ -84,21 +85,21 @@
             </p>
             <form  v-on:submit.prevent="checkForm">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Cedula  </label>
                         <div>
                             <input type="text" class="form-control"   maxlength ="10"  v-model="form.cedula">
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Nombres  *</label>
                         <div>
                             <input type="text" class="form-control"  v-model="form.nombre">
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Apellidos  *</label>
                         <div>
                             <input type="text" class="form-control"  v-model="form.apellidos">
@@ -108,7 +109,7 @@
                 <br>
                 <div class="row">
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Telefono WhatsApp *</label>
                         <div>
                             <input type="text" class="form-control" id="jack" maxlength ="10"   v-model="form.telefonowhatsapp">
@@ -116,20 +117,20 @@
                     </div>
                 
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Telefono 2 </label>
                         <div>
                             <input type="text" class="form-control" maxlength ="10"   v-model="form.telefonoCelular">
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Convencional</label>
                         <div>
                             <input type="text" class="form-control" maxlength ="10"   v-model="form.telefonoConvencional">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Correo  </label>
                         <div>
                             <input type="email" class="form-control"  v-model="form.email">
@@ -139,7 +140,7 @@
                 
                 <br> <br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Dirección  *</label>
                         <div>
                             <input type="text" class="form-control"  v-model="form.direccion">
@@ -147,13 +148,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Manzana  </label>
                         <div>
                             <input type="text" class="form-control"  v-model="form.mz">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Villa  </label>
                         <div>
                             <input type="text" class="form-control"  v-model="form.vl">
@@ -161,7 +162,7 @@
                     </div>
                     </div>
                     <div class="row">
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Provincia  </label>
                         <div>
                             <select v-model="form.provincia" class="form-control mb-2" @input="getCanton"  @click="getCanton(form.provincia)">
@@ -173,7 +174,7 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Canton  </label>
                         <div>
                             <select v-model="form.canton" class="form-control mb-2" @input="getSector"  @click="getSector(form.canton)">
@@ -185,7 +186,7 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Sector  </label>
                         <div>
                             <select v-model="form.sector" class="form-control mb-2" >
@@ -197,14 +198,14 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Referencia  </label>
                         <div>
                             <input type="text" class="form-control"  v-model="form.referencia">
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Ubicación  </label>
 
                         <div>
@@ -217,20 +218,20 @@
             
             <template modal-footer>
               <div class="row">
-                <div class="col" v-if="this.Registrar=='Registrar'">
+                <div class="col-lg-4 mb-2" v-if="this.Registrar=='Registrar'">
                   
                     <input  class="btn btn-success btn-sm float-center" type="submit" value="Registrar">
                   
                 </div>
-                <div class="col" v-else>
+                <div class="col-lg-4 mb-2" v-else>
                     <input  class="btn btn-success btn-sm float-center" type="submit" value="Actualizar">
                 </div>
-                <div class="col">
+                <div class="col-lg-4 mb-2">
                   <b-button
                     variant="primary"
                     size="sm"
                     class="float-right"
-                    @click="this.modal1=false"
+                    @click.prevent="modal1=false"
                   >
                     Cerrar
                   </b-button>
@@ -261,7 +262,7 @@
                 <p class="card-text"></p>
                 
                 <div class="row">
-                  <div class="col">
+                  <div class="col-lg-6 mb-4">
                     <div class="card card-primary card-outline">
                       <div class="card-header">
                         <h3 class="card-title">Datos Personales</h3>
@@ -294,7 +295,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col">
+                  <div class="col-lg-6 mb-4">
                     <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
                       <div class="row">
                         <div class="col">
@@ -306,7 +307,7 @@
                                       <th>Fecha</th>
                                       <th>Productos</th>
                                       <th>Total</th>
-                                     
+                                      <th>Puntos</th>
                                     <th></th>     
                                   </tr>
                               </thead>
@@ -315,6 +316,7 @@
                                       <td v-text="item.created_at"></td>
                                       <td v-text="item.productos"></td>
                                       <td >${{item.total}}</td>
+                                      <td >{{item.puntos}}</td>
                                       <td><button type="submit" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter" @click="viewDetalle(item)" > <i class="fas fa-eye"></i></button></td>
                                       
                                     </tr>
@@ -352,6 +354,7 @@
                               <th>Categoria</th>
                               <th>Producto</th>
                               <th>Precio</th>
+                              <th>Puntos</th>
                             
                           </tr>
                       </thead>
@@ -360,7 +363,7 @@
                               <td v-text="item.categoria"></td>
                               <td v-text="item.producto"></td>
                               <td >${{item.precio}}</td>
-                              
+                              <td >{{item.puntos}}</td>
                             </tr>
                       </tbody>         
                     </table>

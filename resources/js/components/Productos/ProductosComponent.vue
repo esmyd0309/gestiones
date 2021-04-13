@@ -9,19 +9,19 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-lg-4 mb-2">
           <b-button v-b-modal.modal1 @click.prevent="modal1=true" variant="primary" @click="getRegistrar()"> <i class="fas fa-user-plus"></i> Registrar</b-button>
         </div>
-        <div class="col">
+        <div class="col-lg-4 mb-2">
           <input type="text" v-model="buscardato" class="form-control" placeholder="Buscar Producto" /> 
         </div> 
-          <div class="col">
+          <div class="col-lg-4 mb-2">
             <button type="submit" class="btn btn-secondary" @click="search"> <i class="fas fa-search"></i> Buscar</button>
           </div>  
       </div>
       <hr>
       <div class="row">
-        <div class="col">
+        <div class="col-lg-12 mb-4">
      
           <table class="table table-bordered table-hover table-striped table-responsive">
             <thead>
@@ -82,21 +82,21 @@
             </p>
             <form  v-on:submit.prevent="checkForm">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Producto  </label>
                         <div>
                             <input type="text" class="form-control"   maxlength ="10"  v-model="form.producto">
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Descripciòn  </label>
                         <div>
                             <input type="text" class="form-control"  v-model="form.descripcion">
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">cantidad  </label>
                         <div>
                             <input type="number" class="form-control"  v-model="form.cantidad">
@@ -108,19 +108,19 @@
                 
                 <br> <br>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Puntos</label>
                         <div>
                             <input type="text" class="form-control"  v-model="form.puntos">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Precio  </label>
                         <div>
                             <input type="text" class="form-control"  v-model="form.precio">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-6 mb-4">
                         <label for="">Categoria  </label>
                         <div>
                             <select v-model="form.categoria" class="form-control mb-2" >
@@ -136,15 +136,15 @@
             
             <template modal-footer>
               <div class="row">
-                <div class="col" v-if="this.Registrar=='Registrar'">
+                <div class="col-lg-6 mb-4" v-if="this.Registrar=='Registrar'">
                   
                     <input  class="btn btn-success btn-sm float-center" type="submit" value="Registrar">
                   
                 </div>
-                <div class="col" v-else>
+                <div class="col-lg-6 mb-4" v-else>
                     <input  class="btn btn-success btn-sm float-center" type="submit" value="Actualizar">
                 </div>
-                <div class="col">
+                <div class="col-lg-6 mb-4">
                   <b-button
                     variant="primary"
                     size="sm"
@@ -181,7 +181,7 @@
                 <p class="card-text"></p>
                 
                 <div class="row">
-                  <div class="col">
+                  <div class="col-lg-12 mb-6">
                     <div class="card card-primary card-outline">
                       <div class="card-header">
                         <h3 class="card-title">Datos </h3>

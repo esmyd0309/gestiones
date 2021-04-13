@@ -253,4 +253,4 @@ Route::get('getprovincia', 'ApiController@getprovincia');
 		 */
 
 		Route::get('reportes', 'Reportes\ReportesController@index')->name('reportes');
-		Route::get('reportes/clientes', 'Reportes\ApireportesController@clientes')->name('reportes');
+		Route::get('reportes/clientes', 'Reportes\ApireportesController@clientes');

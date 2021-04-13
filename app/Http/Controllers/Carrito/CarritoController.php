@@ -18,16 +18,31 @@ class CarritoController extends Controller
    
     public function guardarcarrito(Request $request)
     {   
-     $productosAll[]='';
+       
+        $productosAll[]='';
+        $puntosAll[]='';
         foreach($request->carrito as $producto){
             $productosAll[]=$producto['nombre'];
+            $puntosAll[]=$producto['puntos'];
+        }
+
+       
+        $totalpuntos= array_sum($puntosAll);
+        
+         $puntos =DB::table('clientes')->where('id', $request->cliente_id)->first();
+     // dd($puntos->puntos);
+        if ($puntos->puntos) {
+            $totalpuntos=$puntos->puntos+$totalpuntos;
         }
         
+       
+        Clientes::where('id',$request->cliente_id)->update(['puntos'         =>  $totalpuntos ]);
+
         $carritodetalle = new Carritodetalle;
         $carritodetalle->productos = implode(",", $productosAll);
         $carritodetalle->cliente_id = $request->cliente_id;
         $carritodetalle->total = $request->total;
-     
+        $carritodetalle->puntos = array_sum($puntosAll);
         $carritodetalle->save();
        
        
@@ -38,6 +53,7 @@ class CarritoController extends Controller
             $carrito->producto_id =$carritox['producto_id'];
             $carrito->categoria_id =$carritox['categoria_id'];
             $carrito->precio =$carritox['precio'];
+            $carrito->puntos =$carritox['puntos'];
             $carrito->carritodetalle_id =$carritodetalle->id;
             $carrito->save();
            
@@ -58,7 +74,7 @@ class CarritoController extends Controller
     public function clientecarritodetalle( $id)
     {  
         
-        $data = DB::connection('mysql')->select("SELECT b.nombre AS categoria,a.producto,a.precio,a.created_at AS fecha FROM carrito AS a, categorias AS b
+        $data = DB::connection('mysql')->select("SELECT b.nombre AS categoria,a.producto,a.precio,a.puntos,a.created_at AS fecha FROM carrito AS a, categorias AS b
                                             WHERE a.carritodetalle_id='$id'
                                             AND a.categoria_id=b.id ORDER BY updated_at desc");
 

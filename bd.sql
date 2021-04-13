@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Host:                         localhost
+-- Host:                         127.0.0.1
 -- Versión del servidor:         5.7.24 - MySQL Community Server (GPL)
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             11.2.0.6213
+-- HeidiSQL Versión:             10.2.0.5599
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -10,7 +10,6 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- Volcando estructura de base de datos para gestion
@@ -261,14 +260,95 @@ CREATE TABLE IF NOT EXISTS `carrito` (
   `categoria_id` int(11) unsigned NOT NULL,
   `cliente_id` int(10) unsigned NOT NULL,
   `precio` float(18,2) unsigned NOT NULL DEFAULT '0.00',
+  `puntos` float(18,2) unsigned NOT NULL DEFAULT '0.00',
   `carritodetalle_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.carrito: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.carrito: ~64 rows (aproximadamente)
 /*!40000 ALTER TABLE `carrito` DISABLE KEYS */;
+INSERT INTO `carrito` (`id`, `producto`, `producto_id`, `categoria_id`, `cliente_id`, `precio`, `puntos`, `carritodetalle_id`, `created_at`, `updated_at`) VALUES
+	(1, 'Carne', 3, 1, 3, 3.40, 0.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(2, 'Chuleta', 2, 1, 3, 3.40, 0.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(3, 'Costilla', 4, 1, 3, 4.00, 0.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(4, 'Parrillada Mixta', 8, 3, 3, 15.00, 0.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(5, 'Jugo de Naranja', 6, 4, 3, 1.00, 0.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(6, 'Jugo de Naranja', 6, 4, 3, 1.00, 0.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(7, 'Jugo de Naranja', 6, 4, 3, 1.00, 0.00, 1, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(8, 'Chuleta', 2, 1, 2, 3.40, 0.00, 2, '2021-03-28 20:06:01', '2021-03-28 20:06:01'),
+	(9, 'Costilla', 4, 1, 2, 4.00, 0.00, 2, '2021-03-28 20:06:01', '2021-03-28 20:06:01'),
+	(10, 'Filetet de pollo', 5, 1, 2, 3.00, 0.00, 2, '2021-03-28 20:06:01', '2021-03-28 20:06:01'),
+	(11, 'Jugo de Naranja', 6, 4, 2, 1.00, 0.00, 2, '2021-03-28 20:06:02', '2021-03-28 20:06:02'),
+	(12, 'Carne', 3, 1, 3, 3.40, 0.00, 3, '2021-03-28 20:08:52', '2021-03-28 20:08:52'),
+	(13, 'Chuleta', 2, 1, 3, 3.40, 0.00, 3, '2021-03-28 20:08:52', '2021-03-28 20:08:52'),
+	(14, 'Costilla', 4, 1, 3, 4.00, 0.00, 3, '2021-03-28 20:08:52', '2021-03-28 20:08:52'),
+	(15, 'Filetet de pollo', 5, 1, 3, 3.00, 0.00, 3, '2021-03-28 20:08:52', '2021-03-28 20:08:52'),
+	(16, 'Carne', 3, 1, 3, 3.40, 0.00, 4, '2021-03-28 21:20:40', '2021-03-28 21:20:40'),
+	(17, 'Costilla', 4, 1, 3, 4.00, 0.00, 4, '2021-03-28 21:20:40', '2021-03-28 21:20:40'),
+	(18, 'Carne', 3, 1, 3, 3.40, 0.00, 5, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(19, 'Chuleta', 2, 1, 3, 3.40, 0.00, 5, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(20, 'Costilla', 4, 1, 3, 4.00, 0.00, 5, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(21, 'Filetet de pollo', 5, 1, 3, 3.00, 0.00, 5, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(22, 'Costilla', 4, 1, 3, 4.00, 0.00, 5, '2021-03-28 21:20:58', '2021-03-28 21:20:58'),
+	(23, 'Carne', 3, 1, 3, 3.40, 0.00, 5, '2021-03-28 21:20:58', '2021-03-28 21:20:58'),
+	(24, 'Chuleta', 2, 1, 3, 3.40, 0.00, 5, '2021-03-28 21:20:58', '2021-03-28 21:20:58'),
+	(25, 'Parrillada Mixta', 8, 3, 3, 15.00, 0.00, 6, '2021-03-28 21:21:07', '2021-03-28 21:21:07'),
+	(26, 'Parrillada Mixta', 8, 3, 3, 15.00, 0.00, 6, '2021-03-28 21:21:07', '2021-03-28 21:21:07'),
+	(27, 'Parrillada Mixta', 8, 3, 3, 15.00, 0.00, 6, '2021-03-28 21:21:07', '2021-03-28 21:21:07'),
+	(28, 'Parrillada Mixta', 8, 3, 3, 15.00, 0.00, 6, '2021-03-28 21:21:08', '2021-03-28 21:21:08'),
+	(29, 'Jugo de Naranja', 6, 4, 3, 1.00, 0.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(30, 'Jugo de Naranja', 6, 4, 3, 1.00, 0.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(31, 'Jugo de Naranja', 6, 4, 3, 1.00, 0.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(32, 'Alitas a la BBQ', 1, 2, 3, 14.00, 0.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(33, 'Alitas a la Naranja', 7, 2, 3, 12.00, 0.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(34, 'Chuleta', 2, 1, 3, 3.40, 0.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(35, 'Carne', 3, 1, 3, 3.40, 0.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(36, 'Costilla', 4, 1, 3, 4.00, 0.00, 7, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(37, 'Alitas a la BBQ', 1, 2, 3, 14.00, 0.00, 8, '2021-03-28 21:21:44', '2021-03-28 21:21:44'),
+	(38, 'Alitas a la Naranja', 7, 2, 3, 12.00, 0.00, 8, '2021-03-28 21:21:44', '2021-03-28 21:21:44'),
+	(39, 'Carne', 3, 1, 3, 3.40, 0.00, 9, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(40, 'Chuleta', 2, 1, 3, 3.40, 0.00, 9, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(41, 'Costilla', 4, 1, 3, 4.00, 0.00, 9, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(42, 'Filetet de pollo', 5, 1, 3, 3.00, 0.00, 9, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(43, 'Carne', 3, 1, 3, 3.40, 0.00, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(44, 'Chuleta', 2, 1, 3, 3.40, 0.00, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(45, 'Chuleta', 2, 1, 3, 3.40, 0.00, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(46, 'Chuleta', 2, 1, 3, 3.40, 0.00, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(47, 'Chuleta', 2, 1, 3, 3.40, 0.00, 10, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(48, 'Costilla', 4, 1, 3, 4.00, 0.00, 11, '2021-03-28 21:34:51', '2021-03-28 21:34:51'),
+	(49, 'Filetet de pollo', 5, 1, 3, 3.00, 0.00, 11, '2021-03-28 21:34:51', '2021-03-28 21:34:51'),
+	(50, 'Costilla', 4, 1, 3, 4.00, 0.00, 11, '2021-03-28 21:34:51', '2021-03-28 21:34:51'),
+	(51, 'Costilla', 4, 1, 3, 4.00, 0.00, 12, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(52, 'Filetet de pollo', 5, 1, 3, 3.00, 0.00, 12, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(53, 'Jugo de Naranja', 6, 4, 3, 1.00, 0.00, 12, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(54, 'Parrillada Mixta', 8, 3, 3, 15.00, 0.00, 12, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(55, 'Alitas a la BBQ', 1, 2, 19, 14.00, 0.00, 13, '2021-03-28 21:55:21', '2021-03-28 21:55:21'),
+	(56, 'Alitas a la Naranja', 7, 2, 19, 12.00, 0.00, 13, '2021-03-28 21:55:21', '2021-03-28 21:55:21'),
+	(57, 'Carne', 3, 1, 19, 3.40, 0.00, 14, '2021-03-28 21:55:57', '2021-03-28 21:55:57'),
+	(58, 'Costilla', 4, 1, 19, 4.00, 0.00, 14, '2021-03-28 21:55:57', '2021-03-28 21:55:57'),
+	(59, 'Chuleta', 2, 1, 19, 3.40, 0.00, 14, '2021-03-28 21:55:57', '2021-03-28 21:55:57'),
+	(60, 'Carne', 3, 1, 19, 3.40, 0.00, 15, '2021-04-01 14:49:23', '2021-04-01 14:49:23'),
+	(61, 'Costilla', 4, 1, 19, 4.00, 0.00, 15, '2021-04-01 14:49:23', '2021-04-01 14:49:23'),
+	(62, 'gfghf', 55, 3, 3, 434.50, 0.00, 16, '2021-04-11 18:09:08', '2021-04-11 18:09:08'),
+	(63, 'Parrillada', 1, 1, 19, 18.00, 1.00, 18, '2021-04-12 23:10:43', '2021-04-12 23:10:43'),
+	(64, 'PORCION ARROZ CON MENESTRA FREJOL', 2, 1, 19, 3.50, 1.00, 18, '2021-04-12 23:10:43', '2021-04-12 23:10:43'),
+	(65, 'Parrillada', 1, 1, 19, 18.00, 1.00, 19, '2021-04-12 23:46:28', '2021-04-12 23:46:28'),
+	(66, 'PORCION ARROZ CON MENESTRA FREJOL', 2, 1, 19, 3.50, 1.00, 19, '2021-04-12 23:46:28', '2021-04-12 23:46:28'),
+	(67, 'CHAUFI BRASA PERSONAL', 3, 1, 19, 4.00, 1.00, 19, '2021-04-12 23:46:28', '2021-04-12 23:46:28'),
+	(68, 'Parrillada', 1, 1, 19, 18.00, 1.00, 20, '2021-04-12 23:48:18', '2021-04-12 23:48:18'),
+	(69, 'PORCION ARROZ CON MENESTRA FREJOL', 2, 1, 19, 3.50, 1.00, 20, '2021-04-12 23:48:18', '2021-04-12 23:48:18'),
+	(70, 'CHAUFI BRASA PERSONAL', 3, 1, 19, 4.00, 1.00, 20, '2021-04-12 23:48:18', '2021-04-12 23:48:18'),
+	(71, 'Parrillada', 1, 1, 19, 18.00, 1.00, 21, '2021-04-13 00:01:17', '2021-04-13 00:01:17'),
+	(72, 'CHAUFI BRASA PERSONAL', 3, 1, 20, 4.00, 1.00, 22, '2021-04-13 00:01:38', '2021-04-13 00:01:38'),
+	(73, 'Parrillada', 1, 1, 20, 18.00, 1.00, 22, '2021-04-13 00:01:38', '2021-04-13 00:01:38'),
+	(74, 'PORCION ARROZ CON MENESTRA FREJOL', 2, 1, 20, 3.50, 1.00, 22, '2021-04-13 00:01:38', '2021-04-13 00:01:38'),
+	(75, 'Parrillada', 1, 1, 19, 18.00, 1.00, 23, '2021-04-13 00:02:04', '2021-04-13 00:02:04'),
+	(76, 'Parrillada', 1, 1, 19, 18.00, 1.00, 23, '2021-04-13 00:02:04', '2021-04-13 00:02:04'),
+	(77, 'Parrillada', 1, 1, 19, 18.00, 1.00, 23, '2021-04-13 00:02:04', '2021-04-13 00:02:04'),
+	(78, 'Parrillada', 1, 1, 19, 18.00, 1.00, 23, '2021-04-13 00:02:04', '2021-04-13 00:02:04'),
+	(79, 'PORCION ARROZ CON MENESTRA FREJOL', 2, 1, 19, 3.50, 1.00, 23, '2021-04-13 00:02:04', '2021-04-13 00:02:04');
 /*!40000 ALTER TABLE `carrito` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestion.carritodetalle
@@ -276,14 +356,39 @@ CREATE TABLE IF NOT EXISTS `carritodetalle` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cliente_id` int(11) NOT NULL,
   `productos` varchar(600) DEFAULT NULL,
+  `puntos` float(18,2) DEFAULT '0.00',
   `total` float(18,2) NOT NULL,
   `created_at` timestamp NOT NULL,
   `updated_at` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.carritodetalle: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.carritodetalle: ~16 rows (aproximadamente)
 /*!40000 ALTER TABLE `carritodetalle` DISABLE KEYS */;
+INSERT INTO `carritodetalle` (`id`, `cliente_id`, `productos`, `puntos`, `total`, `created_at`, `updated_at`) VALUES
+	(1, 3, ',Carne,Chuleta,Costilla,Parrillada Mixta,Jugo de Naranja,Jugo de Naranja,Jugo de Naranja', 0.00, 28.80, '2021-03-28 18:16:12', '2021-03-28 18:16:12'),
+	(2, 2, ',Chuleta,Costilla,Filetet de pollo,Jugo de Naranja', 0.00, 11.40, '2021-03-28 20:06:01', '2021-03-28 20:06:01'),
+	(3, 3, ',Carne,Chuleta,Costilla,Filetet de pollo', 0.00, 13.80, '2021-03-28 20:08:51', '2021-03-28 20:08:51'),
+	(4, 3, ',Carne,Costilla', 0.00, 7.40, '2021-03-28 21:20:40', '2021-03-28 21:20:40'),
+	(5, 3, ',Carne,Chuleta,Costilla,Filetet de pollo,Costilla,Carne,Chuleta', 0.00, 24.60, '2021-03-28 21:20:57', '2021-03-28 21:20:57'),
+	(6, 3, ',Parrillada Mixta,Parrillada Mixta,Parrillada Mixta,Parrillada Mixta', 0.00, 60.00, '2021-03-28 21:21:07', '2021-03-28 21:21:07'),
+	(7, 3, ',Jugo de Naranja,Jugo de Naranja,Jugo de Naranja,Alitas a la BBQ,Alitas a la Naranja,Chuleta,Carne,Costilla', 0.00, 39.80, '2021-03-28 21:21:29', '2021-03-28 21:21:29'),
+	(8, 3, ',Alitas a la BBQ,Alitas a la Naranja', 0.00, 26.00, '2021-03-28 21:21:44', '2021-03-28 21:21:44'),
+	(9, 3, ',Carne,Chuleta,Costilla,Filetet de pollo', 0.00, 13.80, '2021-03-28 21:34:22', '2021-03-28 21:34:22'),
+	(10, 3, ',Carne,Chuleta,Chuleta,Chuleta,Chuleta', 0.00, 17.00, '2021-03-28 21:34:36', '2021-03-28 21:34:36'),
+	(11, 3, ',Costilla,Filetet de pollo,Costilla', 0.00, 11.00, '2021-03-28 21:34:51', '2021-03-28 21:34:51'),
+	(12, 3, ',Costilla,Filetet de pollo,Jugo de Naranja,Parrillada Mixta', 0.00, 23.00, '2021-03-28 21:52:22', '2021-03-28 21:52:22'),
+	(13, 19, ',Alitas a la BBQ,Alitas a la Naranja', 0.00, 26.00, '2021-03-28 21:55:21', '2021-03-28 21:55:21'),
+	(14, 19, ',Carne,Costilla,Chuleta', 0.00, 10.80, '2021-03-28 21:55:57', '2021-03-28 21:55:57'),
+	(15, 19, ',Carne,Costilla', 0.00, 7.40, '2021-04-01 14:49:23', '2021-04-01 14:49:23'),
+	(16, 3, ',gfghf', 0.00, 434.50, '2021-04-11 18:09:08', '2021-04-11 18:09:08'),
+	(17, 19, ',Parrillada,PORCION ARROZ CON MENESTRA FREJOL,PRESA DE POLLO CON ARROZ Y PAPAS,CHAUFI BRASA PERSONAL,Chuzo cuencano,Carne asada', 6.00, 41.00, '2021-04-12 23:09:23', '2021-04-12 23:09:23'),
+	(18, 19, ',Parrillada,PORCION ARROZ CON MENESTRA FREJOL', 2.00, 21.50, '2021-04-12 23:10:42', '2021-04-12 23:10:42'),
+	(19, 19, ',Parrillada,PORCION ARROZ CON MENESTRA FREJOL,CHAUFI BRASA PERSONAL', 3.00, 25.50, '2021-04-12 23:46:28', '2021-04-12 23:46:28'),
+	(20, 19, ',Parrillada,PORCION ARROZ CON MENESTRA FREJOL,CHAUFI BRASA PERSONAL', 3.00, 25.50, '2021-04-12 23:48:18', '2021-04-12 23:48:18'),
+	(21, 19, ',Parrillada', 1.00, 18.00, '2021-04-13 00:01:17', '2021-04-13 00:01:17'),
+	(22, 20, ',CHAUFI BRASA PERSONAL,Parrillada,PORCION ARROZ CON MENESTRA FREJOL', 3.00, 25.50, '2021-04-13 00:01:38', '2021-04-13 00:01:38'),
+	(23, 19, ',Parrillada,Parrillada,Parrillada,Parrillada,PORCION ARROZ CON MENESTRA FREJOL', 5.00, 75.50, '2021-04-13 00:02:04', '2021-04-13 00:02:04');
 /*!40000 ALTER TABLE `carritodetalle` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestion.categorias
@@ -327,17 +432,19 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `mz` varchar(150) DEFAULT NULL,
   `referencia` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `puntos` float(18,2) DEFAULT NULL,
   `ubicacion` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla gestion.clientes: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`, `telefonoWhatsapp`, `telefonoCelular`, `telefonoCasa`, `direccion`, `provincia`, `codigo_provincia`, `canton`, `codigo_canton`, `sector`, `codigo_sector`, `villa`, `mz`, `referencia`, `email`, `ubicacion`, `created_at`, `updated_at`) VALUES
-	(3, 2, 'Soporte Ecuador T', 'Soporte Ecuador T', '12344567', '59324018941', '59324018941', NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Barrio Lindo', '13', '4567', '5678', 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', NULL, NULL, '2021-03-17 23:00:06', '2021-03-28 21:24:00'),
-	(19, NULL, 'CARLOS ENRIQUE', 'OSORIO ANDRADES', '0987654567', '0987654567', '0987654456', '0409876545', 'PRUEBAS DE DIRECCIONES', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Jardines del Salado', '75', '5678', '5678', 'EL TIA', 'G@GMAIL.COM', NULL, '2021-03-28 21:54:22', '2021-03-28 21:54:36');
+INSERT INTO `clientes` (`id`, `idActualizado`, `nombres`, `apellidos`, `cedula`, `telefonoWhatsapp`, `telefonoCelular`, `telefonoCasa`, `direccion`, `provincia`, `codigo_provincia`, `canton`, `codigo_canton`, `sector`, `codigo_sector`, `villa`, `mz`, `referencia`, `email`, `puntos`, `ubicacion`, `created_at`, `updated_at`) VALUES
+	(3, 2, 'Soporte Ecuador T', 'Soporte Ecuador T', '12344567', '59324018941', '59324018941', NULL, 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Barrio Lindo', '13', '4567', '5678', 'oporte Ecuador / Soporte Ecuador TELEFONOS: 5932-401-8941', NULL, NULL, NULL, '2021-03-17 23:00:06', '2021-03-28 21:24:00'),
+	(19, NULL, 'CARLOS ENRIQUE', 'OSORIO ANDRADES', '0987654567', '0987654567', '0987654456', '0409876545', 'PRUEBAS DE DIRECCIONES', 'GUAYAS', '9', 'GUAYAQUIL', '901', 'Jardines del Salado', '75', '5678', '5678', 'EL TIA', 'G@GMAIL.COM', 14.00, NULL, '2021-03-28 21:54:22', '2021-04-13 00:02:04'),
+	(20, NULL, 'fdgdfgdf', 'dfgdfgdfg', '3434545454', '5656565656', '5656565656', '5656565656', 'ghgfh gfhgfh gfhgfh', 'GUAYAS', '9', 'GUAYAQUIL', '901', '4 de Marzo', '3', 'ggfhh', 'ghgh', 'hghgh', NULL, 3.00, NULL, '2021-04-12 23:35:21', '2021-04-13 00:01:38');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestion.comentarios
@@ -361,7 +468,7 @@ CREATE TABLE IF NOT EXISTS `data` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5728 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gestion.data: ~5.682 rows (aproximadamente)
+-- Volcando datos para la tabla gestion.data: ~5.680 rows (aproximadamente)
 /*!40000 ALTER TABLE `data` DISABLE KEYS */;
 INSERT INTO `data` (`id`, `datos`, `telefono1`, `telefono2`, `organizacion`, `actualizado`) VALUES
 	(1, 'Cliente 52  / Cliente  52   TELEFONOS:       1347-216-3199', '13472163199', '', '', 'NULL'),
@@ -7580,71 +7687,72 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `categoria_id` int(11) unsigned NOT NULL,
   `nombre` varchar(150) DEFAULT NULL,
   `descripcion` varchar(250) DEFAULT NULL,
+  `puntos` varchar(250) DEFAULT NULL,
   `precio` float(18,2) DEFAULT NULL,
   `cantidad` varchar(10) DEFAULT NULL,
   `etiqueta` varchar(150) DEFAULT NULL,
   `imagen` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK1_categorias` (`categoria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla gestion.productos: ~54 rows (aproximadamente)
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio`, `cantidad`, `etiqueta`, `imagen`) VALUES
-	(1, 1, 'Parrillada', NULL, 18.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8zMGJiYzZhNi01NmQxLTRmNTItYTY2Ni0wN2ExMWEzNDhmZjUuanBlZw=='),
-	(2, 1, 'PORCION ARROZ CON MENESTRA FREJOL\r\n', NULL, 3.50, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC82MTYwMmY0My0wMzNiLTRjYzctYjkwYy1hZDE4Yjg5NDI1ZDcucG5n'),
-	(3, 1, 'CHAUFI BRASA PERSONAL', NULL, 4.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8yMzAzOTZiOS1jNjQ1LTQwNjMtYTYwYi04YTFiNzVkZTIwOWIuanBlZw=='),
-	(4, 1, 'PRESA DE POLLO CON ARROZ Y PAPAS', NULL, 4.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9hMjUyMjVjZC1hOTY5LTQ2NWEtYmZhNi1jYWRiMjFjMzhmMzUuanBlZw=='),
-	(5, 1, 'Chuzo cuencano', NULL, 5.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC81MWI2ODIzYS1hZGJhLTQ0NDUtYWE4YS03M2M5MzMzYmI1NDUuanBlZw=='),
-	(6, 1, 'Carne asada', NULL, 6.00, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9iNzgxYTA0My0yMDFjLTQxZGUtOWU4MS1kMzNjODAxNWQ0MTEuanBlZw'),
-	(7, 1, 'Chuleta asada', NULL, 6.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9iODc5NzM4Yi1kZmRiLTQ3MTYtODI0Ny02MTc3ZjNmODc3YjUuanBlZw=='),
-	(8, 1, 'Filete de pollo', NULL, 7.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC82ZThkYTYzNS1iZTBiLTQxYTEtODcwMi05ZTc5MTRiMWE2YTIuanBlZw=='),
-	(9, 1, 'Costillas BBQ', NULL, 7.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC83ODYzZTgxZS1iMjQxLTQwZTctYWM0Ny1iODAxNDZlMWVkZGEuanBlZw=='),
-	(10, 2, 'Fiora-Vanti', NULL, 0.80, NULL, NULL, ''),
-	(11, 2, 'Inca kola', NULL, 0.80, NULL, NULL, ''),
-	(12, 2, 'Agua', NULL, 1.00, NULL, NULL, ''),
-	(13, 2, 'Coca-Cola 300mm', NULL, 1.00, NULL, NULL, ''),
-	(14, 2, 'Fuze Tea personal', NULL, 1.00, NULL, NULL, ''),
-	(15, 2, 'Fanta Naranja', NULL, 1.25, NULL, NULL, ''),
-	(16, 2, 'Sprite\r\n', NULL, 1.25, NULL, NULL, ''),
-	(17, 2, 'Jugo natural vaso', NULL, 1.50, NULL, NULL, ''),
-	(18, 2, 'Naranja', NULL, 1.50, NULL, NULL, ''),
-	(19, 2, 'Cola 1 litro', NULL, 2.00, NULL, NULL, ''),
-	(20, 2, 'Fuze Tea 1.5 litros\r\n', NULL, 2.00, NULL, NULL, ''),
-	(21, 3, 'Porción de chifles', NULL, 1.50, NULL, NULL, ''),
-	(22, 3, 'Combo 12 Alitas + Papas + Gaseosa', NULL, 14.99, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9hNWE0NzNlMC1mZWUxLTQwNDYtYTBiNy03MzJmOWM5YzY4ZWMuanBlZw=='),
-	(23, 3, 'Porción de arroz', NULL, 2.00, NULL, NULL, ''),
-	(24, 3, 'Porción de papas fritas', NULL, 2.50, NULL, NULL, ''),
-	(25, 3, 'Porción de papas chauchas', NULL, 2.50, NULL, NULL, ''),
-	(26, 3, 'Chuzo solo', NULL, 2.50, NULL, NULL, ''),
-	(27, 3, 'Porción de moro de lentejas', NULL, 3.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC85NzljNWU3NC02NzAwLTQwNzMtYmE0YS1lNWU4MWIzMTc1ZDMuanBlZw=='),
-	(28, 3, 'Porción Moro Cubano', NULL, 3.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8zYzNiZjM1YS0xMmU4LTQ0MjktOTI3Zi1kNWUxNTkxYjYyZTYuanBlZw=='),
-	(29, 3, 'Arroz con menestra porción', NULL, 3.00, NULL, NULL, ''),
-	(30, 3, 'PORCION ARROZ CON MENESTRA FREJOL', NULL, 3.50, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC82MTYwMmY0My0wMzNiLTRjYzctYjkwYy1hZDE4Yjg5NDI1ZDcucG5n'),
-	(31, 3, 'CHAUFI BRASA PERSONAL', NULL, 4.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8yMzAzOTZiOS1jNjQ1LTQwNjMtYTYwYi04YTFiNzVkZTIwOWIuanBlZw=='),
-	(32, 3, 'NUEVO! Lomito Saltado Peruano', NULL, 5.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC84YTU2OGMwMy02YWU2LTQxZDYtYmRlMy0zYmEyNzI4NDAxOWYuanBlZw=='),
-	(33, 4, 'POLLO ENTERO A LA BRASA CON PAPAS', NULL, 15.00, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/b921aeb1-2f87-4810-8436-29c12a689747.jpeg'),
-	(34, 4, 'PRESA DE POLLO CON PAPAS FRITAS\r\n', NULL, 3.00, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8xNTM3YzQwZC05ZGNmLTRhYmQtYmViMC01NGQyZDIxMzU1MWUucG5n'),
-	(35, 4, 'PORCION ARROZ CON MENESTRA FREJOL', NULL, 3.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC82MTYwMmY0My0wMzNiLTRjYzctYjkwYy1hZDE4Yjg5NDI1ZDcucG5n'),
-	(36, 4, 'CHAUFI BRASA PERSONAL', NULL, 4.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8yMzAzOTZiOS1jNjQ1LTQwNjMtYTYwYi04YTFiNzVkZTIwOWIuanBlZw=='),
-	(37, 4, 'PRESA DE POLLO CON ARROZ Y PAPAS', NULL, 4.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9hMjUyMjVjZC1hOTY5LTQ2NWEtYmZhNi1jYWRiMjFjMzhmMzUuanBlZw=='),
-	(38, 4, 'NUEVO! Seco de pollo', NULL, 4.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9mYzE5NjcwZi1jN2ZhLTRiNDctYmZhNS02MjQ0NTIzMTUzNWQuanBlZw=='),
-	(39, 4, '1/4 POLLO BRASA PIERNA', NULL, 5.00, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/890c7e1c-77b8-48c5-9f14-9e39ab63696b.png'),
-	(40, 4, 'NUEVO! Presitas de Pollo Honey Murstard + Chaufa + papas fritas\r\n', NULL, 5.50, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9hM2ViNzYxMi1hM2M2LTRiZmItOGUzMi1lMTQzNmUxYmZmOGUuanBlZw'),
-	(41, 4, 'NUEVO! Lomito Saltado Peruano', NULL, 5.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC84YTU2OGMwMy02YWU2LTQxZDYtYmRlMy0zYmEyNzI4NDAxOWYuanBlZw=='),
-	(42, 4, '1/4 POLLO BRASA PECHUGA', NULL, 6.00, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/ab862af8-474e-4bc3-afc4-7634e424b32a.jpeg'),
-	(43, 4, '1/4 CHAUFI BRASA PIERNA', NULL, 6.50, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/efa3a3b8-6e46-4179-92c4-ed1da398ceb6.jpeg'),
-	(44, 4, '1/2 POLLO A LA BRASA CON PAPAS', NULL, 8.00, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/8b7560d4-9a8d-4704-87f8-c5fce41b9775.png'),
-	(45, 5, 'Presa de pollo + papas', NULL, 2.50, NULL, NULL, ''),
-	(46, 5, 'Carne asada porción', NULL, 4.00, NULL, NULL, ''),
-	(47, 5, 'Chuzo cuencano porción', NULL, 4.00, NULL, NULL, ''),
-	(48, 5, 'Filete de pollo porción', NULL, 4.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64==='),
-	(49, 5, 'Chuleta asada porción', NULL, 4.50, NULL, NULL, ''),
-	(50, 5, 'Filete de pollo porción', NULL, 4.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9iNDZlNWFkNS0zNGY5LTRkMWUtODBmZS1kNWJlYjEzNjQyMmMuanBlZw=='),
-	(51, 5, 'Costillas bbq porción', NULL, 5.00, NULL, NULL, ''),
-	(52, 6, '1/2 POLLO + CHAUFA\r\n', NULL, 11.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8xNDdkZjA4ZS02OWRjLTQyMTMtYjhiMy0xNTViMjRmZDFhYjkuanBlZw=='),
-	(53, 6, 'Costilla BBQ / 1 libra', NULL, 15.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9lNGQ5ZDU5Yy0wMTkwLTQ5NzItOTBkMi1mMjYzM2U1MWY2NDQuanBlZw=='),
-	(54, 6, 'POLLO ENTERO CON CHAUFA FAMILIAR + GASEOSA', NULL, 20.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC84MzEzMzY5Ny0xMjcxLTQyNTgtYTI3OS0zZWZlZWYwZGM1YWQuanBlZw==');
+INSERT INTO `productos` (`id`, `categoria_id`, `nombre`, `descripcion`, `puntos`, `precio`, `cantidad`, `etiqueta`, `imagen`) VALUES
+	(1, 1, 'Parrillada', 'gfdfgdf', '1', 18.00, '12', NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8zMGJiYzZhNi01NmQxLTRmNTItYTY2Ni0wN2ExMWEzNDhmZjUuanBlZw=='),
+	(2, 1, 'PORCION ARROZ CON MENESTRA FREJOL\r\n', NULL, '1', 3.50, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC82MTYwMmY0My0wMzNiLTRjYzctYjkwYy1hZDE4Yjg5NDI1ZDcucG5n'),
+	(3, 1, 'CHAUFI BRASA PERSONAL', NULL, '1', 4.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8yMzAzOTZiOS1jNjQ1LTQwNjMtYTYwYi04YTFiNzVkZTIwOWIuanBlZw=='),
+	(4, 1, 'PRESA DE POLLO CON ARROZ Y PAPAS', 'gfdfgdfg', '1', 4.50, '34', NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9hMjUyMjVjZC1hOTY5LTQ2NWEtYmZhNi1jYWRiMjFjMzhmMzUuanBlZw=='),
+	(5, 1, 'Chuzo cuencano', NULL, '1', 5.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC81MWI2ODIzYS1hZGJhLTQ0NDUtYWE4YS03M2M5MzMzYmI1NDUuanBlZw=='),
+	(6, 1, 'Carne asada', NULL, '1', 6.00, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9iNzgxYTA0My0yMDFjLTQxZGUtOWU4MS1kMzNjODAxNWQ0MTEuanBlZw'),
+	(7, 1, 'Chuleta asada', NULL, '1', 6.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9iODc5NzM4Yi1kZmRiLTQ3MTYtODI0Ny02MTc3ZjNmODc3YjUuanBlZw=='),
+	(8, 1, 'Filete de pollo', NULL, '1', 7.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC82ZThkYTYzNS1iZTBiLTQxYTEtODcwMi05ZTc5MTRiMWE2YTIuanBlZw=='),
+	(9, 1, 'Costillas BBQ', NULL, '1', 7.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC83ODYzZTgxZS1iMjQxLTQwZTctYWM0Ny1iODAxNDZlMWVkZGEuanBlZw=='),
+	(10, 2, 'Fiora-Vanti', NULL, NULL, 0.80, NULL, NULL, ''),
+	(11, 2, 'Inca kola', NULL, NULL, 0.80, NULL, NULL, ''),
+	(12, 2, 'Agua', NULL, NULL, 1.00, NULL, NULL, ''),
+	(13, 2, 'Coca-Cola 300mm', NULL, NULL, 1.00, NULL, NULL, ''),
+	(14, 2, 'Fuze Tea personal', NULL, NULL, 1.00, NULL, NULL, ''),
+	(15, 2, 'Fanta Naranja', NULL, NULL, 1.25, NULL, NULL, ''),
+	(16, 2, 'Sprite\r\n', NULL, NULL, 1.25, NULL, NULL, ''),
+	(17, 2, 'Jugo natural vaso', NULL, NULL, 1.50, NULL, NULL, ''),
+	(18, 2, 'Naranja', NULL, NULL, 1.50, NULL, NULL, ''),
+	(19, 2, 'Cola 1 litro', NULL, NULL, 2.00, NULL, NULL, ''),
+	(20, 2, 'Fuze Tea 1.5 litros\r\n', NULL, NULL, 2.00, NULL, NULL, ''),
+	(21, 3, 'Porción de chifles', NULL, NULL, 1.50, NULL, NULL, ''),
+	(22, 3, 'Combo 12 Alitas + Papas + Gaseosa', NULL, NULL, 14.99, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9hNWE0NzNlMC1mZWUxLTQwNDYtYTBiNy03MzJmOWM5YzY4ZWMuanBlZw=='),
+	(23, 3, 'Porción de arroz', NULL, NULL, 2.00, NULL, NULL, ''),
+	(24, 3, 'Porción de papas fritas', NULL, NULL, 2.50, NULL, NULL, ''),
+	(25, 3, 'Porción de papas chauchas', NULL, NULL, 2.50, NULL, NULL, ''),
+	(26, 3, 'Chuzo solo', NULL, NULL, 2.50, NULL, NULL, ''),
+	(27, 3, 'Porción de moro de lentejas', NULL, NULL, 3.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC85NzljNWU3NC02NzAwLTQwNzMtYmE0YS1lNWU4MWIzMTc1ZDMuanBlZw=='),
+	(28, 3, 'Porción Moro Cubano', NULL, NULL, 3.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8zYzNiZjM1YS0xMmU4LTQ0MjktOTI3Zi1kNWUxNTkxYjYyZTYuanBlZw=='),
+	(29, 3, 'Arroz con menestra porción', NULL, NULL, 3.00, NULL, NULL, ''),
+	(30, 3, 'PORCION ARROZ CON MENESTRA FREJOL', NULL, NULL, 3.50, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC82MTYwMmY0My0wMzNiLTRjYzctYjkwYy1hZDE4Yjg5NDI1ZDcucG5n'),
+	(31, 3, 'CHAUFI BRASA PERSONAL', NULL, NULL, 4.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8yMzAzOTZiOS1jNjQ1LTQwNjMtYTYwYi04YTFiNzVkZTIwOWIuanBlZw=='),
+	(32, 3, 'NUEVO! Lomito Saltado Peruano', NULL, NULL, 5.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC84YTU2OGMwMy02YWU2LTQxZDYtYmRlMy0zYmEyNzI4NDAxOWYuanBlZw=='),
+	(33, 4, 'POLLO ENTERO A LA BRASA CON PAPAS', NULL, '1', 15.00, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/b921aeb1-2f87-4810-8436-29c12a689747.jpeg'),
+	(34, 4, 'PRESA DE POLLO CON PAPAS FRITAS\r\n', NULL, '1', 3.00, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8xNTM3YzQwZC05ZGNmLTRhYmQtYmViMC01NGQyZDIxMzU1MWUucG5n'),
+	(35, 4, 'PORCION ARROZ CON MENESTRA FREJOL', NULL, '1', 3.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC82MTYwMmY0My0wMzNiLTRjYzctYjkwYy1hZDE4Yjg5NDI1ZDcucG5n'),
+	(36, 4, 'CHAUFI BRASA PERSONAL', NULL, '1', 4.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8yMzAzOTZiOS1jNjQ1LTQwNjMtYTYwYi04YTFiNzVkZTIwOWIuanBlZw=='),
+	(37, 4, 'PRESA DE POLLO CON ARROZ Y PAPAS', NULL, '1', 4.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9hMjUyMjVjZC1hOTY5LTQ2NWEtYmZhNi1jYWRiMjFjMzhmMzUuanBlZw=='),
+	(38, 4, 'NUEVO! Seco de pollo', NULL, '1', 4.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9mYzE5NjcwZi1jN2ZhLTRiNDctYmZhNS02MjQ0NTIzMTUzNWQuanBlZw=='),
+	(39, 4, '1/4 POLLO BRASA PIERNA', NULL, '1', 5.00, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/890c7e1c-77b8-48c5-9f14-9e39ab63696b.png'),
+	(40, 4, 'NUEVO! Presitas de Pollo Honey Murstard + Chaufa + papas fritas\r\n', NULL, '1', 5.50, NULL, NULL, 'aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9hM2ViNzYxMi1hM2M2LTRiZmItOGUzMi1lMTQzNmUxYmZmOGUuanBlZw'),
+	(41, 4, 'NUEVO! Lomito Saltado Peruano', NULL, '1', 5.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC84YTU2OGMwMy02YWU2LTQxZDYtYmRlMy0zYmEyNzI4NDAxOWYuanBlZw=='),
+	(42, 4, '1/4 POLLO BRASA PECHUGA', NULL, '1', 6.00, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/ab862af8-474e-4bc3-afc4-7634e424b32a.jpeg'),
+	(43, 4, '1/4 CHAUFI BRASA PIERNA', NULL, '1', 6.50, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/efa3a3b8-6e46-4179-92c4-ed1da398ceb6.jpeg'),
+	(44, 4, '1/2 POLLO A LA BRASA CON PAPAS', NULL, '1', 8.00, NULL, NULL, 'https://d1ralsognjng37.cloudfront.net/8b7560d4-9a8d-4704-87f8-c5fce41b9775.png'),
+	(45, 5, 'Presa de pollo + papas', NULL, '1', 2.50, NULL, NULL, ''),
+	(46, 5, 'Carne asada porción', NULL, '1', 4.00, NULL, NULL, ''),
+	(47, 5, 'Chuzo cuencano porción', NULL, '1', 4.00, NULL, NULL, ''),
+	(48, 5, 'Filete de pollo porción', NULL, '1', 4.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64==='),
+	(49, 5, 'Chuleta asada porción', NULL, '1', 4.50, NULL, NULL, ''),
+	(50, 5, 'Filete de pollo porción', NULL, '1', 4.50, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9iNDZlNWFkNS0zNGY5LTRkMWUtODBmZS1kNWJlYjEzNjQyMmMuanBlZw=='),
+	(51, 5, 'Costillas bbq porción', NULL, '1', 5.00, NULL, NULL, ''),
+	(52, 6, '1/2 POLLO + CHAUFA\r\n', NULL, '1', 11.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8xNDdkZjA4ZS02OWRjLTQyMTMtYjhiMy0xNTViMjRmZDFhYjkuanBlZw=='),
+	(53, 6, 'Costilla BBQ / 1 libra', NULL, '1', 15.00, NULL, NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC9lNGQ5ZDU5Yy0wMTkwLTQ5NzItOTBkMi1mMjYzM2U1MWY2NDQuanBlZw=='),
+	(54, 6, 'POLLO ENTERO CON CHAUFA FAMILIAR + GASEOSA', '+ GASEOSA', '1', 20.00, '4343', NULL, 'https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC84MzEzMzY5Ny0xMjcxLTQyNTgtYTI3OS0zZWZlZWYwZGM1YWQuanBlZw==');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gestion.provincia
@@ -7952,9 +8060,7 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   KEY `FK1_producto` (`producto_id`),
   KEY `FK2_categoria` (`categoria_id`),
   KEY `FK3_cliente` (`cliente_id`),
-  KEY `FK4_usuario` (`users_id`),
-  CONSTRAINT `FK3_cliente` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`),
-  CONSTRAINT `FK4_usuario` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+  KEY `FK4_usuario` (`users_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla gestion.ventas: ~0 rows (aproximadamente)
@@ -7962,6 +8068,5 @@ CREATE TABLE IF NOT EXISTS `ventas` (
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

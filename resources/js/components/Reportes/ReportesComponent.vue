@@ -21,7 +21,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                Clientes</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{clientes }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -213,7 +213,7 @@ import "vue-loading-overlay/dist/vue-loading.css";
 import swal from "sweetalert2";
 Vue.use(Loading);
 export default {
-    name: "lista",
+    name: "report",
     components: {
     Loading,
     },
@@ -224,9 +224,16 @@ export default {
     },
 
     created() {
-        axios.get("reportes/clientes/").then((res) => {
-          this.clientes = res.data;
-        });
+       this.clientes();
     },
+
+    methods: {
+        getClientes() {
+             axios.get("reportes/clientes/").then((res) => {
+                this.clientes = res.data;
+                console.log(this.clientes);
+            });
+        }
+    }
       
 }
