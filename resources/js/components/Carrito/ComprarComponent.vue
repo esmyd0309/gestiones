@@ -42,7 +42,7 @@
                 <div class="col"  v-for="(item, index) in carrito" :key="index" >
                   <li class="list-group-item d-flex justify-content-between align-items-start" >
                     <button class="btn btn-outline-secondary"  >
-                      <div class="col-lg-4 mb-4" >
+                      <div class="ms-2 me-auto" >
                         <div class="fw-bold" > <strong @click="eliminarCarrito(index,item)">{{ item.nombre }}</strong>   <small>${{item.precio}}</small> </div>
                       
                       </div>
