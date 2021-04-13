@@ -22,7 +22,7 @@ class Clientes extends Model
                             'villa     ',    
                             'mz        ',     
                             'referencia',    
-                            'idActualizado', ];
+                            'idActualizado', 'puntos'];
 
     public function scopeCedula($query, $cedula)
      {
