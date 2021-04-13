@@ -110,7 +110,7 @@
               <div class="card-body" id="datos">
                 <input type="text" v-model="buscar" @input="getClientes(buscar)" class="form-control" placeholder="Buscar cliente por cedula o nombres"/>
                  <hr>
-                 
+                  <div class="table-responsive">
                     <table class="table table-bordered table-hover table-striped table-responsive">
                       <thead>
                         <tr>
@@ -137,7 +137,7 @@
                         </tr>
                       </tbody>         
                     </table>
-                
+                  </div>
                  
                     <b-button v-b-modal.modalregistrarcliente @click.prevent="modalregistrarcliente=true" variant="primary" @click="getRegistrar()"> <i class="fas fa-user-plus"></i> Registrar</b-button>
 

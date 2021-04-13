@@ -21,44 +21,46 @@
       </div>
       <hr>
       <div class="row">
-        <div class="col-lg-12 mb-6">
-          <table class="table table-bordered table-hover table-striped table-responsive">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>cedula</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Telefono Whatsapp</th>
-                    <th>Direcciòn</th>
-                    <th>Mz</th>
-                    <th>Villa</th>
-                    <th>Referencia</th>
-                    <th>Puntos</th>
-                  <th colspan="3"></th>     
-                </tr>
-            </thead>
-            <tbody>
-                  <tr v-for="(item, index) in clientes" :key="index">
-                   <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg" @click="view(item)" > <td v-text="item.id"></td></a>
-                    <td v-text="item.cedula"></td>
-                    <td v-text="item.nombres"></td>
-                    <td v-text="item.apellidos"></td>
-                    <td v-text="item.telefonoWhatsapp"></td>
-                    <td v-text="item.direccion"></td>
-                    <td v-text="item.mz"></td>
-                    <td v-text="item.villa"></td>
-                    <td v-text="item.referencia"></td>
-                    <td v-text="item.puntos"></td>
-                    <td><button type="submit" v-b-modal.modal1 @click.prevent="modal1=true"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button></td>
-
-                    <td><button type="submit" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg" @click="view(item)" > <i class="fas fa-eye"></i></button></td>
-
-                    <td><button type="submit" class="btn btn-danger" @click="deleete(item.id)" > <i class="fas fa-trash-alt"></i></button></td>
-
+        <div class="col-lg-12 mb-6 ">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped table-responsive">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>cedula</th>
+                      <th>Nombres</th>
+                      <th>Apellidos</th>
+                      <th>Telefono Whatsapp</th>
+                      <th>Direcciòn</th>
+                      <th>Mz</th>
+                      <th>Villa</th>
+                      <th>Referencia</th>
+                      <th>Puntos</th>
+                    <th colspan="3"></th>     
                   </tr>
-            </tbody>         
-          </table>
+              </thead>
+              <tbody>
+                    <tr v-for="(item, index) in clientes" :key="index">
+                    <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg" @click="view(item)" > <td v-text="item.id"></td></a>
+                      <td v-text="item.cedula"></td>
+                      <td v-text="item.nombres"></td>
+                      <td v-text="item.apellidos"></td>
+                      <td v-text="item.telefonoWhatsapp"></td>
+                      <td v-text="item.direccion"></td>
+                      <td v-text="item.mz"></td>
+                      <td v-text="item.villa"></td>
+                      <td v-text="item.referencia"></td>
+                      <td v-text="item.puntos"></td>
+                      <td><button type="submit" v-b-modal.modal1 @click.prevent="modal1=true"  class="btn btn-warning" @click="edit(item)" > <i class="fas fa-user-edit"></i></button></td>
+
+                      <td><button type="submit" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg" @click="view(item)" > <i class="fas fa-eye"></i></button></td>
+
+                      <td><button type="submit" class="btn btn-danger" @click="deleete(item.id)" > <i class="fas fa-trash-alt"></i></button></td>
+
+                    </tr>
+              </tbody>         
+            </table>
+          </div>
            <ul class="pagination">
                 <button class="btn btn-primary" @click="lastPage">
                     <span>Anterior</span>
